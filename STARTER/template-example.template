@@ -1,0 +1,9 @@
+<?php
+/*
+Template Name: Example Template
+
+Templates appear in the page template dropdown. If you want a different theme for things like
+homepage or galleries this is how you do it.
+
+*/
+include_once('page.php');

@@ -8,9 +8,10 @@ get_header(); ?>
 
 
   <!-- Left Sidebar -->
-  <div id="sidebar-right" class="columns three">
-    <?php if ( ! dynamic_sidebar( 'sidebar-l' ) ) {} ?>
+  <div id="secondary left" class="widget-area columns three" role="complementary">
+    <?php get_sidebar('left'); ?>
   </div>
+  
   
   
   
@@ -34,8 +35,9 @@ get_header(); ?>
   			
   			
   <!-- Right Sidebar -->
-  <div id="sidebar-left" class="columns three">
-    <?php if ( ! dynamic_sidebar( 'sidebar-r' ) ) {} ?>
+  <div id="secondary right" class="widget-area columns three" role="complementary">
+    <?php get_sidebar('right'); ?>
   </div>
+  
 
 <?php get_footer(); ?>

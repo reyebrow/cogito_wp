@@ -3,7 +3,6 @@
  * The Sidebar containing the main widget area.
  */
 ?>
-<div id="secondary" class="widget-area" role="complementary">
 	<?php if ( ! dynamic_sidebar( 'sidebar-right' ) ) : ?>
     
 		<aside id="archives" class="widget">
@@ -23,4 +22,4 @@
 		</aside>
 
 	<?php endif; // end sidebar widget area ?>
-</div><!-- #secondary .widget-area -->
+

@@ -24,7 +24,7 @@ get_header(); ?>
   <div id="content" class="columns six" role="main">
 
     <?php  the_post();  
-    get_template_part( 'content', 'page' );
+    get_template_part( 'loop', 'page' );
     comments_template( '', true );?>
     
   </div><!-- #content -->

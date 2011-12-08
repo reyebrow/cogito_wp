@@ -10,7 +10,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<h1 class="entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h1>
+		<h1 class="entry-title"><?php the_title(); ?></h1>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">

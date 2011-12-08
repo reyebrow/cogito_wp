@@ -5,6 +5,7 @@
 ?>
 	<?php if ( ! dynamic_sidebar( 'sidebar-right' ) ) : ?>
     
+    <!--  These don't get set unless the dynamic sidebar is missing or empty-->
 		<aside id="archives" class="widget">
 			<h3 class="widget-title"><?php _e( 'Archives', 'twentyeleven' ); ?></h3>
 			<ul>

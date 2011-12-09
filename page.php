@@ -9,30 +9,37 @@
 get_header(); ?>
 
 
-  <!-- Left Sidebar -->
-  <div id="secondary left" class="widget-area columns three" role="complementary">
+  <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
+  
+  
+    <!-- Get the Left Sidebar (if there is one)-->
     <?php get_sidebar('left'); ?>
-  </div>
-  
-  <!--   Content -->
-  <div id="content" class="columns six" role="main">
-  
-    <?php 
-      cogito_wp_content_nav( 'nav-above' );
-      
-      the_post();  //set up $post variable
-      get_template_part( 'loop', 'page' );
-      comments_template( '', true );
-      
-      cogito_wp_content_nav( 'nav-below' ); 
-    ?>
     
-  </div><!-- #content -->
+    <!-- Main Content -->
+    <div id="content" class="columns six" role="main">
+  
+      <?php if ( have_posts() ) {
+        while ( have_posts() ) {
+          cogito_wp_content_nav( 'nav-above' ); 
+          
+          the_post();  //set up $post variable
+          get_template_part( 'loop', 'page' ); //basically this is just looking for loop-format.php 
+          
+          cogito_wp_content_nav( 'nav-below' ); 
+        }
+      }
+      else {
+        get_template_part( 'loop','noresult' );
+      } ?>   
+      
+       <?php comments_template( '', true ); ?> 
+    
+    </div>
   			
-  			
-  <!-- Right Sidebar -->
-  <div id="secondary right" class="widget-area columns three" role="complementary">
+    <!-- Right Sidebar (if there is one)-->
     <?php get_sidebar('right'); ?>
-  </div>
+    
+
+  </div><?php //div eleven centered ?>
 
 <?php get_footer(); ?>

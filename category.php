@@ -8,21 +8,22 @@
 get_header(); ?>
 
 
-  <!-- Left Sidebar -->
-  <div id="secondary left" class="widget-area columns three" role="complementary">
-    <?php get_sidebar('left'); ?>
-  </div>
+<div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
+
+
+  <!-- Get the Left Sidebar (if there is one)-->
+  <?php get_sidebar('left'); ?>
   
 
   <!-- Main Content -->
-	<div id="content" class="columns six" role="main">
+  <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
 
 	<?php if ( have_posts() ) : ?>
 
 		<header class="page-header">
 			<h1 class="page-title"><?php
 				printf( __( 'Category Archives: %s', 'twentyeleven' ), '<span>' . single_cat_title( '', false ) . '</span>' );
-			?></h1>
+  			?></h1>
 
 			<?php
 				$category_description = category_description();
@@ -54,10 +55,12 @@ get_header(); ?>
 	</div><!-- #content -->
 
   			
-  <!-- Right Sidebar -->
-  <div id="secondary right" class="widget-area columns three" role="complementary">
-    <?php get_sidebar('right'); ?>
-  </div>
+  <!-- Right Sidebar (if there is one)-->
+  <?php get_sidebar('right'); ?>
   
+  
+  
+</div><?php //div eleven centered ?>
+
 
 <?php get_footer(); ?>

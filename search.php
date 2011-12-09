@@ -22,19 +22,9 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php if ( is_day() ) : ?>
-						<?php printf( __( 'Daily Archives: %s', 'cogito_wp' ), '<span>' . get_the_date() . '</span>' ); ?>
-					<?php elseif ( is_month() ) : ?>
-						<?php printf( __( 'Monthly Archives: %s', 'cogito_wp' ), '<span>' . get_the_date( 'F Y' ) . '</span>' ); ?>
-					<?php elseif ( is_year() ) : ?>
-						<?php printf( __( 'Yearly Archives: %s', 'cogito_wp' ), '<span>' . get_the_date( 'Y' ) . '</span>' ); ?>
-					<?php else : ?>
-						<?php _e( 'Blog Archives', 'cogito_wp' ); ?>
-					<?php endif; ?>
-				</h1>
-			</header>
+				<header class="page-header">
+					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentyeleven' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				</header>
 
 			<?php cogito_wp_content_nav( 'nav-above' ); ?>
 

@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<!--[if IE 6]>
-<html id="ie6" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if IE 7]>
-<html id="ie7" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if IE 8]>
-<html id="ie8" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
-<html <?php language_attributes(); ?>>
-<!--<![endif]-->
 
-
-  <head>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"<?php language_attributes(); ?>> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" <?php language_attributes(); ?>> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" <?php language_attributes(); ?>> <![endif]-->
+<!--[if gt IE 8]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
+<head>
   
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  	<!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="initial-scale=1.6; maximum-scale=1.0; width=device-width; "/>
+
+    <!-- Schema.org Description -->
+    <meta itemprop="name" content="">
+    <meta itemprop="description" content="">    
     
+    <!-- Setting favicon and Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="<?php bloginfo ("template_url");?>/images/misc/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="<?php bloginfo ("template_url"); ?>/images/misc/favicon.ico">
+
+    <!-- Apple Developer Options -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     
     <title><?php
     	/*
@@ -43,16 +48,25 @@
     
     	?></title>
     	
-    	
-    	
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-    <!--[if lt IE 9]>
-    <script src="<?php echo get_template_directory_uri(); ?>/js/html5.js" type="text/javascript"></script>
-    <![endif]-->
-    	<!--[if lt IE 9]>
-    		<link rel="stylesheet" href="foundation/stylesheets/ie.css">
-    	<![endif]-->
+
+  	<!--[if lt IE 9]>
+  		<link rel="stylesheet" href="stylesheets/ie.css">
+  	<![endif]-->
+  
+  	<!-- IE Fix for HTML5 Tags -->
+  	<!--[if lt IE 9]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<![endif]-->
+  	
+  	<!-- Orbit IE Settings -->
+  	<!--[if IE]>
+      <style type="text/css">
+           .timer { display: none !important; }
+           div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom: 1; }
+      </style>
+  	<![endif]-->
     
     <?php
     	/* We add some JavaScript to pages with the comment form
@@ -71,5 +85,6 @@
     	 */
     	wp_head();
     ?>
+     <?php // Most themes put the styles.css earlier but we want it later so it can have final say. ?>
     <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
   </head>

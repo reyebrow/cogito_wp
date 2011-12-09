@@ -1,0 +1,15 @@
+/*
+Theme Name: Cogito_wp STARTER KIT CHILD THEME
+Version: 1.0
+Description: Child of Cogito_wp which is a wordpress theme based on the foundation CSS.
+Author: Matt Reimer @ Raised Eyebrow Web Studios
+Author URI: http://raisedeyebrow.com
+Template: cogito_wp
+*/
+
+
+/************************************************************
+Point this to cogito's style.css or delete it and write your own
+style directly in this file */
+@import url("../cogito_wp/style.css");
+/*************************************************************/

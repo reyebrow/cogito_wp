@@ -10,11 +10,15 @@ General comments/License Statement if any.
 . 
 */  
 
+/*****************************************************************************************************************************/
+/* WARNING!!!! NEVER CHANGE ANYTHING IN THIS FOLDER!!! USE A CHILD THEME! CHECK OUT "STARTER_CHILD" FOLDER FOR INSTRUCTIONS  */
+/*****************************************************************************************************************************/
+
 
 /* Just some general styling  */
 
-aside h3{  font-size: 1.5em;}
-#content h2{  font-size: 2em;}
+aside h3{  font-size: 1.2em;}
+#content h2{  font-size: 1.2em;}
 #content h1{  font-size: 2.5em;}
 
 
@@ -28,6 +32,11 @@ body{	background: #EEE;}
 #site-title{}
 
 #site-description {
-font-size: 1.5em;
-font-style: italic;
+  font-size: 1.5em;
+  font-style: italic;
+}
+
+#footer{
+  border-top: 1px solid #ccc;
+  padding: 15px 0 40px;
 }

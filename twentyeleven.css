@@ -1,5 +1,30 @@
+/* Only put things in this file if you're sure you want it to appear in the child theme. */
+
+
+/* How do you center floated elements? This is how. */
+.cogito_paginate{
+  clear: both;
+  width: 100%;
+  overflow: hidden;
+}
+.cogito_paginate ul{
+  float: left;
+  position: relative;
+  left: 50%;
+}
+.cogito_paginate ul li{
+  position: relative;
+  right: 50%;
+}
+
+
+
+
+
 /* Styles  Borrowed from TwentyEleven
 -------------------------------------------------------------- */
+
+
 
 /* =Menu  
 -------------------------------------------------------------- */

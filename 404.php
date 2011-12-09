@@ -8,29 +8,25 @@
 get_header(); ?>
 
 
-  <!-- Left Sidebar -->
-  <div id="secondary left" class="widget-area columns three" role="complementary">
+  <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
+  
+  
+  
+    <!-- Get the Left Sidebar (if there is one)-->
     <?php get_sidebar('left'); ?>
-  </div>
-  
-  
-  
-  
-  <!-- Main Content -->
-  <div id="content" class="columns six" role="main">
-
-    <h2>Error 404 - Not Found</h2>
     
+    
+    <!-- Main Content -->
+    <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
   
-  </div>
-  			
-  			
-  			
-  			
-  <!-- Right Sidebar -->
-  <div id="secondary right" class="widget-area columns three" role="complementary">
+      <h2>Error 404 - Not Found</h2>
+    
+    </div>
+    			
+    			
+    <!-- Right Sidebar (if there is one)-->
     <?php get_sidebar('right'); ?>
-  </div>
   
+  </div><?php //div eleven centered ?>  
 
 <?php get_footer(); ?>

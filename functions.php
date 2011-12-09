@@ -1,42 +1,155 @@
 <?php
+/*****************************************************************************************************************************/
+/* WARNING!!!! NEVER CHANGE ANYTHING IN THIS FOLDER!!! USE A CHILD THEME! CHECK OUT "STARTER_CHILD" FOLDER FOR INSTRUCTIONS  */
+/*****************************************************************************************************************************
+
+Many of the functions in this file can be rewritten by creating functions with an identical name in a child theme
+Just copy what's inside the 
+
+              if ( ! function_exists()){
+              
+                    COPY THIS STUFF
+              
+              }
+
+Then paste it into your child's functions.php and change away.
+*/
+
+
+//These should be set in the child theme but we provide defaults
+//Note: we use the settings but there is no admin page for them
+if (!isset($cogito_init)){
+  $cogito_init = array(
+      //Three columns with right and left sidebar
+    'three_columns_left'     => 2,
+    'three_columns_content'  => 8,
+    'three_columns_right'    => 2,
+    
+    //Two columns with right sidebar
+    'two_columns_rsb_right'   => 4,
+    'two_columns_rsb_content' => 8,
+    
+    //Two columns with Left sidebar
+    'two_columns_lsb_left'    => 4,
+    'two_columns_lsb_content' => 8,
+    
+    //1 Column. Centered by default
+    'one_column_content'      => 10
+  );  
+  update_option( 'cogito_columns', $cogito_init );
+}
+
+
+/**
+ * This function returns the columns and widths to be populated as classes.
+ * It is recommended that you have this in your child's functions.php file 
+ * since this is what will let you change the column widths
+ */
+if ( ! function_exists( 'cogito_wp_col_class' ) ) :
+  function cogito_wp_col_class($col = ''){
+  
+    $cogito_init = get_option('cogito_columns'); 
+    $val = false;
+    
+    //Is there a left column?
+    if (is_active_sidebar( 'sidebar-left' ) ) $left = true;
+    
+    //Is there a right column?
+     if (is_active_sidebar( 'sidebar-right' ) ) $right = true;  
+     
+    //It's a 3-column layout with a left and right sidebar.
+    if ($left && $right){
+      switch ($col) {
+          case 'content': $val = cogito_foundation_sizer($cogito_init['three_columns_content']) . " columns"; break;
+          case 'left':    $val = cogito_foundation_sizer($cogito_init['three_columns_left']) . " columns"; break;
+          case 'right':   $val = cogito_foundation_sizer($cogito_init['three_columns_right']) . " columns"; break;
+      }
+    }
+    //It's a 2-column layout with a left sidebar.
+    elseif ($left){
+      switch ($col) {
+          case 'content': $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_content']) . " columns"; break;
+          case 'left':    $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_left']) . " columns"; break;
+      }
+    }
+    //It's a 2-column layout with a right sidebar.
+    elseif ($right){
+      switch ($col) {
+          case 'content': $val = cogito_foundation_sizer($cogito_init['two_columns_rsb_content']) . " columns"; break;
+          case 'right':   $val = cogito_foundation_sizer($cogito_init['two_columns_rsb_right']) . " columns"; break;
+      }
+    }
+    //It's a 1-column layout.
+    else {
+      switch ($col) {
+          case 'content': $val = cogito_foundation_sizer($cogito_init['one_column_content']) . " centered columns"; break;
+      }
+    }
+    //print "<pre>--" .print_r($col,1). " -- $val --</pre>";
+    return $val;
+  }
+endif;
+
 
 /**
  * Foundation is what we base our themes on
  *
- * @since Twenty Eleven 1.0
+ * Let's add all the necessary javascript and styles
  */
-
-function cogito_wp_admin_enqueue_scripts( $hook_suffix ) {
-	wp_enqueue_style( 'foundation-css', get_template_directory_uri() . '/foundation/stylesheets/foundation.css'  );
-	wp_enqueue_style( 'twentyeleven-menu', get_template_directory_uri() . '/twentyeleven.css'  );
-			
-	wp_enqueue_script( 'foundation-js', get_template_directory_uri() . '/foundation/javascripts/foundation.js', array('jquery') );
-	//App.js just contains some extra form stuff for now.
-	wp_enqueue_script( 'foundation-app', get_template_directory_uri() . '/js/app.js', array('jquery') );
-
-}
+if ( ! function_exists( 'cogito_wp_admin_enqueue_scripts' ) ) :
+  function cogito_wp_admin_enqueue_scripts( $hook_suffix ) {
+    // Foundation gets its own jquery 
+    wp_deregister_script( 'jquery' );
+    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js');
+    wp_enqueue_script( 'jquery' );
+  
+  
+  	wp_enqueue_style( 'foundation-css', get_template_directory_uri() . '/foundation/stylesheets/foundation.css'  );
+  	wp_enqueue_style( 'twentyeleven-menu', get_template_directory_uri() . '/twentyeleven.css'  );
+  			
+  	wp_enqueue_script( 'foundation-js', get_template_directory_uri() . '/foundation/javascripts/foundation.js', array('jquery') );
+  	//App.js just contains some extra form stuff for now.
+  	wp_enqueue_script( 'foundation-app', get_template_directory_uri() . '/js/app.js', array('jquery') );
+  
+  }
+endif;
 add_action( 'wp_enqueue_scripts', 'cogito_wp_admin_enqueue_scripts' );
 
 
-/**
- * Display navigation to next/previous pages when applicable
- */
-function cogito_wp_content_nav( $nav_id ) {
-	global $wp_query;
+// Disable WordPress version reporting as a basic protection against automatic attacks
+function remove_generators() {
+	return '';
+}	
+add_filter('the_generator','remove_generators');
 
-	if ( $wp_query->max_num_pages > 1 ) : ?>
-		<nav id="<?php echo $nav_id; ?>">
-			<h3 class="assistive-text"><?php _e( 'Post navigation', 'twentyeleven' ); ?></h3>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'cogito_wp' ) ); ?></div>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'cogito_wp' ) ); ?></div>
-		</nav><!-- #nav-above -->
-	<?php endif;
-}
+
+// Enable the admin bar, set to true if you want it to be visible.
+show_admin_bar(TRUE);
+
+
+/**
+ * Display navigation to next/previous pages when applicable (borrowed from TwentyEleven)
+ */
+if ( ! function_exists( 'cogito_wp_content_nav' ) ) :
+
+  function cogito_wp_content_nav( $nav_id ) {
+  	global $wp_query;
+  
+  	if ( $wp_query->max_num_pages > 1 ) : ?>
+  		<nav id="<?php echo $nav_id; ?>">
+  			<h5 class="assistive-text"><?php _e( 'Post navigation', 'cogito_wp' ); ?></h5>
+  			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'cogito_wp' ) ); ?></div>
+  			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'cogito_wp' ) ); ?></div>
+  		</nav><!-- #nav-above -->
+  	<?php endif;
+  }
+  
+endif;
 
 
 /**
  * Helper function to spell out numbers
-
+ * We use this for Foundation classes
  */
 
 function cogito_foundation_sizer($num){
@@ -45,74 +158,78 @@ function cogito_foundation_sizer($num){
 }
 
 /**
- * Register our sidebars and widgetized areas. Also register the default Epherma widget.
+ * Register our sidebars and widgetized areas. Also register the main menu as a dynamic menu
  *
  * @since Twenty Eleven 1.0
  */
-function cogito_wp_widgets_init() {
+if ( ! function_exists( 'cogito_wp_widgets_init' ) ) :
 
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'primary', __( 'Primary Menu', 'twentyeleven' ) );
-
-	register_sidebar( array(
-		'name' => __( 'Left Sidebar', 'cogito_wp' ),
-		'id' => 'sidebar-left',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-	register_sidebar( array(
-		'name' => __( 'Right Sidebar', 'cogito_wp' ),
-		'id' => 'sidebar-right',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-
-
-	register_sidebar( array(
-		'name' => __( 'Showcase Sidebar', 'cogito_wp' ),
-		'id' => 'sidebar-2',
-		'description' => __( 'The sidebar for the optional Showcase Template', 'cogito_wp' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-
-	register_sidebar( array(
-		'name' => __( 'Footer Area One', 'cogito_wp' ),
-		'id' => 'footer-1',
-		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-
-	register_sidebar( array(
-		'name' => __( 'Footer Area Two', 'cogito_wp' ),
-		'id' => 'footer-2',
-		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-
-	register_sidebar( array(
-		'name' => __( 'Footer Area Three', 'cogito_wp' ),
-		'id' => 'footer-3',
-		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-}
+  function cogito_wp_widgets_init() {
+  
+  
+  	// This theme uses wp_nav_menu() in one location.
+  	register_nav_menu( 'primary', __( 'Primary Menu', 'twentyeleven' ) );
+  
+  	register_sidebar( array(
+  		'name' => __( 'Left Sidebar', 'cogito_wp' ),
+  		'id' => 'sidebar-left',
+  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+  		'after_widget' => "</aside>",
+  		'before_title' => '<h3 class="widget-title">',
+  		'after_title' => '</h3>',
+  	) );
+  	register_sidebar( array(
+  		'name' => __( 'Right Sidebar', 'cogito_wp' ),
+  		'id' => 'sidebar-right',
+  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+  		'after_widget' => "</aside>",
+  		'before_title' => '<h3 class="widget-title">',
+  		'after_title' => '</h3>',
+  	) );
+  
+  
+  	register_sidebar( array(
+  		'name' => __( 'Showcase Sidebar', 'cogito_wp' ),
+  		'id' => 'sidebar-2',
+  		'description' => __( 'The sidebar for the optional Showcase Template', 'cogito_wp' ),
+  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+  		'after_widget' => "</aside>",
+  		'before_title' => '<h3 class="widget-title">',
+  		'after_title' => '</h3>',
+  	) );
+  
+  	register_sidebar( array(
+  		'name' => __( 'Footer Area One', 'cogito_wp' ),
+  		'id' => 'footer-1',
+  		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
+  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+  		'after_widget' => "</aside>",
+  		'before_title' => '<h3 class="widget-title">',
+  		'after_title' => '</h3>',
+  	) );
+  
+  	register_sidebar( array(
+  		'name' => __( 'Footer Area Two', 'cogito_wp' ),
+  		'id' => 'footer-2',
+  		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
+  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+  		'after_widget' => "</aside>",
+  		'before_title' => '<h3 class="widget-title">',
+  		'after_title' => '</h3>',
+  	) );
+  
+  	register_sidebar( array(
+  		'name' => __( 'Footer Area Three', 'cogito_wp' ),
+  		'id' => 'footer-3',
+  		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
+  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+  		'after_widget' => "</aside>",
+  		'before_title' => '<h3 class="widget-title">',
+  		'after_title' => '</h3>',
+  	) );
+  }
+  
+endif;
 add_action( 'widgets_init', 'cogito_wp_widgets_init' );
 
 
@@ -123,42 +240,127 @@ add_action( 'widgets_init', 'cogito_wp_widgets_init' );
  * To override this length in a child theme, remove the filter and add your own
  * function tied to the excerpt_length filter hook.
  */
-function cogito_wp_excerpt_length( $length ) {
-	return 40;
-}
+if ( ! function_exists( 'cogito_wp_excerpt_length' ) ) :
+ 
+  function cogito_wp_excerpt_length( $length ) {
+  	return 40;
+  }
+
+endif;
 add_filter( 'excerpt_length', 'cogito_wp_excerpt_length' );
 
 
 
+
+
+
+
+
+
+
 /**
- * Adds a pretty "Continue Reading" link to custom post excerpts.
+ * Get Only active Footers 
+ *
+ * Set the widths of footer regions to space equally. Maximum of 4 regions possible
+ *
+ */
+if ( ! function_exists( 'cogito_wp_body_classes' ) ) :
+ 
+  function cogito_get_footers() {
+  
+    //First count the widget areas we have and store active footers in an array
+    $foot_counter = Array();
+    for ($i=0;$i<4;$i++){
+      if (is_active_sidebar( 'footer-' . $i ) ) $foot_counter[] = $i;
+    }
+    //Now print a block array 
+    if ( !empty($foot_counter) ){
+      foreach ($foot_counter as $footer_num){
+        print '<div class="columns '.cogito_foundation_sizer(12 / sizeof($foot_counter)) .'">'; 
+        dynamic_sidebar( 'footer-' . $footer_num ); 
+        print '</div>';
+      }
+    }	
+  	
+  }
+
+endif;
+
+
+
+
+/**
+ * Adds two classes to the array of body classes. (borrowed from twenty_eleven)
+ * The first is if the site has only had one author with published posts.
+ * The second is if a singular post being displayed
+ *
+ * @since Twenty Eleven 1.0
+ */
+if ( ! function_exists( 'cogito_wp_body_classes' ) ) :
+
+  function cogito_wp_body_classes( $classes ) {
+  
+  	if ( ! is_multi_author() ) {
+  		$classes[] = 'single-author';
+  	}
+  
+  	if ( is_singular() && ! is_home() )
+  		$classes[] = 'singular';
+  
+  	return $classes;
+  }
+  
+endif;
+add_filter( 'body_class', 'cogito_wp_body_classes' );
+
+
+
+
+/**
+ * Adds a pretty "Continue Reading" link to custom post excerpts. (borrowed from twenty_eleven)
  *
  * To override this link in a child theme, remove the filter and add your own
  * function tied to the get_the_excerpt filter hook.
  */
-function cogito_wp_custom_excerpt_more( $output ) {
-	if ( has_excerpt() && ! is_attachment() ) {
-		$output .= cogito_wp_continue_reading_link();
-	}
-	return $output;
-}
+if ( ! function_exists( 'cogito_wp_custom_excerpt_more' ) ) :
+
+  function cogito_wp_custom_excerpt_more( $output ) {
+  	if ( has_excerpt() && ! is_attachment() ) {
+  		$output .= cogito_wp_continue_reading_link();
+  	}
+  	return $output;
+  }
+  
+endif;
 add_filter( 'get_the_excerpt', 'cogito_wp_custom_excerpt_more' );
+
+
 
 /**
  * Returns a "Continue Reading" link for excerpts
  */
-function cogito_wp_continue_reading_link() {
-	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) . '</a>';
-}
+if ( ! function_exists( 'cogito_wp_continue_reading_link' ) ) :
+
+  function cogito_wp_continue_reading_link() {
+  	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) . '</a>';
+  }
+  
+endif;
+
+
 /**
  * Replaces "[...]" (appended to automatically generated excerpts) with an ellipsis and twentyeleven_continue_reading_link().
  *
  * To override this in a child theme, remove the filter and add your own
  * function tied to the excerpt_more filter hook.
  */
-function cogito_wp_auto_excerpt_more( $more ) {
-	return ' &hellip;' . cogito_wp_continue_reading_link();
-}
+if ( ! function_exists( 'cogito_wp_auto_excerpt_more' ) ) :
+
+  function cogito_wp_auto_excerpt_more( $more ) {
+  	return ' &hellip;' . cogito_wp_continue_reading_link();
+  }
+  
+endif;
 add_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
 
 
@@ -167,57 +369,7 @@ add_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
 
 
 /**
- * Get Only active Footers
- */
- 
- 
-function cogito_get_footers() {
-
-  //First count the widget areas we have and store active footers in an array
-  $foot_counter = Array();
-  for ($i=0;$i<4;$i++){
-    if (is_active_sidebar( 'footer-' . $i ) ) $foot_counter[] = $i;
-  }
-  //Now print a block array 
-  if ( !empty($foot_counter) ){
-    foreach ($foot_counter as $footer_num){
-      print '<div class="columns '.cogito_foundation_sizer(12 / sizeof($foot_counter)) .'">'; 
-      dynamic_sidebar( 'footer-' . $footer_num ); 
-      print '</div>';
-    }
-  }	
-	
-}
-
-
-
-
-/**
- * Adds two classes to the array of body classes.
- * The first is if the site has only had one author with published posts.
- * The second is if a singular post being displayed
- *
- * @since Twenty Eleven 1.0
- */
-function cogito_wp_body_classes( $classes ) {
-
-	if ( ! is_multi_author() ) {
-		$classes[] = 'single-author';
-	}
-
-	if ( is_singular() && ! is_home() )
-		$classes[] = 'singular';
-
-	return $classes;
-}
-add_filter( 'body_class', 'cogito_wp_body_classes' );
-
-
-
-
-if ( ! function_exists( 'cogito_wp_comment' ) ) :
-/**
- * Template for comments and pingbacks.
+ * Template for comments and pingbacks. (borrowed from twenty_eleven)
  *
  * To override this walker in a child theme without modifying the comments template
  * simply create your own cogito_wp_comment(), and that function will be used instead.
@@ -226,60 +378,203 @@ if ( ! function_exists( 'cogito_wp_comment' ) ) :
  *
  * @since Twenty Eleven 1.0
  */
-function cogito_wp_comment( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
-	switch ( $comment->comment_type ) :
-		case 'pingback' :
-		case 'trackback' :
-	?>
-	<li class="post pingback">
-		<p><?php _e( 'Pingback:', 'cogito_wp' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'cogito_wp' ), '<span class="edit-link">', '</span>' ); ?></p>
-	<?php
-			break;
-		default :
-	?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-		<article id="comment-<?php comment_ID(); ?>" class="comment">
-			<footer class="comment-meta">
-				<div class="comment-author vcard">
-					<?php
-						$avatar_size = 68;
-						if ( '0' != $comment->comment_parent )
-							$avatar_size = 39;
-
-						echo get_avatar( $comment, $avatar_size );
-
-						/* translators: 1: comment author, 2: date and time */
-						printf( __( '%1$s on %2$s <span class="says">said:</span>', 'cogito_wp' ),
-							sprintf( '<span class="fn">%s</span>', get_comment_author_link() ),
-							sprintf( '<a href="%1$s"><time pubdate datetime="%2$s">%3$s</time></a>',
-								esc_url( get_comment_link( $comment->comment_ID ) ),
-								get_comment_time( 'c' ),
-								/* translators: 1: date, 2: time */
-								sprintf( __( '%1$s at %2$s', 'cogito_wp' ), get_comment_date(), get_comment_time() )
-							)
-						);
-					?>
-
-					<?php edit_comment_link( __( 'Edit', 'cogito_wp' ), '<span class="edit-link">', '</span>' ); ?>
-				</div><!-- .comment-author .vcard -->
-
-				<?php if ( $comment->comment_approved == '0' ) : ?>
-					<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'cogito_wp' ); ?></em>
-					<br />
-				<?php endif; ?>
-
-			</footer>
-
-			<div class="comment-content"><?php comment_text(); ?></div>
-
-			<div class="reply">
-				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply <span>&darr;</span>', 'cogito_wp' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-			</div><!-- .reply -->
-		</article><!-- #comment-## -->
-
-	<?php
-			break;
-	endswitch;
-}
+if ( ! function_exists( 'cogito_wp_comment' ) ) :
+  function cogito_wp_comment( $comment, $args, $depth ) {
+  	$GLOBALS['comment'] = $comment;
+  	switch ( $comment->comment_type ) :
+  		case 'pingback' :
+  		case 'trackback' :
+  	?>
+  	<li class="post pingback">
+  		<p><?php _e( 'Pingback:', 'cogito_wp' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( 'Edit', 'cogito_wp' ), '<span class="edit-link">', '</span>' ); ?></p>
+  	<?php
+  			break;
+  		default :
+  	?>
+  	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+  		<article id="comment-<?php comment_ID(); ?>" class="comment">
+  			<footer class="comment-meta">
+  				<div class="comment-author vcard">
+  					<?php
+  						$avatar_size = 68;
+  						if ( '0' != $comment->comment_parent )
+  							$avatar_size = 39;
+  
+  						echo get_avatar( $comment, $avatar_size );
+  
+  						/* translators: 1: comment author, 2: date and time */
+  						printf( __( '%1$s on %2$s <span class="says">said:</span>', 'cogito_wp' ),
+  							sprintf( '<span class="fn">%s</span>', get_comment_author_link() ),
+  							sprintf( '<a href="%1$s"><time pubdate datetime="%2$s">%3$s</time></a>',
+  								esc_url( get_comment_link( $comment->comment_ID ) ),
+  								get_comment_time( 'c' ),
+  								/* translators: 1: date, 2: time */
+  								sprintf( __( '%1$s at %2$s', 'cogito_wp' ), get_comment_date(), get_comment_time() )
+  							)
+  						);
+  					?>
+  
+  					<?php edit_comment_link( __( 'Edit', 'cogito_wp' ), '<span class="edit-link">', '</span>' ); ?>
+  				</div><!-- .comment-author .vcard -->
+  
+  				<?php if ( $comment->comment_approved == '0' ) : ?>
+  					<em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'cogito_wp' ); ?></em>
+  					<br />
+  				<?php endif; ?>
+  
+  			</footer>
+  
+  			<div class="comment-content"><?php comment_text(); ?></div>
+  
+  			<div class="reply">
+  				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply <span>&darr;</span>', 'cogito_wp' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+  			</div><!-- .reply -->
+  		</article><!-- #comment-## -->
+  
+  	<?php
+  			break;
+  	endswitch;
+  }
 endif; // ends check for twentyeleven_comment()
+
+
+
+
+// Custom Pagination (borrowed from wp_foundation)
+/**
+ * Retrieve or display pagination code.
+ *
+ * The defaults for overwriting are:
+ * 'page' - Default is null (int). The current page. This function will
+ *      automatically determine the value.
+ * 'pages' - Default is null (int). The total number of pages. This function will
+ *      automatically determine the value.
+ * 'range' - Default is 3 (int). The number of page links to show before and after
+ *      the current page.
+ * 'gap' - Default is 3 (int). The minimum number of pages before a gap is 
+ *      replaced with ellipses (...).
+ * 'anchor' - Default is 1 (int). The number of links to always show at begining
+ *      and end of pagination
+ * 'before' - Default is '<div class="emm-paginate">' (string). The html or text 
+ *      to add before the pagination links.
+ * 'after' - Default is '</div>' (string). The html or text to add after the
+ *      pagination links.
+ * 'next_page' - Default is '__('&raquo;')' (string). The text to use for the 
+ *      next page link.
+ * 'previous_page' - Default is '__('&laquo')' (string). The text to use for the 
+ *      previous page link.
+ * 'echo' - Default is 1 (int). To return the code instead of echo'ing, set this
+ *      to 0 (zero).
+ *
+ * @author Eric Martin <eric@ericmmartin.com>
+ * @copyright Copyright (c) 2009, Eric Martin
+ * @version 1.0
+ *
+ * @param array|string $args Optional. Override default arguments.
+ * @return string HTML content, if not displaying.
+ */
+if ( ! function_exists( 'emm_paginate' ) ) :
+  function emm_paginate($args = null) {
+  	$defaults = array(
+  		'page' => null, 'pages' => null, 
+  		'range' => 3, 'gap' => 3, 'anchor' => 1,
+  		'before' => '<div class="row cogito_paginate"><ul class="pagination">', 'after' => '</ul></div>',
+  		'title' => __('<li class="unavailable"></li>'),
+  		'nextpage' => __('&raquo;'), 'previouspage' => __('&laquo'),
+  		'echo' => 1
+  	);
+  
+  	$r = wp_parse_args($args, $defaults);
+  	extract($r, EXTR_SKIP);
+  
+  	if (!$page && !$pages) {
+  		global $wp_query;
+  
+  		$page = get_query_var('paged');
+  		$page = !empty($page) ? intval($page) : 1;
+  
+  		$posts_per_page = intval(get_query_var('posts_per_page'));
+  		$pages = intval(ceil($wp_query->found_posts / $posts_per_page));
+  	}
+  	
+  	$output = "";
+  	if ($pages > 1) {	
+  		$output .= "$before<li>$title</li>";
+  		$ellipsis = "<li class='unavailable'>...</li>";
+  
+  		if ($page > 1 && !empty($previouspage)) {
+  			$output .= "<li><a href='" . get_pagenum_link($page - 1) . "'>$previouspage</a></li>";
+  		}
+  		
+  		$min_links = $range * 2 + 1;
+  		$block_min = min($page - $range, $pages - $min_links);
+  		$block_high = max($page + $range, $min_links);
+  		$left_gap = (($block_min - $anchor - $gap) > 0) ? true : false;
+  		$right_gap = (($block_high + $anchor + $gap) < $pages) ? true : false;
+  
+  		if ($left_gap && !$right_gap) {
+  			$output .= sprintf('%s%s%s', 
+  				emm_paginate_loop(1, $anchor), 
+  				$ellipsis, 
+  				emm_paginate_loop($block_min, $pages, $page)
+  			);
+  		}
+  		else if ($left_gap && $right_gap) {
+  			$output .= sprintf('%s%s%s%s%s', 
+  				emm_paginate_loop(1, $anchor), 
+  				$ellipsis, 
+  				emm_paginate_loop($block_min, $block_high, $page), 
+  				$ellipsis, 
+  				emm_paginate_loop(($pages - $anchor + 1), $pages)
+  			);
+  		}
+  		else if ($right_gap && !$left_gap) {
+  			$output .= sprintf('%s%s%s', 
+  				emm_paginate_loop(1, $block_high, $page),
+  				$ellipsis,
+  				emm_paginate_loop(($pages - $anchor + 1), $pages)
+  			);
+  		}
+  		else {
+  			$output .= emm_paginate_loop(1, $pages, $page);
+  		}
+  
+  		if ($page < $pages && !empty($nextpage)) {
+  			$output .= "<li><a href='" . get_pagenum_link($page + 1) . "'>$nextpage</a></li>";
+  		}
+  
+  		$output .= $after;
+  	}
+  
+  	if ($echo) {
+  		echo $output;
+  	}
+  
+  	return $output;
+  }
+endif;
+
+/**
+ * Helper function for pagination which builds the page links. (borrowed from wp_foundation)
+ *
+ * @access private
+ *
+ * @author Eric Martin <eric@ericmmartin.com>
+ * @copyright Copyright (c) 2009, Eric Martin
+ * @version 1.0
+ *
+ * @param int $start The first link page.
+ * @param int $max The last link page.
+ * @return int $page Optional, default is 0. The current page.
+ */
+function emm_paginate_loop($start, $max, $page = 0) {
+	$output = "";
+	for ($i = $start; $i <= $max; $i++) {
+		$output .= ($page === intval($i)) 
+			? "<li class='current'><a href='#'>$i</a></li>" 
+			: "<li><a href='" . get_pagenum_link($i) . "'>$i</a></li>";
+	}
+	return $output;
+} 
+
+

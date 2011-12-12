@@ -361,7 +361,7 @@ if ( ! function_exists( 'cogito_wp_auto_excerpt_more' ) ) :
   }
   
 endif;
-add_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' );
+add_filter( 'excerpt_more', 'cogito_wp_auto_excerpt_more' );
 
 
 

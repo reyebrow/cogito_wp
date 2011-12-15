@@ -1,7 +1,7 @@
 /* 
 Theme Name: Cogito WP
 Theme URI: http://raisedeyebrow.com
-Description: An image-less template focusing on Typography. 
+Description: A responsive HTML5-friendly WordPress theme based on Foundation by Zurb
 Author: Matt Reimer
 Author URI: http://raisedeyebrow.com
 Version: 1.0 
@@ -10,9 +10,10 @@ General comments/License Statement if any.
 . 
 */  
 
-/*****************************************************************************************************************************/
-/* WARNING!!!! NEVER CHANGE ANYTHING IN THIS FOLDER!!! USE A CHILD THEME! CHECK OUT "STARTER_CHILD" FOLDER FOR INSTRUCTIONS  */
-/*****************************************************************************************************************************/
+/*****************************************************************************************************************************
+    WARNING!!!! WE RECOMMEND THAT YOU NOT CHANGE ANYTHING IN THIS FOLDER!!! 
+    USE A CHILD THEME! CHECK OUT README.TXT AND "STARTER_CHILD" FOLDER FOR INSTRUCTIONS  
+*****************************************************************************************************************************/
 
 
 /* Just some general styling  */

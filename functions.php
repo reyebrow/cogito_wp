@@ -158,18 +158,31 @@ function cogito_foundation_sizer($num){
 }
 
 /**
+ * Register menu regions
+ *
+ */
+if ( ! function_exists( 'cogito_wp_menu_init' ) ) :
+  function cogito_wp_menu_init() {
+  
+  	// This theme uses wp_nav_menu() in one location.
+  	register_nav_menu( 'primary', __( 'Primary Menu', 'cogito_wp' ) );
+  	register_nav_menu( 'primary-mobile', __( 'Primary Menu (mobile)', 'cogito_wp' ) );
+  }
+  
+endif;
+add_action( 'after_setup_theme', 'cogito_wp_menu_init' );
+
+/**
  * Register our sidebars and widgetized areas. Also register the main menu as a dynamic menu
  *
- * @since Twenty Eleven 1.0
  */
 if ( ! function_exists( 'cogito_wp_widgets_init' ) ) :
 
   function cogito_wp_widgets_init() {
   
-  
-  	// This theme uses wp_nav_menu() in one location.
-  	register_nav_menu( 'primary', __( 'Primary Menu', 'twentyeleven' ) );
-  
+
+  	
+  	  
   	register_sidebar( array(
   		'name' => __( 'Left Sidebar', 'cogito_wp' ),
   		'id' => 'sidebar-left',

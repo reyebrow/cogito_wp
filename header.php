@@ -44,15 +44,17 @@ require_once('html-header.php');
     </div><?php //This just gives a little room on the edges.?>
 
 
-    <!--MAIN MENU NAVBAR -->
+    <?php //MAIN MENU NAVBAR ?>
 		<nav id="access" role="navigation" class="row">
 		
-			<h3 class="assistive-text hide-on-desktops"><?php _e( 'Main menu', 'cogito_wp' ); ?></h3>			
-			<?php /*  Allow screen readers / text browsers to skip the navigation menu and get right to the good stuff. */ ?>
+      <?php //MOBILE MENU NAVBAR: a secondary menu intended for devices with with narrow screens. ?>
+      <?php wp_nav_menu( array( 'theme_location' => 'primary-mobile', 'menu_class' => 'hide-on-desktops' ) ); ?>	
+      	
+			<?php //DESKTOP MAIN MENU ?>
 							
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-on-phones' ) ); ?>
 		</nav>
-		
+
 		
 	</header>
 

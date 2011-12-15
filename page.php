@@ -16,7 +16,7 @@ get_header(); ?>
     <?php get_sidebar('left'); ?>
     
     <!-- Main Content -->
-    <div id="content" class="columns six" role="main">
+    <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
   
       <?php if ( have_posts() ) {
         while ( have_posts() ) {

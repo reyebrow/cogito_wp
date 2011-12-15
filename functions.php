@@ -52,10 +52,14 @@ if ( ! function_exists( 'cogito_wp_col_class' ) ) :
     $val = false;
     
     //Is there a left column?
-    if (is_active_sidebar( 'sidebar-left' ) ) $left = true;
+    if (is_active_sidebar( 'sidebar-left' ) ) {
+      $left = true;
+    }
     
     //Is there a right column?
-     if (is_active_sidebar( 'sidebar-right' ) ) $right = true;  
+     if (is_active_sidebar( 'sidebar-right' ) ) {
+      $right = true;  
+     }
      
     //It's a 3-column layout with a left and right sidebar.
     if ($left && $right){
@@ -194,17 +198,6 @@ if ( ! function_exists( 'cogito_wp_widgets_init' ) ) :
   	register_sidebar( array(
   		'name' => __( 'Right Sidebar', 'cogito_wp' ),
   		'id' => 'sidebar-right',
-  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-  		'after_widget' => "</aside>",
-  		'before_title' => '<h3 class="widget-title">',
-  		'after_title' => '</h3>',
-  	) );
-  
-  
-  	register_sidebar( array(
-  		'name' => __( 'Showcase Sidebar', 'cogito_wp' ),
-  		'id' => 'sidebar-2',
-  		'description' => __( 'The sidebar for the optional Showcase Template', 'cogito_wp' ),
   		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
   		'after_widget' => "</aside>",
   		'before_title' => '<h3 class="widget-title">',

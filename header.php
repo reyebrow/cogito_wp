@@ -9,7 +9,7 @@
 /*************************************************/
 /* The header code is a little messy so now it lives in its own file. 
 You'll find a lot of the HTML5 boilerplate stuff here: */
-require_once('html-header.php');  
+require_once( get_template_directory() . '/html-header.php');  
 /*************************************************/?>
 
 <body <?php body_class(); ?>>

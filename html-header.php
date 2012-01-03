@@ -10,7 +10,7 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
 
   	<!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="initial-scale=1.6; maximum-scale=1.0; width=device-width; "/>
+    <meta name="viewport" content="initial-scale=1.6, maximum-scale=1.0, width=device-width"/>
 
     <!-- Schema.org Description -->
     <meta itemprop="name" content="">

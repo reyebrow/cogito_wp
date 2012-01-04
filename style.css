@@ -18,6 +18,11 @@ General comments/License Statement if any.
 
 /* Just some general styling  */
 
+.skiplink {
+  position: absolute;
+  left: -900em;
+}
+
 aside h3{  font-size: 1.2em;}
 #content h2{  font-size: 1.2em;}
 #content h1{  font-size: 2.5em;}

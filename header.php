@@ -16,11 +16,10 @@ require_once( get_template_directory() . '/html-header.php');
 <div id="page" class="hfeed container" role="main">
 
 
-	<nav class="row">
-		<div class="twelve columns hide-on-desktops"><a href="#skipcontent">Skip Content? &darr;</a></div>
-	</nav>
 
 	<header id="branding" role="banner" class="row">
+
+   <div class="skiplink"><a href="#main">Skip to main content? &darr;</a></div>
 	
 	 <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
 	
@@ -40,7 +39,6 @@ require_once( get_template_directory() . '/html-header.php');
 			 <?php get_search_form(); ?>
 			</div>
 			
-			
     </div><?php //This just gives a little room on the edges.?>
 
 
@@ -54,7 +52,6 @@ require_once( get_template_directory() . '/html-header.php');
 							
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-on-phones' ) ); ?>
 		</nav>
-
 		
 	</header>
 

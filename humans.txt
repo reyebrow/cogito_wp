@@ -1,0 +1,11 @@
+/* Cogito Wordpress theme was created by Raised Eyebrow Web Studios and coded by Matt Reimer */
+/* Cogito borrows heavily from the TwentyEleven theme developed for/by WordPress.org */
+/* Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA */
+/* raisedeyebrow.com */
+/* zurb.com */
+/* humanstxt.org */
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Wordpress, jQuery, Orbit, Reveal
+  Software: Coda, Textmate, Git

@@ -16,11 +16,11 @@ require_once( get_template_directory() . '/html-header.php');
 <div id="page" class="hfeed container" role="main">
 
 
-	<nav class="row">
+	<nav class="row outer top">
 		<div class="twelve columns hide-on-desktops"><a href="#skipcontent">Skip Content? &darr;</a></div>
 	</nav>
 
-	<header id="branding" role="banner" class="row">
+	<header id="branding" role="banner" class="row outer">
 	
 	 <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
 	
@@ -45,7 +45,7 @@ require_once( get_template_directory() . '/html-header.php');
 
 
     <?php //MAIN MENU NAVBAR ?>
-		<nav id="access" role="navigation" class="row">
+		<nav id="access" role="navigation" class="row outer">
 		
       <?php //MOBILE MENU NAVBAR: a secondary menu intended for devices with with narrow screens. ?>
       <?php wp_nav_menu( array( 'theme_location' => 'primary-mobile', 'menu_class' => 'hide-on-desktops' ) ); ?>	
@@ -59,4 +59,4 @@ require_once( get_template_directory() . '/html-header.php');
 	</header>
 
 
-	<div id="main" class="row">
+	<div id="main" class="row outer">

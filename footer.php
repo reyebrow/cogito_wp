@@ -9,7 +9,7 @@
 
 	</div><!-- #main (opened in header.php)-->
 
-	<footer id="footer" role="contentinfo" class="row">
+	<footer id="footer" role="contentinfo" class="row outer bottom">
 	
     <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
       <?php cogito_get_footers(); //see functions.php?>

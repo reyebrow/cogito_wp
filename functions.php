@@ -109,7 +109,6 @@ if ( ! function_exists( 'cogito_wp_admin_enqueue_scripts' ) ) :
   
   
   	wp_enqueue_style( 'foundation-css', get_template_directory_uri() . '/foundation/stylesheets/foundation.css'  );
-  	wp_enqueue_style( 'twentyeleven-menu', get_template_directory_uri() . '/twentyeleven.css'  );
   			
   	wp_enqueue_script( 'foundation-js', get_template_directory_uri() . '/foundation/javascripts/foundation.js', array('jquery') );
   	//App.js just contains some extra form stuff for now.
@@ -127,8 +126,6 @@ function remove_generators() {
 add_filter('the_generator','remove_generators');
 
 
-// Enable the admin bar, set to true if you want it to be visible.
-show_admin_bar(TRUE);
 
 
 /**

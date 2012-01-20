@@ -131,6 +131,9 @@ of the elements we really like
 -------------------------------------------------------------- */
 
 
+.alignleft{float: left; margin: 0 10px 10px 0;}
+.alignright{float: right; margin: 0 0 10px 10px;}
+
 
 /* =Menu  
 -------------------------------------------------------------- */

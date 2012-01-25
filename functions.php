@@ -36,10 +36,15 @@ if (!isset($cogito_init)){
     //1 Column. Centered by default
     'one_column_content'      => 10
   );  
-  update_option( 'cogito_columns', $cogito_init );
+
 }
+update_option( 'cogito_columns', $cogito_init );
 
+if (!isset($footers)){
+  $footers = array( 3,4,5);  
 
+}
+update_option( 'cogito_footers', $footers );
 
 
 if ( ! function_exists( 'cogito_posted_on' ) ) :
@@ -62,6 +67,24 @@ function cogito_posted_on() {
 }
 endif;
 
+
+//Wrap the video in foundation's video thingy
+function cogito_video_wrap($html, $url, $args){
+if (preg_match('/^http:\/\/(www\.)?youtube.com\/watch.*/i', $url) || 
+    preg_match('/^http:\/\/youtu.be\/*/i', $url) ) {
+    $html = "<div class='flex-video'>" . $html . "</div>";
+  }
+  
+  return $html;
+}
+add_filter( 'embed_oembed_html', 'cogito_video_wrap', 10, 3);
+
+
+/**********************************************
+Do shortcode in WIDGETS. 
+(note: THIS=AWESOME )
+***********************************************/
+add_filter('widget_text', 'do_shortcode'); 
 
 /**
  * This function returns the columns and widths to be populated as classes.
@@ -203,9 +226,6 @@ add_action( 'after_setup_theme', 'cogito_wp_menu_init' );
 if ( ! function_exists( 'cogito_wp_widgets_init' ) ) :
 
   function cogito_wp_widgets_init() {
-  
-
-  	
   	  
   	register_sidebar( array(
   		'name' => __( 'Left Sidebar', 'cogito_wp' ),
@@ -223,36 +243,30 @@ if ( ! function_exists( 'cogito_wp_widgets_init' ) ) :
   		'before_title' => '<h3 class="widget-title">',
   		'after_title' => '</h3>',
   	) );
-  
-  	register_sidebar( array(
-  		'name' => __( 'Footer Area One', 'cogito_wp' ),
-  		'id' => 'footer-1',
-  		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
-  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-  		'after_widget' => "</aside>",
-  		'before_title' => '<h3 class="widget-title">',
-  		'after_title' => '</h3>',
-  	) );
-  
-  	register_sidebar( array(
-  		'name' => __( 'Footer Area Two', 'cogito_wp' ),
-  		'id' => 'footer-2',
-  		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
-  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-  		'after_widget' => "</aside>",
-  		'before_title' => '<h3 class="widget-title">',
-  		'after_title' => '</h3>',
-  	) );
-  
-  	register_sidebar( array(
-  		'name' => __( 'Footer Area Three', 'cogito_wp' ),
-  		'id' => 'footer-3',
-  		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
-  		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-  		'after_widget' => "</aside>",
-  		'before_title' => '<h3 class="widget-title">',
-  		'after_title' => '</h3>',
-  	) );
+  	
+  	//Dynamically gererate footer column widget regions
+    $footers = get_option('cogito_footers'); 
+    
+    if (is_array($footers) && !empty($footers)){
+      for ($i = 1; $i<= sizeof($footers); $i++){
+      	register_sidebar( array(
+      		'name' => __( 'Footer Area '. ucwords(cogito_foundation_sizer($i)) , 'cogito_wp' ),
+      		'id' => 'footer-'. $i,
+      		'description' => __( 'An optional widget area for your site footer', 'cogito_wp' ),
+      		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+      		'after_widget' => "</aside>",
+      		'before_title' => '<h3 class="widget-title">',
+      		'after_title' => '</h3>',
+      	) );
+    	}
+    }
+    
+    // The following lets us define a function in the child theme
+    // That adds/changes or overwrites anything here.
+    if ( function_exists('cogito_extra_sidebars') ){
+  	 cogito_extra_sidebars();
+  	}
+
   }
   
 endif;
@@ -278,39 +292,50 @@ add_filter( 'excerpt_length', 'cogito_wp_excerpt_length' );
 
 
 
-
-
-
-
-
-
 /**
  * Get Only active Footers 
  *
  * Set the widths of footer regions to space equally. Maximum of 4 regions possible
  *
  */
-if ( ! function_exists( 'cogito_wp_body_classes' ) ) :
+
  
-  function cogito_get_footers() {
-  
-    //First count the widget areas we have and store active footers in an array
-    $foot_counter = Array();
-    for ($i=0;$i<4;$i++){
-      if (is_active_sidebar( 'footer-' . $i ) ) $foot_counter[] = $i;
+function cogito_get_footers() {
+
+  //Size of the footers from left to right (must add up to 12)
+  $footer_widths = get_option('cogito_footers');
+
+  $width_sum = 0;
+  $last_used = 0;
+   
+  //First count the widget areas we have and store active footers in an array
+  $foot_counter = Array();
+  for ($i=0;$i<=4;$i++){
+    if (is_active_sidebar( 'footer-' . ($i+1) ) ) {
+      //If the footer widths array has something useful in it use it. Otherwise 4 is a good number
+      $width = isset($footer_widths[$i]) ? $footer_widths[$i] : 4;
+      $foot_counter[$i+1] = $footer_widths[$i];
+      $width_sum +=  $footer_widths[$i];
+      $last_used = $i+1;
     }
-    //Now print a block array 
-    if ( !empty($foot_counter) ){
-      foreach ($foot_counter as $footer_num){
-        print '<div class="columns '.cogito_foundation_sizer(12 / sizeof($foot_counter)) .'">'; 
-        dynamic_sidebar( 'footer-' . $footer_num ); 
-        print '</div>';
-      }
-    }	
-  	
   }
 
-endif;
+  //If they don't add up to 12 then add space on the end
+  if ($width_sum < 12 && $last_used > 0){
+    $foot_counter[$last_used] = 12 - $width_sum + $foot_counter[$last_used];
+  }
+  
+  //Now print a block array 
+  if ( $last_used > 0 ){
+    foreach ($foot_counter as $key=>$footer_width){
+      print '<div id="footer-'.$key.'" class="columns '. cogito_foundation_sizer($footer_width) .'">'; 
+      dynamic_sidebar( 'footer-' . $key ); 
+      print '</div>';
+    }
+  }	
+	
+}  
+
 
 
 

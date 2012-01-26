@@ -52,7 +52,7 @@ $cogito_init = array(
   
   'footers' => array( 4,3,5 )
 ); 
-update_option( 'cogito_columns', $cogito_init );
+update_option( 'cogito_init', $cogito_init );
 
 
 if ( ! function_exists( 'cogito_posted_on' ) ) :
@@ -102,7 +102,7 @@ add_filter('widget_text', 'do_shortcode');
 if ( ! function_exists( 'cogito_wp_col_class' ) ) :
   function cogito_wp_col_class($col = ''){
   
-    $cogito_init = get_option('cogito_columns'); 
+    $cogito_init = get_option('cogito_init'); 
     $val = false;
     
     //Is there a left column?
@@ -311,8 +311,9 @@ add_filter( 'excerpt_length', 'cogito_wp_excerpt_length' );
  
 function cogito_get_footers() {
 
-  //Size of the footers from left to right (must add up to 12)
-  $footer_widths = get_option('cogito_footers');
+	//Dynamically gererate footer column widget regions
+  $cogito_init = get_option('cogito_init'); 
+  $footers = isset($cogito_init) && is_array($cogito_init['footers']) ? $cogito_init['footers'] : array(4,4,4);
 
   $width_sum = 0;
   $last_used = 0;
@@ -322,9 +323,9 @@ function cogito_get_footers() {
   for ($i=0;$i<=4;$i++){
     if (is_active_sidebar( 'footer-' . ($i+1) ) ) {
       //If the footer widths array has something useful in it use it. Otherwise 4 is a good number
-      $width = isset($footer_widths[$i]) ? $footer_widths[$i] : 4;
-      $foot_counter[$i+1] = $footer_widths[$i];
-      $width_sum +=  $footer_widths[$i];
+      $width = isset($footers[$i]) ? $footers[$i] : 4;
+      $foot_counter[$i+1] = $footers[$i];
+      $width_sum +=  $footers[$i];
       $last_used = $i+1;
     }
   }

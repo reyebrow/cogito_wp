@@ -1,4 +1,4 @@
-/* Foundation v2.1.4 http://foundation.zurb.com */
+/* Foundation v2.1.5 http://foundation.zurb.com */
 /* Artfully Masterminded by ZURB */
 
 /* -------------------------------------------------- 
@@ -122,12 +122,15 @@
 /* -------------------------------------------------- 
 	:: Misc
 ---------------------------------------------------*/
-	.left       { float: left; }
-	.right      { float: right; }
-	.hide     	{ display: none; }
-	.highlight 	{ background: #ff0; }
+	.left        { float: left; }
+	.right       { float: right; }
+	.text-left   { text-align: left; }
+	.text-right  { text-align: right; }
+	.text-center { text-align: center; }
+	.hide        { display: none; }
+	.highlight   { background: #ff0; }
 	
-/* Arfully Masterminded by ZURB */
+/* Artfully Masterminded by ZURB */
 
 /*	--------------------------------------------------
     :: Typography
@@ -143,9 +146,9 @@
 
 	.subheader { color: #777; font-weight: 300; margin-bottom: 24px; }
 
-	p { line-height: 17px; margin: 0 0 18px; }
+	p { font-size: 13px; font-size: 1.3rem; line-height: 1.25; margin: 0 0 18px; }
 	p img { margin: 0; }
-	p.lead { font-size: 18px; font-size: 1.8rem; line-height: 24px;  }
+	p.lead { font-size: 18px; font-size: 1.8rem; line-height: 1.5;  }
 	
 	em, i { font-style: italic; line-height: inherit; }
 	strong, b { font-weight: bold; line-height: inherit; }
@@ -188,7 +191,7 @@
 		.hide-on-print { display: none !important; }
 		.print-only { display: block !important; }
 	}
-/* Arfully Masterminded by ZURB */
+/* Artfully Masterminded by ZURB */
 
 /* --------------------------------------------------
 	:: Grid
@@ -270,6 +273,7 @@
 	
 	img, object, embed { max-width: 100%; height: auto; }
 	img { -ms-interpolation-mode: bicubic; }
+	#map_canvas img, .map_canvas img {max-width: none!important;}
 	 
 	 /* Nicolas Gallagher's micro clearfix */
 	 .row:before, .row:after, .clearfix:before, .clearfix:after { content:""; display:table; }
@@ -321,7 +325,7 @@
 -----------------------------------------------------
 :: Buttons
 :: Alerts
-:: Notices/Alerts
+:: Labels
 :: Tabs
 :: Pagination
 :: Lists
@@ -354,7 +358,7 @@
 	}
 	
   	/* Don't use native buttons on iOS */
-	input[type=submit].button { -webkit-appearance: none; }
+	input[type=submit].button, button.button { -webkit-appearance: none; }
 	
 	.button.nice { 
 		background: #00a6fc url(../images/misc/button-gloss.png) repeat-x 0 -34px;
@@ -437,11 +441,26 @@
 	.alert-box a.close { color: #000; position: absolute; right: 4px; top: 0; font-size: 18px; opacity: 0.2; padding: 4px; }
 	.alert-box a.close:hover,.alert-box a.close:focus { opacity: 0.4; }
 
+/*    --------------------------------------------------
+    Labels
+    -------------------------------------------------- */
+
+	.label { padding: 0px 4px 2px; font-size: 11px; font-weight: bold; text-align: center; text-decoration: none; line-height: 1;  white-space: nowrap; display: inline; position: relative; bottom: 1px; color: #fff; background: #00a6fc; }
+	.label.radius { -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; }
+	.label.round { padding: 1px 7px 2px; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }
+	
+	/* Colors ---------- */
+	.blue.label				{ background-color: #00a6fc; }
+	.red.label				{ background-color: #e91c21; }
+	.green.label			{ background-color: #7fae00; }
+	.white.label			{ background-color: #e9e9e9; color: #333; }
+	.black.label			{ background-color: #141414; }
+	
 
 /*    --------------------------------------------------
     Tabs
     -------------------------------------------------- */
-    dl.tabs { display: block; margin: 0 0 20px 0; padding: 0; height: 30px; border-bottom: solid 1px #ddd; }
+		dl.tabs { display: block; margin: 0 0 20px 0; padding: 0; height: 30px; border-bottom: solid 1px #ddd; }
     dl.tabs dt { display: block; width: auto; height: 30px; padding: 0 9px 0 20px; line-height: 30px; float: left; color: #999; font-size: 11px; text-transform: uppercase; cursor: default; }
     dl.tabs dt:first-child { padding: 0 9px 0 0; }
     dl.tabs dd { display: block; width: auto; height: 30px; padding: 0; float: left; }
@@ -513,23 +532,56 @@
 	
 	.nav-bar { height: 45px; background: #fff; margin-top: 20px; border: 1px solid #ddd; }	
 	.nav-bar>li { float: left; display: block; position: relative; padding: 0; margin: 0; border-right: 1px solid #ddd; line-height: 45px; }
-	.nav-bar>li>a { position: relative; font-size: 14px; padding: 0 20px; display: block; text-decoration: none; font-size: 15px; font-size: 1.5rem; }
+	.nav-bar>li>a.main { position: relative; padding: 0 20px; display: block; text-decoration: none; font-size: 15px; font-size: 1.5rem; }
 	.nav-bar>li>input { margin: 0 16px; }
 	.nav-bar>li ul { margin-bottom: 0; }
 	.nav-bar>li li { line-height: 1.3; }
-	.nav-bar>li.has-flyout>a { padding-right: 36px; }
-	.nav-bar>li.has-flyout>a:after { content: ""; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid #2a85e8; display: block; position: absolute; right: 18px; bottom: 20px; }
-	.nav-bar>li:hover>a { color: #141414; z-index: 2; }
-	.nav-bar>li:hover>a:after { border-top-color: #141414; }
-
+	.nav-bar>li.has-flyout>a.main { padding-right: 36px; }
+	.nav-bar>li.has-flyout>a.flyout-toggle { position: absolute; right: 0; top: 0; padding: 22px; z-index: 2; display: block; }
+	.nav-bar>li.has-flyout>a.flyout-toggle span { content: ""; width: 0; height: 0; border-left: 4px solid transparent;border-right: 4px solid transparent; border-top: 4px solid #2a85e8; display: block; }
 	.flyout { background: #fff; margin: 0; padding: 20px; border: 1px solid #ddd; position: absolute; top: 45px; left: -1px; width: 400px; z-index: 10; }
 	.flyout.small { width: 200px; }
 	.flyout.large { width: 600px; }
 	.flyout.right { left: auto; right: 0; }
 	.flyout p:last-child { margin-bottom: 0; }
 	.nav-bar>li .flyout { display: none; }
-	.nav-bar>li:hover .flyout { display: block; }
 
+/*	--------------------------------------------------
+   	Sub Navs
+   	http://www.zurb.com/article/292/how-to-create-simple-and-effective-sub-na
+   	
+	-------------------------------------------------- */
+
+  dl.sub-nav {
+  	display: block;
+    width: auto;
+    overflow: hidden;
+    margin: -4px 0 18px -9px;
+    padding-top: 4px;
+  }
+
+  dl.sub-nav dt, dl.sub-nav dd {
+    float: left;
+    display: inline;
+    margin-left: 9px;
+    margin-bottom: 4px;
+  }
+
+  dl.sub-nav dt {
+    color: #999;
+    font-weight: normal;
+  }
+
+  dl.sub-nav dd a {
+    text-decoration: none;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+  }
+  dl.sub-nav dd.active a {
+    background: #00A6FC;
+    color: #fff;
+    padding: 3px 9px;
+  }
 
 /*	--------------------------------------------------
    	Video
@@ -573,14 +625,87 @@
 	p.vevent abbr { cursor: default; text-decoration: none; font-weight: bold; border: none; padding: 0 1px; }
 	
 	
+
+/*	--------------------------------------------------
+   	Tooltips
+	-------------------------------------------------- */
+	.has-tip {
+	  border-bottom: dotted 1px #ccc;
+	  cursor: help;
+	  font-weight: bold;
+	  color: #333;
+	}
+	.has-tip:hover {
+	  border-bottom: dotted 1px #0593dc;
+	  color: #0192dd;
+	}
+	.tooltip {
+	  display: block;
+	  background: rgb(0,0,0);
+	  background: rgba(0,0,0,0.85);
+	  position: absolute;
+	  color: #fff;
+	  font-weight: bold;
+	  font-size: 12px;
+	  font-size: 1.2rem;
+	  width: auto;
+	  padding: 5px 9px 7px 8px;
+	  z-index: 999;
+	}
+	.tooltip > .nub {
+	  display: block;
+	  width: 0;
+	  height: 0;
+	  border: solid 6px;
+	  border-color: transparent transparent rgb(0,0,0) transparent;
+	  border-color: transparent transparent rgba(0,0,0,0.85) transparent;
+	  position: absolute;
+	  top: -12px;
+    left: 10px;
+	}
+	.tooltip.top > .nub {
+	  border-color: rgb(0,0,0) transparent transparent transparent;
+	  border-color: rgba(0,0,0,0.85) transparent transparent transparent;
+	  top: auto;
+	  bottom: -12px;
+	}
+	.tooltip.left, .tooltip.right, .has-tip.left, .has-tip.right {
+	  float: none !important;
+	}
+	.tooltip.left > .nub {
+	  border-color: transparent transparent transparent rgb(0,0,0);
+	  border-color: transparent transparent transparent rgba(0,0,0,0.85);
+	  right: -12px;
+	  left: auto;
+	}
+	.tooltip.right > .nub {
+	  border-color: transparent rgb(0,0,0) transparent transparent;
+	  border-color: transparent rgba(0,0,0,0.85) transparent transparent;
+	  right: auto;
+	  left: -12px;
+	}
+	.tooltip.radius {
+	  -webkit-border-radius: 6px;
+	     -moz-border-radius: 6px;
+	          border-radius: 6px;
+	}
+	.has-tip.opened {
+	  color: #0192DD !important;
+	  border-bottom: dotted 1px #0593DC !important;
+	}
+	.tap-to-close {
+	  display: block;
+	  font-size: 10px;
+	  font-size: 1.0rem;
+	  color: #888;
+	  font-weight: normal;
+	}
 	
-	
-	
-/* 	Artfully masterminded by ZURB  
-	Make sure to include app.js / foundation.js if you are going to use inline label inputs 
+/* 	Artfully masterminded by ZURB
+	Make sure to include app.js / foundation.js if you are going to use inline label inputs
 */
- 
- 
+
+
 /* -----------------------------------------
    Standard Forms
 ----------------------------------------- */
@@ -597,6 +722,9 @@
 	input.input-text:focus, textarea:focus { outline: none !important; }
 	input.input-text.oversize, textarea.oversize { font-size: 18px !important; padding: 4px 5px !important; }
 	input.input-text:focus, textarea:focus { background: #f9f9f9; }
+
+	/* Text input and textarea, disabled */
+	input.input-text[disabled], textarea[disabled] { background-color: #ddd; }
 
 	/* Inlined Label Style */
 	input.placeholder, textarea.placeholder { color: #888; }
@@ -629,6 +757,9 @@
 	form.nice div.form-field input, form.nice input.input-text, form.nice textarea { font-size: 13px; padding: 6px 3px 4px; outline: none !important; background: url(../images/misc/input-bg.png) #fff; }
 	form.nice div.form-field input:focus, form.nice input.input-text:focus, form.nice textarea:focus { background-color: #f9f9f9; }
 
+	/* Text input and textarea, disabled */
+	form.nice div.form-field input[disabled], form.nice input.input-text[disabled], form.nice textarea[disabled] { background-color: #ddd; }
+
 	form.nice fieldset { border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
 
 	form.nice div.form-field input[type=radio], form.nice div.form-field input[type=checkbox] { display: inline; width:auto; margin-bottom:0; }
@@ -647,24 +778,34 @@
 	form.custom span.custom.radio { border-radius: 7px; -webkit-border-radius: 7px; -moz-border-radius: 7px; }
 	form.custom span.custom.radio.checked { background-position: 0 -14px; }
 	form.custom span.custom.checkbox.checked { background-position: 0 -28px; }
-	
+
 	form.custom div.custom.dropdown { position: relative; display: inline-block; width: auto; height: 28px; margin-bottom: 9px; }
 	form.custom div.custom.dropdown a.current { display: block; width: auto; line-height: 26px; padding: 0 38px 0 6px; border: solid 1px #ddd; color: #141414; }
 	form.custom div.custom.dropdown a.selector { position: absolute; width: 26px; height: 26px; display: block; background: url(../images/misc/custom-form-sprites.png) -14px 0 no-repeat; right: 0; top: 0; border: solid 1px #ddd; }
 	form.custom div.custom.dropdown:hover a.selector,
 	form.custom div.custom.dropdown.open a.selector { background-position: -14px -26px; }
-	
+
 	form.custom div.custom.dropdown ul { position: absolute; width: auto; display: none; margin: 0; left: 0; top: 27px; margin: 0; padding: 0; background: rgba(255,255,255,0.9); border: solid 1px #ddd; z-index: 10; }
 	form.custom div.custom.dropdown ul li { cursor: pointer; padding: 3px 38px 3px 6px; margin: 0; white-space: nowrap}
 	form.custom div.custom.dropdown ul li.selected { background: url(../images/misc/custom-form-sprites.png) right -52px no-repeat; }
 	form.custom div.custom.dropdown ul li:hover { background-color: #2a85e8; color: #fff; }
 	form.custom div.custom.dropdown ul li.selected:hover { background: url(../images/misc/custom-form-sprites.png) #2a85e8 right -78px no-repeat; }
 	form.custom div.custom.dropdown ul.show { display: block; }
-	
+
 	form.custom div.custom.dropdown.open ul { display: block; }
 
-	
-/* CSS for jQuery Orbit Plugin 1.2.3
+	/* Custom input, disabled */
+	form.custom .custom.disabled { background-color: #ddd; }
+
+	/* -----------------------------------------
+	   Nicer Custom Forms
+	----------------------------------------- */
+	form.custom.nice span.custom.checkbox { border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; }
+
+	form.custom.nice div.custom.dropdown a.current { border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; background-image: url(../images/misc/input-bg-outset.png); background-position: bottom right; }
+	form.custom.nice div.custom.dropdown a.selector { height: 27px; border-width: 0 0 0 1px; }
+	form.custom.nice div.custom.dropdown ul { border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; -webkit-border-bottom-left-radius: 2px; -webkit-border-bottom-right-radius: 2px; -moz-border-radius-bottomleft: 2px; -moz-border-radius-bottomright: 2px; }
+/* CSS for jQuery Orbit Plugin 1.4.0
  * www.ZURB.com/playground
  * Copyright 2010, ZURB
  * Free to use under the MIT license.
@@ -701,27 +842,20 @@ div.orbit {
     overflow: hidden }
     
 div.orbit.with-bullets {
-    margin-bottom: 40px;
-}
+    margin-bottom: 40px; }
 
-div.orbit>img {
+div.orbit .orbit-slide {
+    max-width: 100%;
     position: absolute;
     top: 0;
-    left: 0;
-    /* display: none; */ }
+    left: 0; }
 
-div.orbit>a {
+div.orbit a.orbit-slide {
     border: none;
-    position: absolute;
-    top: 0;
-    left: 0;
     line-height: 0; 
     display: none; }
 
-.orbit>div {
-    position: absolute;
-    top: 0;
-    left: 0;
+div.orbit div.orbit-slide {
     width: 100%;
     height: 100%; }
 
@@ -731,7 +865,7 @@ div.orbit>a {
 /* TIMER
    ================================================== */
 
-div.timer {
+div.orbit-wrapper div.timer {
     width: 40px;
     height: 40px;
     overflow: hidden;
@@ -740,9 +874,9 @@ div.timer {
     right: 10px;
     opacity: .6;
     cursor: pointer;
-    z-index: 1001; }
+    z-index: 31; }
 
-span.rotator {
+div.orbit-wrapper span.rotator {
     display: block;
     width: 40px;
     height: 40px;
@@ -752,7 +886,7 @@ span.rotator {
     background: url(../images/orbit/rotator-black.png) no-repeat;
     z-index: 3; }
 
-span.mask {
+div.orbit-wrapper span.mask {
     display: block;
     width: 20px;
     height: 40px;
@@ -762,15 +896,15 @@ span.mask {
     z-index: 2;
     overflow: hidden; }
 
-span.rotator.move {
+div.orbit-wrapper span.rotator.move {
     left: 0 }
 
-span.mask.move {
+div.orbit-wrapper span.mask.move {
     width: 40px;
     left: 0;
     background: url(../images/orbit/timer-black.png) repeat 0 0; }
 
-span.pause {
+div.orbit-wrapper span.pause {
     display: block;
     width: 40px;
     height: 40px;
@@ -781,11 +915,11 @@ span.pause {
     z-index: 4;
     opacity: 0; }
 
-span.pause.active {
+div.orbit-wrapper span.pause.active {
     background: url(../images/orbit/pause-black.png) no-repeat 0 -40px }
 
-div.timer:hover span.pause,
-span.pause.active {
+div.orbit-wrapper div.timer:hover span.pause,
+div.orbit-wrapper span.pause.active {
     opacity: 1 }
 
 
@@ -799,10 +933,10 @@ span.pause.active {
 .orbit-wrapper .orbit-caption {
     background: #000;
     background: rgba(0,0,0,.6);
-    z-index: 1000;
+    z-index: 30;
     color: #fff;
-	text-align: center;
-	padding: 7px 0;
+    text-align: center;
+    padding: 7px 0;
     font-size: 13px;
     position: absolute;
     right: 0;
@@ -813,40 +947,40 @@ span.pause.active {
 /* DIRECTIONAL NAV
    ================================================== */
 
-div.slider-nav {
+div.orbit-wrapper div.slider-nav {
     display: block }
 
-div.slider-nav span {
+div.orbit-wrapper div.slider-nav span {
     width: 78px;
     height: 100px;
     text-indent: -9999px;
     position: absolute;
-    z-index: 1000;
+    z-index: 30;
     top: 50%;
     margin-top: -50px;
     cursor: pointer; }
 
-div.slider-nav span.right {
+div.orbit-wrapper div.slider-nav span.right {
     background: url(../images/orbit/right-arrow.png);
     right: 0; }
 
-div.slider-nav span.left {
+div.orbit-wrapper div.slider-nav span.left {
     background: url(../images/orbit/left-arrow.png);
     left: 0; }
 
 /* BULLET NAV
    ================================================== */
 
-.orbit-bullets {
+ul.orbit-bullets {
     position: absolute;
-    z-index: 1000;
+    z-index: 30;
     list-style: none;
     bottom: -40px;
     left: 50%;
 	margin-left: -50px;
     padding: 0; }
 
-.orbit-bullets li {
+ul.orbit-bullets li {
     float: left;
     margin-left: 5px;
     cursor: pointer;
@@ -857,40 +991,39 @@ div.slider-nav span.left {
     height: 12px;
     overflow: hidden; }
 
-.orbit-bullets li.active {
+ul.orbit-bullets li.active {
     color: #222;
     background-position: -8px 0; }
     
-.orbit-bullets li.has-thumb {
+ul.orbit-bullets li.has-thumb {
     background: none;
     width: 100px;
     height: 75px; }
 
-.orbit-bullets li.active.has-thumb {
+ul.orbit-bullets li.active.has-thumb {
     background-position: 0 0;
     border-top: 2px solid #000; }
     
 /* FLUID LAYOUT
    ================================================== */
-.orbit .fluid-placeholder {
-  visibility: hidden;
-  position: static;
-  display: block;
-  width: 100%;
-}
+div.orbit img.fluid-placeholder {
+    visibility: hidden;
+    position: static;
+    display: block;
+    width: 100%; }
 
-.orbit, .orbit-wrapper { width: 100% !important; }
+div.orbit, div.orbit-wrapper { width: 100% !important; }
 
-.orbit-bullets {
+ul.orbit-bullets {
     position: absolute;
-    z-index: 1000;
+    z-index: 30;
     list-style: none;
     bottom: -50px;
     left: 50%;
 	margin-left: -50px;
     padding: 0; }
 
-.orbit-bullets li {
+ul.orbit-bullets li {
     float: left;
     margin-left: 5px;
     cursor: pointer;
@@ -901,16 +1034,16 @@ div.slider-nav span.left {
     height: 12px;
     overflow: hidden; }
 
-.orbit-bullets li.has-thumb {
+ul.orbit-bullets li.has-thumb {
     background: none;
     width: 100px;
     height: 75px; }
 
-.orbit-bullets li.active {
+ul.orbit-bullets li.active {
     color: #222;
     background-position: -8px 0; }
 
-.orbit-bullets li.active.has-thumb {
+ul.orbit-bullets li.active.has-thumb {
     background-position: 0 0;
     border-top: 2px solid #000; }
 /*	--------------------------------------------------
@@ -922,7 +1055,7 @@ div.slider-nav span.left {
 		height: 100%;
 		width: 100%;
 		background: #000;
-		z-index: 2000;
+		z-index: 40;
 		display: none;
 		top: 0;
 		left: 0; 
@@ -936,7 +1069,7 @@ div.slider-nav span.left {
 		width: 520px;
 		background: #eee url(../images/misc/modal-gloss.png) no-repeat -200px -80px;
 		position: absolute;
-		z-index: 2001;
+		z-index: 41;
 		padding: 30px 40px 34px;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
@@ -969,14 +1102,14 @@ div.slider-nav span.left {
 	
 	/* Mobile */
 		
-		@media handheld, only screen and (device-width: 768px), (device-width: 800px) {
+		@media handheld, only screen and (max-width: 1023px) {
 			.reveal-modal-bg { position: absolute; }
 			
 			.reveal-modal,
 			.reveal-modal.small,
 			.reveal-modal.medium,
 			.reveal-modal.large,
-			.reveal-modal.xlarge { width: 60%; top: 30%; left: 15%; margin-left: 0; padding: 5%; height: auto; }
+			.reveal-modal.xlarge { width: 60%; top: 60px; left: 15%; margin-left: 0; padding: 20px; height: auto; }
 		}
 		
 		@media handheld, only screen and (max-width: 767px) {
@@ -986,7 +1119,7 @@ div.slider-nav span.left {
 			.reveal-modal.small,
 			.reveal-modal.medium,
 			.reveal-modal.large,
-			.reveal-modal.xlarge { width: 80%; top: 15%; left: 5%; margin-left: 0; padding: 5%; height: auto; }
+			.reveal-modal.xlarge { width: 80%; top: 15px; left: 5%; margin-left: 0; padding: 20px; height: auto; }
 		}
 	
 	
@@ -1024,12 +1157,6 @@ div.slider-nav span.left {
 /* --------------------------------------------------
 	:: Grid
 	-------------------------------------------------- */
-	
-	/* Tablet screens */
-	@media only screen and (device-width: 768px), (device-width: 800px) {
-		/* Currently unused */
-	}
-	
 	
 	/* Mobile */
 	@media only screen and (max-width: 767px) {		
@@ -1074,7 +1201,7 @@ div.slider-nav span.left {
 	
 	@media only screen and (max-width: 767px) {
 		.block-grid.mobile { margin-left: 0; }
-		.block-grid.mobile li { float: none; width: 100%; margin-left: 0; }
+		.block-grid.mobile > li { float: none; width: 100%; margin-left: 0; }
 	}
 	
 	
@@ -1092,7 +1219,6 @@ div.slider-nav span.left {
 	.hide-on-tablets { display: block !important; }
 	.hide-on-desktops { display: none !important; }
 	
-	
 	@media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px) {
 		.hide-on-phones { display: block !important; }
 		.hide-on-tablets { display: none !important; }
@@ -1101,6 +1227,17 @@ div.slider-nav span.left {
 		.show-on-phones { display: none !important; }
 		.show-on-tablets { display: block !important; }
 		.show-on-desktops { display: none !important; }
+	}
+	
+	/* Modernizr-enabled tablet targeting */
+	@media only screen and (max-width: 1280px) and (min-width: 768px) {
+		.touch .hide-on-phones { display: block !important; }
+		.touch .hide-on-tablets { display: none !important; }
+		.touch .hide-on-desktops { display: block !important; }
+		
+		.touch .show-on-phones { display: none !important; }
+		.touch .show-on-tablets { display: block !important; }
+		.touch .show-on-desktops { display: none !important; }
 	}
 	
 		
@@ -1186,20 +1323,38 @@ div.slider-nav span.left {
 	@media only screen and (max-width: 767px) {
 		.nav-bar { height: auto; }
 		.nav-bar>li { float: none; display: block; border-right: none; }
-		.nav-bar>li>a { text-align: left; border-top: 1px solid #ddd; border-right: none; } 
-		.nav-bar>li:first-child>a { border-top: none; }
-		.nav-bar>li.has-flyout>a:after { content: ""; width: 0; height: 0; border-left: 4px solid transparent;border-right: 4px solid transparent; border-top: 4px solid #2a85e8; display: block; }
-		.nav-bar>li:hover>a { font-weight: bold; }
-		.nav-bar>li:hover ul { position: relative; }
+		.nav-bar>li>a.main { text-align: left; border-top: 1px solid #ddd; border-right: none; }
+		.nav-bar>li:first-child>a.main { border-top: none; }
+		.nav-bar>li.has-flyout>a.flyout-toggle { position: absolute; right: 0; top: 0; padding: 22px; z-index: 2; border-left: 1px dashed #eee; display: block; }
+		.nav-bar>li.has-flyout>a.flyout-toggle span { content: ""; width: 0; height: 0; border-left: 4px solid transparent;border-right: 4px solid transparent; border-top: 4px solid #2a85e8; display: block; }
+		.nav-bar>li.has-flyout>a.flyout-toggle:hover span { border-top-color: #141414; }
 		
 		.flyout { position: relative; width: auto; top: auto; margin-right: -2px; border-width: 1px 1px 0px 1px; }
 		.flyout.right { float: none; right: auto; left: -1px; }
 		.flyout.small, .flyout.large { width: auto; }
 		.flyout p:last-child { margin-bottom: 18px; }
 	}
+
+
+	/* Tooltips */
+	@media only screen and (max-width: 767px) {
+	  .tooltip {
+	    font-size: 14px;
+	    font-size: 1.4rem;
+	    line-height: 1.4;
+	    padding: 7px 10px 9px 10px;
+	  }
+  	.tooltip > .nub, .tooltip.top > .nub, .tooltip.left > .nub, .tooltip.right > .nub {
+		  border-color: transparent transparent rgb(0,0,0) transparent;
+		  border-color: transparent transparent rgba(0,0,0,0.85) transparent;
+		  top: -12px;
+    	left: 10px;
+		}
+  }
 	
-	/* Nav Bar */
+	
+	/* Video */
 	
 	@media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
-		.video { padding-top: 0; }
+		.flex-video { padding-top: 0; }
 	}

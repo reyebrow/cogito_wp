@@ -361,7 +361,7 @@ if ( ! function_exists( 'cogito_wp_body_classes' ) ) :
 
   function cogito_wp_body_classes( $classes ) {
   
-  	if ( ! is_multi_author() ) {
+  	if ( function_exists('is_multi_author') && ! is_multi_author() ) {
   		$classes[] = 'single-author';
   	}
   

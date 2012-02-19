@@ -192,7 +192,6 @@ if ( ! function_exists( 'cogito_wp_content_nav' ) ) :
   
   	if ( $wp_query->max_num_pages > 1 ) : ?>
   		<nav id="<?php echo $nav_id; ?>">
-  			<h5 class="assistive-text"><?php _e( 'Post navigation', 'cogito_wp' ); ?></h5>
   			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'cogito_wp' ) ); ?></div>
   			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'cogito_wp' ) ); ?></div>
   		</nav><!-- #nav-above -->
@@ -557,7 +556,6 @@ if ( ! function_exists( 'emm_paginate' ) ) :
   		$posts_per_page = intval(get_query_var('posts_per_page'));
   		$pages = intval(ceil($wp_query->found_posts / $posts_per_page));
   	}
-  	
   	$output = "";
   	if ($pages > 1) {	
   		$output .= "$before<li>$title</li>";

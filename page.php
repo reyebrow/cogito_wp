@@ -20,7 +20,6 @@ get_header(); ?>
   
       <?php if ( have_posts() ) {
         while ( have_posts() ) {
-          cogito_wp_content_nav( 'nav-above' ); 
           
           the_post();  //set up $post variable
           get_template_part( 'loop', 'page' ); //basically this is just looking for loop-format.php 
@@ -32,7 +31,7 @@ get_header(); ?>
         get_template_part( 'loop','noresult' );
       } ?>   
       
-       <?php comments_template( '', true ); ?> 
+      <?php if (function_exists("emm_paginate")) { emm_paginate(); } ?>
     
     </div>
   			

@@ -26,8 +26,6 @@ get_header(); ?>
 					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentyeleven' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 				</header>
 
-			<?php cogito_wp_content_nav( 'nav-above' ); ?>
-
 			<?php while ( have_posts() ) : the_post(); ?>
 
 				<?php
@@ -40,7 +38,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php cogito_wp_content_nav( 'nav-below' ); ?>
+			 <?php if (function_exists("emm_paginate")) { emm_paginate(); } ?>
 
 		<?php else : ?>
 

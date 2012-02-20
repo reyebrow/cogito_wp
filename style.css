@@ -93,7 +93,7 @@ body{	background: #EEE;}
 footer h2{
     font-size:1.2em;
 }
-footer#footer{
+footer.outer{
   border-top: 1px solid #ddd;
   padding-top: 30px;
 }

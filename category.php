@@ -43,7 +43,6 @@ get_header(); ?>
 			?>
 
 		<?php endwhile; ?>
-
     <?php if (function_exists("emm_paginate")) { emm_paginate(); } ?>
 
 	<?php else : ?>

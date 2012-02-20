@@ -88,6 +88,43 @@ if (preg_match('/^http:\/\/(www\.)?youtube.com\/watch.*/i', $url) ||
 add_filter( 'embed_oembed_html', 'cogito_video_wrap', 10, 3);
 
 
+
+/**********************************************
+Simple Pagination
+
+***********************************************/
+function cogito_wp_simple_pagination($pagenum, $numpages=0)
+{  
+    if ($pagenum < 1) $pagenum  =1;
+    
+    $paged_formal = "pagenum="; 
+  
+    $otherfields="";
+    foreach($_GET as $key => $getparam){
+      if ($key != "pagenum"){
+        $otherfields .="&$key=$getparam";
+      }
+    }
+
+    if($numpages > 0){ ?>
+    
+        <p class="paginator">
+        <?php
+          if ($pagenum > 1) { ?>
+            <a href="<?php echo '?'.$paged_formal . ($pagenum -1) . $otherfields; ?>">&lt;</a>
+                            <?php }
+        for($i=1;$i<=$numpages;$i++){?>
+            <?php $selected = 'class="selected" style="color:red;"';?>
+
+            <a href="<?php echo '?'.$paged_formal. $i . $otherfields; ?>" <?php ($pagenum==$i)? print $selected : null;?>><?php echo $i;?></a>
+        <?php } ?>
+       <?php if($pagenum < $numpages){?>
+            <a href="<?php echo '?'.$paged_formal. ($pagenum +1) . $otherfields; ?>">&gt;</a>
+        <?php } ?>
+        </p>
+    <?php } 
+}
+
 /**********************************************
 Do shortcode in WIDGETS. 
 (note: THIS=AWESOME )

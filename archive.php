@@ -49,7 +49,6 @@ get_header(); ?>
 				?>
 
 			<?php endwhile; ?>
-
 			<?php cogito_wp_content_nav( 'nav-below' ); ?>
 
 		<?php else : ?>

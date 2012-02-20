@@ -4,8 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  */
-
-get_header(); ?>
+?>
 
 
 <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
@@ -45,7 +44,6 @@ get_header(); ?>
 			?>
 
 		<?php endwhile; ?>
-
 		<?php cogito_wp_content_nav( 'nav-below' ); ?>
 
 	<?php else : ?>

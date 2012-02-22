@@ -12,11 +12,11 @@ get_header(); ?>
   
   
   
-    <!-- Get the Left Sidebar (if there is one)-->
+    <?php // Get the Left Sidebar (if there is one) ?>
     <?php get_sidebar('left'); ?>
     
     
-    <!-- Main Content -->
+    <?php // Main Content  ?>
     <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
   
       <h2>Error 404 - Not Found</h2>
@@ -24,7 +24,7 @@ get_header(); ?>
     </div>
     			
     			
-    <!-- Right Sidebar (if there is one)-->
+    <?php // Right Sidebar (if there is one) ?>
     <?php get_sidebar('right'); ?>
   
   </div><?php //div eleven centered ?>  

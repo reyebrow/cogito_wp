@@ -12,7 +12,7 @@
 	<div id="comments">
 	<?php if ( post_password_required() ) : ?>
 		<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'cogito_wp' ); ?></p>
-	</div><!-- #comments -->
+	</div><?php // #comments  ?>
 	<?php
 			/* Stop the rest of comments.php from being processed,
 			 * but don't kill the script entirely -- we still have
@@ -71,4 +71,4 @@
 
 	<?php comment_form(); ?>
 
-</div><!-- #comments -->
+</div><?php // #comments  ?>

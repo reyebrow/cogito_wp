@@ -7,7 +7,7 @@
  */
 ?>
 
-	</div><!-- #main (opened in header.php)-->
+	</div><?php // #main (opened in header.php) ?>
 
 	<footer id="footer" role="contentinfo" class="row outer bottom">
 	
@@ -17,7 +17,7 @@
 	
 	</footer>
 	
-</div><!-- #page (opened in header.php)-->
+</div><?php // #page (opened in header.php) ?>
 
 
 

@@ -15,10 +15,10 @@ get_header(); ?>
 
   <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
 
-  <!-- Get the Left Sidebar (if there is one)-->
+  <?php // Get the Left Sidebar (if there is one) ?>
   <?php get_sidebar('left'); ?>
   
-  <!-- Main Content -->
+  <?php // Main Content  ?>
   <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
 
     <?php 
@@ -42,7 +42,7 @@ get_header(); ?>
   </div>
   			
   			
-  <!-- Right Sidebar (if there is one)-->
+  <?php // Right Sidebar (if there is one) ?>
   <?php get_sidebar('right'); ?>
   
   </div><?php //div eleven centered ?>

@@ -20,6 +20,8 @@ get_header(); ?>
   <?php // Main Content  ?>
   <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
 
+    <?php cogito_content_top(); cogito_content_top_search(); ?>
+
 		<?php if ( have_posts() ) : ?>
 
 				<header class="page-header">
@@ -45,6 +47,8 @@ get_header(); ?>
       <?php get_template_part( 'loop','noresult' ); ?>
 
 		<?php endif; ?>
+
+    <?php cogito_content_bottom(); cogito_content_bottom_search(); ?>
 
 	</div><?php // #content  ?>
 

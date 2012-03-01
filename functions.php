@@ -16,6 +16,7 @@ Just copy what's inside the
 Then paste it into your child's functions.php and change away.
 */
 
+include_once('functions-actions.php');
 
 /********************************************************************************
 Here's where you get to set up the widths of your columns. If you change
@@ -490,6 +491,7 @@ if ( ! function_exists( 'cogito_wp_comment' ) ) :
   	?>
   	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
   		<article id="comment-<?php comment_ID(); ?>" class="comment">
+  		<?php cogito_action_comment_top(); ?>
   			<footer class="comment-meta">
   				<div class="comment-author vcard">
   					<?php
@@ -526,6 +528,7 @@ if ( ! function_exists( 'cogito_wp_comment' ) ) :
   			<div class="reply">
   				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply <span>&darr;</span>', 'cogito_wp' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
   			</div><!-- .reply -->
+  			<?php cogito_action_comment_bottom(); ?>
   		</article><!-- #comment-## -->
   
   	<?php

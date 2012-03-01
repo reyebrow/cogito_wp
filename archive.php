@@ -19,7 +19,9 @@ get_header(); ?>
 
   <?php // Main Content ?>
   <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
-
+  
+  <?php cogito_content_top(); cogito_content_top_archive(); ?>
+  
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
@@ -55,6 +57,8 @@ get_header(); ?>
 
 		<?php endif; ?>
 
+  <?php cogito_content_bottom(); cogito_content_bottom_archive(); ?>
+  
 	</div><?php // #content ?>
 
 

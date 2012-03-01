@@ -15,6 +15,8 @@ get_header(); ?>
     <?php // Main Content ?>
     <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
   
+      <?php cogito_content_top(); cogito_content_top_page(); ?>
+
       <?php if ( have_posts() ) {
         while ( have_posts() ) {
           
@@ -29,6 +31,8 @@ get_header(); ?>
       } ?>   
       
       <?php if (function_exists("emm_paginate")) { emm_paginate(); } ?>
+    
+      <?php cogito_content_bottom(); cogito_content_bottom_page(); ?>
     
     </div>
   			

@@ -9,7 +9,10 @@
  *
  */
 ?>
+
 	<div id="comments">
+  <?php cogito_action_comments_top(); ?>
+  
 	<?php if ( post_password_required() ) : ?>
 		<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'cogito_wp' ); ?></p>
 	</div><?php // #comments  ?>
@@ -71,4 +74,7 @@
 
 	<?php comment_form(); ?>
 
+<?php cogito_action_comments_bottom(); ?>
 </div><?php // #comments  ?>
+
+  

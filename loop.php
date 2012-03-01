@@ -6,6 +6,9 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); sticky_class(); ?>>
+
+  <?php cogito_action_loop_item_top(); ?>
+
 	<header class="entry-header">
 		<h2 class="entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
 		<?php cogito_posted_on(); ?>
@@ -15,7 +18,8 @@
 		<?php the_content(); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'cogito_wp' ) . '</span>', 'after' => '</div>' ) ); ?>
 	</div><?php // .entry-content  ?>
-		<footer class="entry-meta">
+
+	<footer class="entry-meta">
 
 			<?php $show_sep = false; ?>
 			<?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search ?>
@@ -43,6 +47,8 @@
 			<?php endif; // End if $tags_list ?>
 			<?php endif; // End if 'post' == get_post_type() ?>
 
-	</footer><?php // .entry-meta  ?>
+	 </footer><?php // .entry-meta  ?>
+
+    <?php cogito_action_loop_item_bottom(); ?>
 
 </article><!-- #post-<?php the_ID(); ?> -->

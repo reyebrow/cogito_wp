@@ -6,7 +6,7 @@
 if ( $class = cogito_wp_col_class('right') ) : ?>
 
   <div id="sidebar-right" class="widget-area <?php print $class ?>" role="complementary">
-  
+    <?php cogito_action_loop_item_top(); ?>
   	<?php if ( ! dynamic_sidebar( 'sidebar-right' ) ) {
   	
   	 /* Here's where you put widgets to display when there are no widgets assigned.
@@ -16,7 +16,7 @@ if ( $class = cogito_wp_col_class('right') ) : ?>
       
     } ?>
   
-  
+    <?php cogito_action_loop_item_top(); ?>
   </div>
 
 <?php endif; ?>

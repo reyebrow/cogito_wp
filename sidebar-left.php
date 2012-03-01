@@ -6,7 +6,7 @@
 if ( $class = cogito_wp_col_class('left') ) : ?>
 
   <div id="sidebar-left" class="widget-area <?php print $class ?>" role="complementary">
-  
+    <?php cogito_content_sidebar_left_top(); ?>
   	<?php if ( ! dynamic_sidebar( 'sidebar-left' ) ) {
   	
   	 /* Here's where you put widgets to display when there are no widgets assigned.
@@ -15,8 +15,7 @@ if ( $class = cogito_wp_col_class('left') ) : ?>
     this file checks for sidebars nothing here will ever be seen. */
       
     } ?>
-  
-  
+    <?php cogito_content_sidebar_left_bottom(); ?>
   </div>
 
 <?php endif; ?>

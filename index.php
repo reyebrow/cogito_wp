@@ -39,7 +39,7 @@ get_header(); ?>
       emm_paginate();
     } ?>	 
   
-  <?php cogito_content_top(); ?>
+  <?php cogito_content_bottom(); ?>
   </div>
   			
   			

@@ -14,7 +14,6 @@
 get_header(); ?>
 
 
-
 <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
 
   <?php // Left Sidebar  ?>
@@ -31,8 +30,8 @@ get_header(); ?>
         while ( have_posts() ) {
           
           the_post();  //set up $post variable
-          get_template_part( 'loop', 'single' ); //basically this is just looking for loop-format.php 
-           
+          get_template_part( 'loop', get_post_type() ); //basically this is just looking for loop-format.php 
+
           if (function_exists("emm_paginate")) { emm_paginate(); }       
         }
       }

@@ -1,5 +1,5 @@
 /* Foundation v2.1.5 http://foundation.zurb.com */
-$(document).ready(function () {
+jQuery(document).ready(function () {
 
 	/* Use this js doc for all application specific JS */
 
@@ -14,28 +14,29 @@ $(document).ready(function () {
 		$activeTab.removeClass('active');
 		$tab.addClass('active');
 
-    	//Show Tab Content
-		$(contentLocation).closest('.tabs-content').children('li').hide();
-		$(contentLocation).show();
+    //Show Tab Content
+		jQuery(contentLocation).closest('.tabs-content').children('li').hide();
+		jQuery(contentLocation).show();
+
 	}
 
-	$('dl.tabs').each(function () {
+	jQuery('dl.tabs').each(function () {
 		//Get all tabs
-		var tabs = $(this).children('dd').children('a');
+		var tabs = jQuery(this).children('dd').children('a');
 		tabs.click(function (e) {
-			activateTab($(this));
+			activateTab(jQuery(this));
 		});
 	});
 
 	if (window.location.hash) {
-		activateTab($('a[href="' + window.location.hash + '"]'));
+		activateTab(jQuery('a[href="' + window.location.hash + '"]'));
 	}
 
 	/* ALERT BOXES ------------ */
-	$(".alert-box").delegate("a.close", "click", function(event) {
+	jQuery(".alert-box").delegate("a.close", "click", function(event) {
     event.preventDefault();
-	  $(this).closest(".alert-box").fadeOut(function(event){
-	    $(this).remove();
+	  jQuery(this).closest(".alert-box").fadeOut(function(event){
+	    jQuery(this).remove();
 	  });
 	});
 
@@ -43,26 +44,26 @@ $(document).ready(function () {
 	/* PLACEHOLDER FOR FORMS ------------- */
 	/* Remove this and jquery.placeholder.min.js if you don't need :) */
 
-	$('input, textarea').placeholder();
+	jQuery('input, textarea').placeholder();
 
 
 
 	/* UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE6/7/8 SUPPORT AND ARE USING .block-grids */
-//	$('.block-grid.two-up>li:nth-child(2n+1)').css({clear: 'left'});
-//	$('.block-grid.three-up>li:nth-child(3n+1)').css({clear: 'left'});
-//	$('.block-grid.four-up>li:nth-child(4n+1)').css({clear: 'left'});
-//	$('.block-grid.five-up>li:nth-child(5n+1)').css({clear: 'left'});
+//	jQuery('.block-grid.two-up>li:nth-child(2n+1)').css({clear: 'left'});
+//	jQuery('.block-grid.three-up>li:nth-child(3n+1)').css({clear: 'left'});
+//	jQuery('.block-grid.four-up>li:nth-child(4n+1)').css({clear: 'left'});
+//	jQuery('.block-grid.five-up>li:nth-child(5n+1)').css({clear: 'left'});
 
 
 
 	/* DROPDOWN NAV ------------- */
 
 	var lockNavBar = false;
-	$('.nav-bar a.flyout-toggle').live('click', function(e) {
+	jQuery('.nav-bar a.flyout-toggle').live('click', function(e) {
 		e.preventDefault();
-		var flyout = $(this).siblings('.flyout');
+		var flyout = jQuery(this).siblings('.flyout');
 		if (lockNavBar === false) {
-			$('.nav-bar .flyout').not(flyout).slideUp(500);
+			jQuery('.nav-bar .flyout').not(flyout).slideUp(500);
 			flyout.slideToggle(500, function(){
 				lockNavBar = false;
 			});

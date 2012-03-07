@@ -221,7 +221,7 @@ if ( ! function_exists( 'cogito_wp_admin_enqueue_scripts' ) ) :
   			
   	wp_enqueue_script( 'foundation-js', get_template_directory_uri() . '/foundation/javascripts/foundation.js', array('jquery') );
   	//App.js just contains some extra form stuff for now.
-  	wp_enqueue_script( 'foundation-app', get_template_directory_uri() . '/foundation/javascripts/app.js', array('jquery') );
+  	wp_enqueue_script( 'foundation-app', get_template_directory_uri() . '/foundation/javascripts/app.js', array('foundation-js') );
   
   }
 endif;
@@ -603,6 +603,8 @@ if ( ! function_exists( 'emm_paginate' ) ) :
   
   	$r = wp_parse_args($args, $defaults);
   	extract($r, EXTR_SKIP);
+  
+//    print_r($r);
   
   	if (!$page && !$pages) {
   		global $wp_query;

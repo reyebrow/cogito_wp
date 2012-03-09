@@ -17,8 +17,7 @@
     <meta itemprop="description" content="">    
     
     <!-- Setting favicon and Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="<?php bloginfo ("template_url");?>/images/misc/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="<?php bloginfo ("template_url"); ?>/images/misc/favicon.ico">
+    <?php cogito_get_icons(); ?>
 
     <!-- Apple Developer Options -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black">

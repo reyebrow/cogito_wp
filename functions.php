@@ -696,3 +696,29 @@ function emm_paginate_loop($start, $max, $page = 0) {
 } 
 
 
+function cogito_get_icons(){
+  
+  $root_wp = getcwd();
+  
+  // Cache path to theme for duration of this function:
+  $cogito_dir = get_template_directory() . '/images/icons/';
+  $cogito_uri = get_template_directory_uri() . '/images/icons/';
+  
+  $child_dir = get_stylesheet_directory() . '/images/icons/';
+  $child_uri = get_stylesheet_directory_uri() . '/images/icons/';
+  
+  $favicon =is_file( $child_dir . 'favicon.ico' ) ? $child_uri . 'favicon.ico' : $cogito_uri . 'favicon.ico'; 
+
+  $icon57 = is_file( $child_dir. 'apple-57x57.png' ) ? $child_uri . 'apple-57x57.png' : $cogito_uri . 'apple-57x57.png'; 
+  $icon72 = is_file( $child_dir . 'apple-72x72.png' ) ? $child_uri . 'apple-72x72.png' : $cogito_uri . 'apple-72x72.png'; 
+  $icon114 =is_file( $child_dir . 'apple-114x114.png' )?$child_uri . 'apple-114x114.png':$cogito_uri . 'apple-114x114.png'; 
+  
+    print '<link rel="apple-touch-icon" href="'.$icon57.'">';
+    print '<link rel="apple-touch-icon" href="'.$icon72.'">';
+    print '<link rel="apple-touch-icon" href="'.$icon114.'">';
+
+    
+    print '<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="' . $favicon .'">';
+
+
+}

@@ -24,49 +24,40 @@ require_once( get_template_directory() . '/html-header.php');
 
 	<nav class="skiplink"><a href="#skipcontent">Skip Content? &darr;</a></nav>
 
+  <?php //HEADER BLOCK ?>
 	<header id="branding" role="banner" class="row outer">
 	
   <?php cogito_action_header_top(); ?>
   
-   <div class="skiplink"><a href="#main">Skip to main content? &darr;</a></div>
-	
-	 <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
-  	 <div class="row">
-    	 <div class="columns eight">
-    	 
-    	     	 <?php // TITLE / LOGO and DESCRIPTION  ?>
-    				<h1 id="site-title">
-      				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-      				  <?php bloginfo( 'name' ); ?>
-      				</a>
-    				</h1>
-    				<h4 id="site-description" class="subheader"><?php bloginfo( 'description' ); ?></h4>
-    	 </div>
+<?php /****************************************************************
+	 
+	 Note: people generally have very different headers so there's a separate file called header_block.php
+	 
+	 Your options are :
+	       1) Preferred solution: create a new header_block.php file or duplicate the one in cogito_wp and put it 
+	           in your child theme. Then put your header in there 
 
-    	 <div class="columns four">
-    	 
-    	     	 <?php // SEARCH FORM  ?>
-    	     	 
-    	  <?php get_search_form(); ?>
-    	 </div>
-  		</div><?php // row  ?>
-
-
-   </div><?php //This just gives a little room on the edges.?>
+	       2) Less ideal: duplicate header.php in your child theme and replace all of this <?php tag with your header code      
+	       
+	       */
+	 get_template_part( 'header_block'); 
+    
+    
+    /****************************************************************/ ?>
    
   <?php cogito_action_header_bottom(); ?>
   
 	</header>
 	
-    <?php //MAIN MENU NAVBAR ?>
-		<nav id="access" role="navigation" class="row outer">
-		
-      <?php //MOBILE MENU NAVBAR: a secondary menu intended for devices with with narrow screens. ?>
-      <?php wp_nav_menu( array( 'theme_location' => 'primary-mobile', 'menu_class' => 'hide-on-desktops' ) ); ?>	
-      	
-			<?php //DESKTOP MAIN MENU ?>
-							
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-on-phones' ) ); ?>
-		</nav>
+  <?php //MAIN MENU NAVBAR ?>
+	<nav id="access" role="navigation" class="row outer">
+	
+    <?php //MOBILE MENU NAVBAR: a secondary menu intended for devices with with narrow screens. ?>
+    <?php wp_nav_menu( array( 'theme_location' => 'primary-mobile', 'menu_class' => 'hide-on-desktops' ) ); ?>	
+    	
+		<?php //DESKTOP MAIN MENU ?>
+						
+		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-on-phones' ) ); ?>
+	</nav>
 
 	<div id="main" class="row outer">

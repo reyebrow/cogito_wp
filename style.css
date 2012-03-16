@@ -42,7 +42,8 @@ body{	background: #EEE;}
   padding: 15px 0 40px;
 }
 
-
+/* Header images (including the logo) should align properly */
+#branding img{ vertical-align: top; }
 
 /* -----------------------------------------
    Shared Styles
@@ -66,28 +67,6 @@ body{	background: #EEE;}
 
 .panel {
   text-shadow: 0 1px 0 #ffffff;
-}
-
-/*** SUPERFISH SKIN ***/
-.sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
-	color: #fff;
-}
-.sf-menu li {
-	background: #3c3c3c;
-}
-.sf-menu li li {
-	background:		#969696;
-}
-.sf-menu li li a {
-  color: #fff;
-}
-.sf-menu li li li {
-	background:		#a6a6a6;
-}
-.sf-menu li:hover, .sf-menu li.sfHover,
-.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-	background:		#3c3c3c;
-	outline:		0;
 }
 
 footer h2{

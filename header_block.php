@@ -21,5 +21,4 @@
     	 </div>
   		</div><?php // row  ?>
 
-
    </div><?php //This just gives a little room on the edges.?>

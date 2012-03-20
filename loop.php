@@ -10,7 +10,8 @@
   <?php cogito_action_loop_item_top(); ?>
 
 	<header class="entry-header">
-		<h2 class="entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
+  <?php $post_title_tag = is_single() ? "h1" : "h2"; ?>
+		<<? print $post_title_tag ?> class="entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></<? print $post_title_tag ?>>
 		<?php cogito_posted_on(); ?>
 	</header><?php // .entry-header  ?>
 

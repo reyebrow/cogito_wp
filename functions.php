@@ -757,7 +757,6 @@ function cogito_get_logo(){
 
   //TODO: work in uploading a logo in the admin interface.
   if ($logo =  cogito_get_file_uri('/images/logo.png')){
-    print "FALSE";
     return $logo;
   }
   elseif ($logo =  cogito_get_file_uri('/logo.png')){

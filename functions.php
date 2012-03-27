@@ -143,6 +143,8 @@ function cogito_wp_simple_pagination($pagenum, $numpages=0)
     <?php } 
 }
 
+
+
 /**********************************************
 Do shortcode in WIDGETS. 
 (note: THIS=AWESOME )
@@ -695,30 +697,75 @@ function emm_paginate_loop($start, $max, $page = 0) {
 	return $output;
 } 
 
-
-function cogito_get_icons(){
+/**
+ * Find a file by first looking in the child theme then in the parent
+ *
+ * @param int $filepath should be relative to the theme directory and include a slash.
+ *
+ */
+function cogito_get_file_uri($filepath){
   
   $root_wp = getcwd();
   
   // Cache path to theme for duration of this function:
-  $cogito_dir = get_template_directory() . '/images/icons/';
-  $cogito_uri = get_template_directory_uri() . '/images/icons/';
+  $cogito_dir = get_template_directory();
+  $cogito_uri = get_template_directory_uri();
   
-  $child_dir = get_stylesheet_directory() . '/images/icons/';
-  $child_uri = get_stylesheet_directory_uri() . '/images/icons/';
+  $child_dir = get_stylesheet_directory();
+  $child_uri = get_stylesheet_directory_uri();
   
-  $favicon =is_file( $child_dir . 'favicon.ico' ) ? $child_uri . 'favicon.ico' : $cogito_uri . 'favicon.ico'; 
+  if ( is_file( $child_dir . $filepath) ){
+    return $child_uri . $filepath;
+  }
+  elseif( is_file( $cogito_dir . $filepath) ){
+    return $cogito_uri . $filepath;
+  }
+  return false;
 
-  $icon57 = is_file( $child_dir. 'apple-57x57.png' ) ? $child_uri . 'apple-57x57.png' : $cogito_uri . 'apple-57x57.png'; 
-  $icon72 = is_file( $child_dir . 'apple-72x72.png' ) ? $child_uri . 'apple-72x72.png' : $cogito_uri . 'apple-72x72.png'; 
-  $icon114 =is_file( $child_dir . 'apple-114x114.png' )?$child_uri . 'apple-114x114.png':$cogito_uri . 'apple-114x114.png'; 
+}
+
+
+/**
+ * Get and place all the icons necesssary (like favicon and apple-touch icons etc).
+ *
+ */
+function cogito_get_icons(){
   
-    print '<link rel="apple-touch-icon" href="'.$icon57.'">';
-    print '<link rel="apple-touch-icon" href="'.$icon72.'">';
-    print '<link rel="apple-touch-icon" href="'.$icon114.'">';
+  $favicon =  cogito_get_file_uri('/images/icons/favicon.ico'); 
 
-    
-    print '<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="' . $favicon .'">';
+  $icon57 = cogito_get_file_uri('/images/icons/apple-57x57.png'); 
+  $icon72 = cogito_get_file_uri('/images/icons/apple-72x72.png'); 
+  $icon114 = cogito_get_file_uri('/images/icons/apple-114x114.png'); 
+  
+    print $icon57 ? '<link rel="apple-touch-icon" href="'.$icon57.'">' : "";
+    print $icon72 ? '<link rel="apple-touch-icon" href="'.$icon72.'">' : "";
+    print $icon114 ? '<link rel="apple-touch-icon" href="'.$icon114.'">' : "";
+
+    print $favicon ? '<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="' . $favicon .'">' : "";
 
 
+}
+
+
+/**
+ * Test for logo.png in the places we expect to find it.
+ *
+ *
+ * @return string $logo path to logo if found. False if otherwise.
+ */
+function cogito_get_logo(){
+
+  //TODO: work in uploading a logo in the admin interface.
+  if ($logo =  cogito_get_file_uri('/images/logo.png')){
+    print "FALSE";
+    return $logo;
+  }
+  elseif ($logo =  cogito_get_file_uri('/logo.png')){
+    return $logo;
+  }
+  else{
+    return false;
+  }
+  
+  
 }

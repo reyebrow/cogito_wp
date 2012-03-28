@@ -234,7 +234,17 @@ of the elements we really like
 #access .current_page_ancestor > a {
 	font-weight: bold;
 }
-#access .arrow-img {margin-left: 8px;}
+#access .arrow-img {
+  background: transparent url(images/menu-arrow.png) top left no-repeat;
+  margin-left: 8px;
+  text-indent: -999em;
+  width: 10px;
+  height: 10px;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 40%;
+}
 
 /* Comments link */
 .entry-header .comments-link a {

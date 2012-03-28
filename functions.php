@@ -778,7 +778,7 @@ class Arrow_Walker_Nav_Menu extends Walker_Nav_Menu {
         $id_field = $this->db_fields['id'];
         if (!empty($children_elements[$element->$id_field])) { 
             $element->classes[] = 'arrow';
-            $element->title .= '<img class="arrow-img" src="'.get_template_directory_uri() . '/images/menu-arrow.png">';
+            $element->title .= '<span class="arrow-img"> »</span>';
         }
         Walker_Nav_Menu::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
     }

@@ -737,14 +737,15 @@ function cogito_get_icons(){
   $icon72 = cogito_get_file_uri('/images/icons/apple-72x72.png'); 
   $icon114 = cogito_get_file_uri('/images/icons/apple-114x114.png'); 
   
-    print $icon57 ? '<link rel="apple-touch-icon" href="'.$icon57.'">' : "";
-    print $icon72 ? '<link rel="apple-touch-icon" href="'.$icon72.'">' : "";
-    print $icon114 ? '<link rel="apple-touch-icon" href="'.$icon114.'">' : "";
 
-    print $favicon ? '<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="' . $favicon .'">' : "";
+  print $icon57 ? '<link rel="apple-touch-icon" href="'.$icon57.'">' : "";
+  print $icon72 ? '<link rel="apple-touch-icon" href="'.$icon72.'">' : "";
+  print $icon114 ? '<link rel="apple-touch-icon" href="'.$icon114.'">' : "";
 
+  print $favicon ? '<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="' . $favicon .'">' : "";
 
 }
+
 
 
 /**
@@ -766,5 +767,20 @@ function cogito_get_logo(){
     return false;
   }
   
-  
+}
+
+/**
+ * Little Class to add arrows to menus
+ *
+ */
+class Arrow_Walker_Nav_Menu extends Walker_Nav_Menu {
+    function display_element($element, &$children_elements, $max_depth, $depth=0, $args, &$output) {
+        $id_field = $this->db_fields['id'];
+        if (!empty($children_elements[$element->$id_field])) { 
+            $element->classes[] = 'arrow';
+            $element->title .= '<img class="arrow-img" src="'.get_template_directory_uri() . '/images/menu-arrow.png">';
+        }
+        Walker_Nav_Menu::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+    }
+
 }

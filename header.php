@@ -53,11 +53,11 @@ require_once( get_template_directory() . '/html-header.php');
 	<nav id="access" role="navigation" class="row outer">
 	
     <?php //MOBILE MENU NAVBAR: a secondary menu intended for devices with with narrow screens. ?>
-    <?php wp_nav_menu( array( 'theme_location' => 'primary-mobile', 'menu_class' => 'hide-on-desktops' ) ); ?>	
+    <?php wp_nav_menu( array( 'theme_location' => 'primary-mobile', 'menu_class' => 'hide-on-desktops', 'walker' => new Arrow_Walker_Nav_Menu ) ); ?>	
     	
 		<?php //DESKTOP MAIN MENU ?>
 						
-		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-on-phones' ) ); ?>
+		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-on-phones', 'walker' => new Arrow_Walker_Nav_Menu) ); ?>
 	</nav>
 
 	<div id="main" class="row outer">

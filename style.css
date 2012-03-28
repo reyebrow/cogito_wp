@@ -163,6 +163,7 @@ of the elements we really like
 	background: -webkit-linear-gradient(#252525, #0a0a0a);
 	clear: both;
 	display: block;
+	position: relative;
 	margin: 0 auto 0;
 	width: 100%;
 }
@@ -233,8 +234,7 @@ of the elements we really like
 #access .current_page_ancestor > a {
 	font-weight: bold;
 }
-
-
+#access .arrow-img {margin-left: 8px;}
 
 /* Comments link */
 .entry-header .comments-link a {

@@ -57,7 +57,7 @@ require_once( get_template_directory() . '/html-header.php');
     	
 		<?php //DESKTOP MAIN MENU ?>
 						
-		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-on-phones', 'walker' => new Arrow_Walker_Nav_Menu) ); ?>
+		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'show-on-desktops', 'walker' => new Arrow_Walker_Nav_Menu) ); ?>
 	</nav>
 
 	<div id="main" class="row outer">

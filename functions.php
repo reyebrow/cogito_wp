@@ -175,16 +175,16 @@ if ( ! function_exists( 'cogito_wp_col_class' ) ) :
     //It's a 3-column layout with a left and right sidebar.
     if ($left && $right){
       switch ($col) {
-          case 'content': $val = cogito_foundation_sizer($cogito_init['three_columns_content']) . " columns"; break;
-          case 'left':    $val = cogito_foundation_sizer($cogito_init['three_columns_left']) . " columns"; break;
+          case 'content': $val = cogito_foundation_sizer($cogito_init['three_columns_content']) . " columns push-". cogito_foundation_sizer($cogito_init['three_columns_left']); break;
+          case 'left':    $val = cogito_foundation_sizer($cogito_init['three_columns_left']) . " columns pull-" . cogito_foundation_sizer($cogito_init['three_columns_content']); break;
           case 'right':   $val = cogito_foundation_sizer($cogito_init['three_columns_right']) . " columns"; break;
       }
     }
     //It's a 2-column layout with a left sidebar.
     elseif ($left){
       switch ($col) {
-          case 'content': $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_content']) . " columns"; break;
-          case 'left':    $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_left']) . " columns"; break;
+          case 'content': $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_content']) . " columns push-" . cogito_foundation_sizer($cogito_init['two_columns_lsb_left']); break;
+          case 'left':    $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_left']) . " columns pull-" . cogito_foundation_sizer($cogito_init['two_columns_lsb_content']); break;
       }
     }
     //It's a 2-column layout with a right sidebar.

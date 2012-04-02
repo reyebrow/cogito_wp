@@ -12,13 +12,6 @@
 
 //Programatially get the proper widths of the page colums
 get_header(); ?>
-
-
-<div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
-
-  <?php // Left Sidebar  ?>
-  <?php get_sidebar('left'); ?>
-  
   
   <?php // Main Content  ?>
   <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
@@ -46,12 +39,10 @@ get_header(); ?>
     
   </div>
 		
-  			
+  <?php // Left Sidebar  ?>
+  <?php get_sidebar('left'); ?>  			
   <?php // Right Sidebar  ?>
   <?php get_sidebar('right'); ?>
-
-
-</div><?php //div eleven centered ?>	
   
 
 <?php get_footer(); ?>

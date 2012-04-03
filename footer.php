@@ -11,9 +11,7 @@
 
 	<footer id="footer" role="contentinfo" class="row outer bottom">
 	 <?php cogito_action_footer_top(); ?>
-    <div class="eleven columns centered"><?php //This just gives a little room on the edges.?>
       <?php cogito_get_footers(); //see functions.php?>
-    </div>
 	 <?php cogito_action_footer_bottom(); ?>
 	</footer>
 

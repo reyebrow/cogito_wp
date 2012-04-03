@@ -159,18 +159,24 @@ add_filter('widget_text', 'do_shortcode');
 if ( ! function_exists( 'cogito_wp_col_class' ) ) :
   function cogito_wp_col_class($col = ''){
   
+
+
     $cogito_init = get_option('cogito_init'); 
     $val = false;
-    
+  
+    $widget_list =  wp_get_sidebars_widgets();
+
     //Is there a left column?
-    if (is_active_sidebar( 'sidebar-left' ) ) {
+    if ( isset($widget_list['sidebar-left']) && !empty($widget_list['sidebar-left']) ) {
       $left = true;
     }
     
     //Is there a right column?
-     if (is_active_sidebar( 'sidebar-right' ) ) {
+    if ( isset($widget_list['sidebar-right']) && !empty($widget_list['sidebar-right']) ) {
       $right = true;  
      }
+
+
      
     //It's a 3-column layout with a left and right sidebar.
     if ($left && $right){
@@ -371,13 +377,16 @@ function cogito_get_footers() {
   $cogito_init = get_option('cogito_init'); 
   $footers = isset($cogito_init) && is_array($cogito_init['footers']) ? $cogito_init['footers'] : array(4,4,4);
 
+  $widget_list =  wp_get_sidebars_widgets();
+
   $width_sum = 0;
   $last_used = 0;
    
   //First count the widget areas we have and store active footers in an array
   $foot_counter = Array();
   for ($i=0;$i<=4;$i++){
-    if (is_active_sidebar( 'footer-' . ($i+1) ) ) {
+
+    if ( isset($widget_list['footer-' . ($i+1)]) && !empty($widget_list['footer-' . ($i+1)] ) ){
       //If the footer widths array has something useful in it use it. Otherwise 4 is a good number
       $width = isset($footers[$i]) ? $footers[$i] : 4;
       $foot_counter[$i+1] = $footers[$i];
@@ -429,8 +438,6 @@ if ( ! function_exists( 'cogito_wp_body_classes' ) ) :
   
 endif;
 add_filter( 'body_class', 'cogito_wp_body_classes' );
-
-
 
 
 /**

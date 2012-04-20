@@ -621,7 +621,10 @@ if ( ! function_exists( 'emm_paginate' ) ) :
   		$page = get_query_var('paged');
   		$page = !empty($page) ? intval($page) : 1;
   
-  		$posts_per_page = intval(get_query_var('posts_per_page'));
+  		$posts_per_page = get_query_var('posts_per_page');
+
+      $posts_per_page = $posts_per_page > 0 ? $posts_per_page : 1;
+
   		$pages = intval(ceil($wp_query->found_posts / $posts_per_page));
   	}
   	$output = "";

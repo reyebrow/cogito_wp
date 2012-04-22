@@ -713,22 +713,27 @@ function emm_paginate_loop($start, $max, $page = 0) {
  * @param int $filepath should be relative to the theme directory and include a slash.
  *
  */
-function cogito_get_file_uri($filepath){
+function cogito_get_file_uri(array $filepaths){
   
   $root_wp = getcwd();
-  
+
   // Cache path to theme for duration of this function:
   $cogito_dir = get_template_directory();
   $cogito_uri = get_template_directory_uri();
   
   $child_dir = get_stylesheet_directory();
   $child_uri = get_stylesheet_directory_uri();
-  
-  if ( is_file( $child_dir . $filepath) ){
-    return $child_uri . $filepath;
+
+  foreach ($filepaths as $filepath){
+    if ( is_file( $child_dir . $filepath) ){
+      return $child_uri . $filepath;
+    }
   }
-  elseif( is_file( $cogito_dir . $filepath) ){
-    return $cogito_uri . $filepath;
+  //Now do it all again only this time in the parent directory
+  foreach ($filepaths as $filepath){
+    if( is_file( $cogito_dir . $filepath) ){
+      return $cogito_uri . $filepath;
+    }
   }
   return false;
 
@@ -741,11 +746,11 @@ function cogito_get_file_uri($filepath){
  */
 function cogito_get_icons(){
   
-  $favicon =  cogito_get_file_uri('/images/icons/favicon.ico'); 
+  $favicon =  cogito_get_file_uri(array('/images/icons/favicon.ico')); 
 
-  $icon57 = cogito_get_file_uri('/images/icons/apple-57x57.png'); 
-  $icon72 = cogito_get_file_uri('/images/icons/apple-72x72.png'); 
-  $icon114 = cogito_get_file_uri('/images/icons/apple-114x114.png'); 
+  $icon57 = cogito_get_file_uri(array('/images/icons/apple-57x57.png')); 
+  $icon72 = cogito_get_file_uri(array('/images/icons/apple-72x72.png')); 
+  $icon114 = cogito_get_file_uri(array('/images/icons/apple-114x114.png')); 
   
 
   print $icon57 ? '<link rel="apple-touch-icon" href="'.$icon57.'">' : "";
@@ -767,10 +772,7 @@ function cogito_get_icons(){
 function cogito_get_logo(){
 
   //TODO: work in uploading a logo in the admin interface.
-  if ($logo =  cogito_get_file_uri('/images/logo.png')){
-    return $logo;
-  }
-  elseif ($logo =  cogito_get_file_uri('/logo.png')){
+  if ($logo =  cogito_get_file_uri( array('/images/logo.png', '/logo.png') )){
     return $logo;
   }
   else{

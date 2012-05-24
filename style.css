@@ -626,16 +626,20 @@ p.comment-form-comment {
   
   #mobile-nav li {
     margin-bottom: 2px;
-    height: 50px;
     font-size: 16px;font-size: 1.6rem;
   }
   
   #mobile-nav li a {
-    background-color: #eee;
+    background-color: #ddd;
     display: block;
     text-decoration: none;
     padding: 12px;
     text-align: left;
+  }
+  #mobile-nav li li a {
+    background-color: #eee;
+    margin-left: 16px;
+    margin-top: 2px;
   }
   
   #mobile-nav li a:focus,

@@ -47,6 +47,11 @@ body{	background: #EEE;}
 /* Header images (including the logo) should align properly */
 #branding img{ vertical-align: top; }
 
+/* Fix for text areas not working properly */
+.contact-form textarea {
+  margin-top: 0px;
+}
+
 /* -----------------------------------------
    Shared Styles
 ----------------------------------------- */
@@ -585,4 +590,79 @@ p.comment-form-comment {
 }
 .form-allowed-tags {
 	display: none;
+}
+
+
+/* -----------------------------------------
+   Mobile Menu
+----------------------------------------- */
+@media only screen and (max-width: 767px) {
+
+  #mobile-nav-trigger {
+    background-color: #aaa;
+    padding: 15px 0;
+  }
+  #mobile-nav-trigger a{ color: white; 
+      margin: 13px 20px;
+      font-size: 15px; 
+      text-decoration: none;
+  }
+  #mobile-nav-trigger {
+    color: white;
+  }
+  #mobile-nav-trigger #menu-link:before {
+    content: "≡ ";
+    font-weight: normal;
+  }
+
+  #mobile-nav {
+    background-color: #fff;
+    top: 60px
+  }
+
+  #mobile-nav ul {
+    margin-bottom: 0;
+  }
+  
+  #mobile-nav li {
+    margin-bottom: 2px;
+    height: 50px;
+    font-size: 16px;font-size: 1.6rem;
+  }
+  
+  #mobile-nav li a {
+    background-color: #eee;
+    display: block;
+    text-decoration: none;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  #mobile-nav li a:focus,
+  #mobile-nav li a:hover {
+    background-color: #aaa;
+    color: black;
+  }
+  
+  #mobile-nav { margin-left: 0; }
+  #mobile-nav li { text-transform: uppercase;}
+  #mobile-nav .close-reveal-modal {
+  	background: #666;
+  	border-radius: 15px;
+  	-moz-border-radius: 15px;
+  	-webkit-border-radius: 15px;
+  	color: #fff;
+  	cursor: pointer;
+  	font-size: 22px;
+  	font-size: 2.2rem;
+  	font-weight: bold;
+  	line-height: .5;
+  	padding: 3px 5px 9px 5px;
+  	position: absolute;
+  	right: -10px;
+  	text-decoration: none;
+  	text-shadow: 0 -1px 1px rbga(0,0,0,.6);
+  	top: -10px;
+  }  
+  
 }

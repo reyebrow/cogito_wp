@@ -599,7 +599,7 @@ p.comment-form-comment {
 @media only screen and (max-width: 767px) {
 
   #mobile-nav-trigger {
-    background-color: #aaa;
+    background-color: #000;
     padding: 15px 0;
   }
   #mobile-nav-trigger a{ color: white; 

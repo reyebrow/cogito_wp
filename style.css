@@ -22,35 +22,13 @@ General comments/License Statement if any.
   left: -900em;
 }
 
-aside h3{  font-size: 1.2em;}
-#content h2{  font-size: 1.2em;}
-#content h1{  font-size: 2.5em;}
-
-#content .entry-content ul, #content .entry-content ol {  margin-left: 30px; }
-#content .entry-content ul li {  list-style-type: disc; margin-bottom: 0; }
-
-body{	background: #EEE;}
-.row { background: #fff; }
-
-#main { padding-top: 1.5em; }
-
-#site-description {
-  font-size: 1.5em;
-  font-style: italic;
-}
-
 #footer{
   border-top: 1px solid #ccc;
-  padding: 15px 0 40px;
 }
 
 /* Header images (including the logo) should align properly */
 #branding img{ vertical-align: top; }
 
-/* Fix for text areas not working properly */
-.contact-form textarea {
-  margin-top: 0px;
-}
 
 /* -----------------------------------------
    Shared Styles
@@ -72,13 +50,6 @@ body{	background: #EEE;}
   color: #404040;
 }
 
-.panel {
-  text-shadow: 0 1px 0 #ffffff;
-}
-
-footer h2{
-    font-size:1.2em;
-}
 footer.outer{
   border-top: 1px solid #ddd;
   padding-top: 30px;
@@ -167,10 +138,6 @@ of the elements we really like
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#252525), to(#0a0a0a)); /* older webkit syntax */
 	background: -webkit-linear-gradient(#252525, #0a0a0a);
 	clear: both;
-	display: block;
-	position: relative;
-	margin: 0 auto 0;
-	width: 100%;
 }
 #access ul {
 	font-size: 13px;

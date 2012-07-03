@@ -19,7 +19,7 @@ require_once( get_template_directory() . '/html-header.php');
   <?php cogito_action_above_container(); ?>
   
   <?php //MOBILE MENU NAVBAR: a secondary menu intended for devices with with narrow screens. ?>
-  <div id="mobile-nav-trigger" class="show-on-phones row">
+  <div id="mobile-nav-trigger" class="show-for-small row">
     <div class="columns phone-two">
       <a id="menu-link" data-reveal-id="mobile-nav" href="#">Menu</a>
     </div>
@@ -65,7 +65,7 @@ require_once( get_template_directory() . '/html-header.php');
 	<nav id="access" role="navigation" class="row outer">
 	    	
 		<?php //DESKTOP MAIN MENU ?>					
-		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-on-phones', 'walker' => new Arrow_Walker_Nav_Menu) ); ?>
+		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-for-small', 'walker' => new Arrow_Walker_Nav_Menu) ); ?>
 	</nav>
 
 	<div id="main" class="row outer">

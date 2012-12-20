@@ -369,7 +369,7 @@ function cogito_get_footers() {
 
 	//Dynamically gererate footer column widget regions
   $cogito_init = get_option('cogito_init'); 
-  $footers = isset($cogito_init) && is_array($cogito_init['footers']) ? $cogito_init['footers'] : array(4,4,4);
+  $footers = isset($cogito_init) && isset($cogito_init['footers']) && is_array($cogito_init['footers']) ? $cogito_init['footers'] : array(4,4,4);
 
   $widget_list =  wp_get_sidebars_widgets();
 

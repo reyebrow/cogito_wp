@@ -17,14 +17,16 @@
 /* -----------------------------------------
    Global Rules
 ----------------------------------------- */
+  
+  .skiplink { @include hide-text; }
 
   body { 
 
   }
 
-//Foundation uses lists as nav elements etc. but sometimes a list is just a list:
-aside ul { list-style-position: inside; }
-article .entry-content ul { list-style-position: inside; }
+  //Foundation uses lists as nav elements etc. but sometimes a list is just a list:
+  aside ul { list-style-position: inside; }
+  article .entry-content ul { list-style-position: inside; }
 
 
 /* -----------------------------------------

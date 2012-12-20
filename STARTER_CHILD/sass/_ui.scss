@@ -1,0 +1,22 @@
+@import "settings";
+@import "compass/css3";
+// @import "compass/css3/pie";
+// @import "icons/sprites/*.png";
+// @include all-sprites-sprites;
+
+/********************************************
+
+  Let's talk about Effects:
+
+********************************************/
+
+/* -----------------------------------------
+   Background gradients
+----------------------------------------- */
+body { 
+
+  @include mq(l) {  }
+  @include mq(m) { background: blue; }
+  @include mq(s) { background: red; } 
+
+}

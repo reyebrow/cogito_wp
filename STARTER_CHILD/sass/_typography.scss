@@ -1,0 +1,71 @@
+@import "settings";
+
+/********************************************
+
+  Let's talk about Type:
+
+  Anything to do with font size/face or colour
+  is in this file.
+
+********************************************/
+
+/* -----------------------------------------
+   Our Fonts
+----------------------------------------- */
+//@font-face {  font-family: "n_book";  src: url('../fonts/novecentowide-book-webfont.eot') format('embedded-opentype'), url('../fonts/novecentowide-book-webfont.svg') format('svg'), url('../fonts/novecentowide-book-webfont.ttf') format('truetype'), url('../fonts/novecentowide-book-webfont.woff') format('woff'); }
+
+/* -----------------------------------------
+   Global Rules
+----------------------------------------- */
+
+  body { 
+
+  }
+
+//Foundation uses lists as nav elements etc. but sometimes a list is just a list:
+aside ul { list-style-position: inside; }
+article .entry-content ul { list-style-position: inside; }
+
+
+/* -----------------------------------------
+   Main Nav Block
+
+   we're just undoing navbar styling from 
+   foundation
+----------------------------------------- */
+nav {
+
+}
+
+/* -----------------------------------------
+   Content
+----------------------------------------- */
+
+article {
+  * { line-height: 1.6; }
+}
+
+
+
+/* -----------------------------------------
+   Sidebars
+----------------------------------------- */
+aside {
+  #{headers(3)} { 
+
+  }
+  h2    {  }
+  h3    {   }
+  ul li { 
+
+  }
+}
+
+
+/* -----------------------------------------
+   Footer
+----------------------------------------- */
+footer {
+
+}
+

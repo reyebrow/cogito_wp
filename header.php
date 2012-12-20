@@ -61,11 +61,6 @@ require_once( get_template_directory() . '/html-header.php');
   
 	</header>
 	
-  <?php //MAIN MENU NAVBAR ?>
-	<nav id="access" role="navigation" class="row outer">
-	    	
-		<?php //DESKTOP MAIN MENU ?>					
-		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'hide-for-small', 'walker' => new Arrow_Walker_Nav_Menu) ); ?>
-	</nav>
+	<nav id="access" role="navigation" class="row outer"><?php desktop_nav(); ?></nav>
 
 	<div id="main" class="row outer">

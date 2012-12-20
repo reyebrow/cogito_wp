@@ -1,0 +1,41 @@
+// @import "settings";
+// /********************************************
+
+//   A special stylesheet for TinyMCE
+
+//   Just import a few pieces of Foundation 
+//   and the custom typography we wrote .
+
+// ********************************************/
+
+//     // /********* A Few pieces of Foundation *********/
+
+//     @import "foundation/settings";
+//     @import "foundation/mixins/clearfix";
+
+
+//     @import "compass/css3";
+//     @import "foundation/functions/all";
+
+//     @import "foundation/mixins/css-triangle";
+//     @import "foundation/mixins/font-size";
+
+//     // // @import "foundation/mixins/respond-to";
+//     // @import "foundation/mixins/semantic-grid";
+
+//     @import "modular-scale";
+//     // @import "foundation/common/globals";
+
+//     @import "foundation/components/grid";
+
+//     @import "foundation/common/typography";
+//     // @import "foundation/common/forms";
+
+//     @import "foundation/components/modules/buttons";
+//     // // @import "foundation/components/modules/ui";
+
+// /******* Typography we wrote *********/
+// @import "typography";
+
+// /******* make sure the body is white *********/
+// body { background: $hsa_white; }

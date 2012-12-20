@@ -1,0 +1,189 @@
+@import "foundation/common/ratios"; 
+@import "compass/css3";
+
+// IE is and assumed to be a real browser
+// Unless it's not. We load entirely separate
+// Stylesheets for IE 6-7-8
+$ie: 99!default;
+
+// This is an important function.
+@function rem($size){
+  @if $ie >= 9 { @return $size + 0rem; }
+  @else { @return ($size * 10) + 0px; }
+}
+
+/* -----------------------------------------
+   IE functionality using CSS PIE
+----------------------------------------- */
+@import "compass/css3/pie";
+@if $ie < 99 {
+  // $pie-behavior: url(sites/all/themes/hsabc/css/PIE.htc);
+  $pie-base-class: pie-element;
+}
+.pie-element {
+  @if $ie < 99 {  @include pie-element(relative); }
+}
+@mixin pieme(){
+  @if $ie < 99 { @include pie; }
+}
+
+/* -----------------------------------------
+   Our Settings
+----------------------------------------- */
+
+
+/* -----------------------------------------
+   Set constants here
+----------------------------------------- */
+  $footer-height:  rem(26);
+  $header-height:  rem(24.5); 
+  $grad_width:     rem(8.6);  // The width of the shadow on #main
+  $stripe_width:   rem(15.8); // The events page has a left stripe
+  $sb_stripe_height: rem(10); // The sidebar has a stripe above it
+  // $bgstripe: image-url("bg-stripe.gif");  // Certain sections have a striped background
+
+
+
+/* -----------------------------------------
+   Foundation Settings
+----------------------------------------- */
+
+  // Settings file containing Foundation defaults
+  $columnGutter: rem(3);
+  $bigGutter: rem(4.5);
+  $littleGutter: rem(1.2);
+  $defaultFloat: left;
+
+  $totalColumns: 12;
+  $mobileTotalColumns: 12; // I don't like just having 4 for mobile
+
+  //Now how our colours apply to foundation
+  // $mainColor:     $hsa_teal;
+  // $secondaryColor: $hsa_dblue;
+  // $alertColor:    $hsa_red;
+  // $successColor:  #5da423;
+  // $txtColor:      $hsa_text;
+
+  // $highlightColor: #ffff99;
+  // $black:          $hsa_black;
+  // $white:          $hsa_white;
+  // $shinyEdge:      rgba( $hsa_white, .5 );
+  // $darkEdge:       rgba( $hsa_black, .2 );
+
+
+  // Foundation Initial Typography Settings
+  // We can leave this mostly as is as a fallback stack
+  // Then do the rest of the typography simply in typography.scss
+  $headerFontFamily: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  $headerFontWeight: normal;
+  // $headerFontColor: $hsa_dblue;
+  $bodyFontFamily: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  $bodyFontWeight: normal;
+  // $bodyFontColor: $txtColor;
+
+// Button Settings
+
+// $buttonRadius: 3px;
+// $btnBase: 10px;
+
+// $tinyBtnBase: $btnBase - 5;
+// $smallBtnBase: $btnBase - 3;
+// $largeBtnBase: $btnBase + 5;
+
+// Form Settings
+
+// $formSpacing: 12px;
+
+// Tab Settings
+
+// $tabHeight: 40px;
+
+// Nav Bar Settings
+$navBarHeight: 40px;
+$navFlyoutBaseWidth: rem(20);
+
+// UI Settings
+
+// $thumbRadius: 3px;
+
+// $progBarHeight: 25px;
+// $progBarBorderColor: darken($white, 20%);
+// $progBarBorderSize: 1px;
+// $progBarPad: 2px;
+
+// Modular Scale
+
+// $ratio: $golden;
+// $baseFontSize: 12px;
+// $importantModNum: 24px;
+
+// Tooltip Settings
+
+// $hasTipBorderBottom: dotted 1px #ccc;
+// $hasTipFontWeight: bold;
+// $hasTipFontColor: #333;
+// $hasTipBorderBottomHover: dotted 1px darken($mainColor, 20%);
+// $hasTipFontColorHover: $mainColor;
+// $tooltipBackgroundColor: #000;
+// $tooltipBackgroundOpacity: 0.85;
+// $tooltipFontSize: 12;
+// $tooltipFontWeight: bold;
+// $tooltipFontColor: #fff;
+// $tapToCloseFontSize: 10;
+// $tapToCloseFontWeight: normal;
+// $tapToCloseFontColor: #888;
+// $tooltipFontSizeScreenSmall: 14;
+// $tooltipBackgroundOpacityScreenSmall: 0.85;
+
+
+
+/***********************/
+// @MEDIA Breakpoints
+/***********************/
+
+$screenSmall: 30em !default;
+$screenMedium: $screenSmall * 1.5 !default;
+$screenXlarge: $screenSmall * 2.2 !default;
+$rowWidth: rem(97.8);
+
+// output ems or px if it's IE
+// A little mixin to make things easier for us. This means we don't need
+// to add media queries all over the place in the sass file
+@mixin mq($media) {
+
+  @if $media == s {
+    @media only screen and (max-width: $screenSmall) { @content; }
+  }
+  @else if $media == m {
+    @media only screen and (min-width: $screenSmall + 0.01) and (max-width: $screenXlarge - 0.01) { @content; }
+  }
+  // The large media query is special because it's the default so we 
+  // include a fallback for lesser browsers
+  @else if $media == l {
+    @if $ie >= 9 {
+      @media only screen and (min-width: $screenXlarge) { @content; }
+    }
+    //if it's an old browser then do nothing.
+    @else { @content; }
+    
+  }
+  @if $media == gts {
+    @media only screen and (min-width: $screenSmall) { @content; }
+  }
+  @else if $media == ltl {
+    @media only screen and (max-width: $screenXlarge) { @content; }
+  }
+  @else if $media == print {
+    @media only print { @content; }
+  }
+}
+
+@mixin hide-text{
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* -----------------------------------------
+   Buttons Etc.
+----------------------------------------- */

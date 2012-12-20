@@ -176,10 +176,8 @@ if ( ! function_exists( 'cogito_wp_col_class' ) ) :
       $right = true;  
      }
 
-
-     
     //It's a 3-column layout with a left and right sidebar.
-    if ($left && $right){
+    if ( isset($left) && isset($right) ) {
       switch ($col) {
           case 'content': $val = cogito_foundation_sizer($cogito_init['three_columns_content']) . " columns push-". cogito_foundation_sizer($cogito_init['three_columns_left']); break;
           case 'left':    $val = cogito_foundation_sizer($cogito_init['three_columns_left']) . " columns pull-" . cogito_foundation_sizer($cogito_init['three_columns_content']); break;
@@ -187,14 +185,14 @@ if ( ! function_exists( 'cogito_wp_col_class' ) ) :
       }
     }
     //It's a 2-column layout with a left sidebar.
-    elseif ($left){
+    elseif ( isset($left) ){
       switch ($col) {
           case 'content': $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_content']) . " columns push-" . cogito_foundation_sizer($cogito_init['two_columns_lsb_left']); break;
           case 'left':    $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_left']) . " columns pull-" . cogito_foundation_sizer($cogito_init['two_columns_lsb_content']); break;
       }
     }
     //It's a 2-column layout with a right sidebar.
-    elseif ($right){
+    elseif ( isset($right) ){
       switch ($col) {
           case 'content': $val = cogito_foundation_sizer($cogito_init['two_columns_rsb_content']) . " columns"; break;
           case 'right':   $val = cogito_foundation_sizer($cogito_init['two_columns_rsb_right']) . " columns"; break;
@@ -221,19 +219,11 @@ if ( ! function_exists( 'cogito_wp_admin_enqueue_scripts' ) ) :
   function cogito_wp_admin_enqueue_scripts( $hook_suffix ) {
     // Foundation gets its own jquery 
     wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js');
+    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
     wp_enqueue_script( 'jquery' );
-  
-  
-  	wp_enqueue_style( 'foundation-css', get_template_directory_uri() . '/foundation/stylesheets/foundation.css'  );
-  			
-  	wp_enqueue_script( 'foundation-orbit', get_template_directory_uri() . '/foundation/javascripts/jquery.orbit-1.4.0.js', array('jquery') );
-  	wp_enqueue_script( 'foundation-placeholder', get_template_directory_uri() . '/foundation/javascripts/jquery.placeholder.min.js', array('jquery') );
-  	wp_enqueue_script( 'foundation-reveal', get_template_directory_uri() . '/foundation/javascripts/jquery.reveal.js', array('jquery') );
-  	wp_enqueue_script( 'foundation-tooltips', get_template_directory_uri() . '/foundation/javascripts/jquery.tooltips.js', array('jquery') );
-  	wp_enqueue_script( 'foundation-modernizr', get_template_directory_uri() . '/foundation/javascripts/modernizr.foundation.js', array('jquery') );
   	//App.js just contains some extra form stuff for now.
-  	wp_enqueue_script( 'foundation-app', get_template_directory_uri() . '/foundation/javascripts/app.js', array('foundation-js') );
+  	wp_enqueue_script( 'foundation-core', get_template_directory_uri() . '/js/foundation.min.js', array('jquery') );
+    wp_enqueue_script( 'foundation-app', get_stylesheet_directory_uri() . '/js/app.js', array('foundation-core') );
   
   }
 endif;
@@ -286,8 +276,8 @@ if ( ! function_exists( 'cogito_wp_menu_init' ) ) :
   function cogito_wp_menu_init() {
   
   	// This theme uses wp_nav_menu() in one location.
-  	register_nav_menu( 'primary', __( 'Primary Menu', 'cogito_wp' ) );
-  	register_nav_menu( 'primary-mobile', __( 'Primary Menu (mobile)', 'cogito_wp' ) );
+  	register_nav_menu( 'desktop-nav', __( 'Primary Menu', 'cogito_wp' ) );
+  	register_nav_menu( 'mobile', __( 'Primary Menu (mobile)', 'cogito_wp' ) );
   }
   
 endif;
@@ -320,7 +310,7 @@ if ( ! function_exists( 'cogito_wp_widgets_init' ) ) :
   	
   	//Dynamically gererate footer column widget regions
     $cogito_init = get_option('cogito_init'); 
-    $footers = isset($cogito_init) && is_array($cogito_init['footers']) ? $cogito_init['footers'] : array(4,4,4);
+    $footers = isset($cogito_init) && isset($cogito_init['footers']) && is_array($cogito_init['footers']) ? $cogito_init['footers'] : array(4,4,4);
     
     if (is_array($footers) && !empty($footers)){
       for ($i = 1; $i<= sizeof($footers); $i++){
@@ -495,6 +485,125 @@ add_filter( 'excerpt_more', 'cogito_wp_auto_excerpt_more' );
 
 
 
+/* 
+http://codex.wordpress.org/Function_Reference/wp_nav_menu 
+*/
+function desktop_nav() {
+    wp_nav_menu(array( 
+        'container' => false,             // remove menu container
+        'container_class' => '',          // class of container
+        'menu' => '',                     // menu name
+        'menu_class' => 'nav-bar',        // adding custom nav class
+        'theme_location' => 'desktop-nav',  // where it's located in the theme
+        'before' => '',                   // before each link <a>
+        'after' => '',                    // after each link </a>
+        'link_before' => '',              // before each link text
+        'link_after' => '',               // after each link text
+        'depth' => 2,                     // limit the depth of the nav
+        'fallback_cb' => 'main_nav_fb',   // fallback function (see below)
+        'walker' => new nav_bar_walker()      // walker to customize menu (see foundation-nav-walker)
+  ));
+}
+/* http://codex.wordpress.org/Template_Tags/wp_list_pages */
+function main_nav_fb() {
+  echo '<ul class="nav-bar">';
+  wp_list_pages(array(
+    'depth'        => 0,
+    'child_of'     => 0,
+    'exclude'      => '',
+    'include'      => '',
+    'title_li'     => '',
+    'echo'         => 1,
+    'authors'      => '',
+    'sort_column'  => 'menu_order, post_title',
+    'link_before'  => '',
+    'link_after'   => '',
+    'walker'       => new page_walker(),
+    'post_type'    => 'page',
+    'post_status'  => 'publish' 
+  ));
+  echo '</ul>';
+}
+
+
+/*
+Customize the output of page list for Foundation nav classes in main_nav_fb
+ From: https://gist.github.com/3184243
+http://forrst.com/posts/Using_Short_Page_Titles_for_wp_list_pages_Wordp-uV9
+*/
+class page_walker extends Walker_Page {
+    function start_el(&$output, $page, $depth, $args, $current_page) {
+    
+        $indent = ($depth) ? str_repeat("\t", $depth) : '';
+ 
+        extract($args, EXTR_SKIP);
+        $classes = array('page_item', 'page-item-'.$page->ID);
+        if (!empty($current_page)) {
+            $_current_page = get_page( $current_page );
+        if (isset($_current_page->ancestors) && in_array($page->ID, (array) $_current_page->ancestors) )
+            $classes[] = 'current_page_ancestor';
+        if ($page->ID == $current_page)
+            $classes[] = 'current_page_item active';
+        elseif ($_current_page && $page->ID == $_current_page->post_parent)
+            $classes[] = 'current_page_parent';
+        } elseif ($page->ID == get_option('page_for_posts') ) {
+            $classes[] = 'current_page_parent';
+        }
+        if (get_children($page->ID))
+            $classes[] = 'has-flyout';
+    
+        $classes = implode(' ', apply_filters('page_css_class', $classes, $page));
+    
+        $output .= $indent.'<li class="'.$classes.'">';
+        $output .= '<a href="'.get_page_link($page->ID).'" title="'.esc_attr(wp_strip_all_tags($page->post_title)).'">';
+        $output .= $args['link_before'].$page->post_title.$args['link_after'];
+        $output .= '</a>';
+    }
+    function end_el(&$output, $item, $depth) {
+        $output .= "</li>\n";
+    }
+    function start_lvl(&$output, $depth) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n$indent<ul class=\"sub-menu flyout\">\n";
+    }
+    function end_lvl(&$output, $depth) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n$indent</ul>\n";
+    }
+} // end page walker
+
+/* 
+Customize the output of menus for Foundation nav bar classes
+*/
+ 
+class nav_bar_walker extends Walker_Nav_Menu {
+ 
+    function display_element($element, &$children_elements, $max_depth, $depth=0, $args, &$output) {
+        $element->has_children = !empty($children_elements[$element->ID]);
+        $element->classes[] = ($element->current) ? 'active' : '';
+        $element->classes[] = ($element->has_children) ? 'has-flyout' : '';
+    
+        parent::display_element($element, &$children_elements, $max_depth, $depth, $args, &$output);
+    } 
+  
+    function start_el(&$output, $item, $depth, $args) {
+        $item_html = '';
+        parent::start_el($item_html, $item, $depth, $args); 
+    
+        $classes = empty($item->classes) ? array() : (array) $item->classes;  
+ 
+        if(in_array('has-flyout', $classes)) {
+            $item_html = str_replace('</a>', '</a><a href="'.esc_attr($item->url).'" class="flyout-toggle"><span> </span></a>', $item_html);
+        }
+    
+        $output .= $item_html;
+    }
+ 
+    function start_lvl(&$output, $depth = 0, $args = array()) {
+        $output .= "\n<ul class=\"sub-menu flyout\">\n";
+    }
+    
+} // end nav bar walker
 
 /**
  * Template for comments and pingbacks. (borrowed from twenty_eleven)
@@ -783,20 +892,4 @@ function cogito_get_logo(){
     return false;
   }
   
-}
-
-/**
- * Little Class to add arrows to menus
- *
- */
-class Arrow_Walker_Nav_Menu extends Walker_Nav_Menu {
-    function display_element($element, &$children_elements, $max_depth, $depth=0, $args, &$output) {
-        $id_field = $this->db_fields['id'];
-        if (!empty($children_elements[$element->$id_field])) { 
-            $element->classes[] = 'arrow';
-            $element->title .= '<span class="arrow-img"> »</span>';
-        }
-        Walker_Nav_Menu::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
-    }
-
 }

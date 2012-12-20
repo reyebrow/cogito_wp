@@ -50,22 +50,6 @@
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-  	<!--[if lt IE 9]>
-  		<link rel="stylesheet" href="stylesheets/ie.css">
-  	<![endif]-->
-  
-  	<!-- IE Fix for HTML5 Tags -->
-  	<!--[if lt IE 9]>
-  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  	<![endif]-->
-  	
-  	<!-- Orbit IE Settings -->
-  	<!--[if IE]>
-      <style type="text/css">
-           .timer { display: none !important; }
-           div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom: 1; }
-      </style>
-  	<![endif]-->
     
     <?php
     	/* We add some JavaScript to pages with the comment form

@@ -31,8 +31,7 @@ get_header(); ?>
       else {
         get_template_part( 'loop','noresult' );
       }?>
-      
-      
+       
       <?php comments_template( '', true ); ?>
 
     <?php cogito_content_bottom(); cogito_content_bottom_single(); ?>

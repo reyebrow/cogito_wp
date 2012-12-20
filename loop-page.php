@@ -5,7 +5,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ; sticky_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
   <?php cogito_action_loop_item_top(); ?>
 

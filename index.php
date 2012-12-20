@@ -19,10 +19,8 @@ get_header(); ?>
     <?php 
       if ( have_posts() ) {
         while ( have_posts() ) {
-          
           the_post();  //set up $post variable
           get_template_part( 'loop', get_post_type() . "s" ); //basically this is just looking for loop-formats.php 
-           
         }
       }
       else {

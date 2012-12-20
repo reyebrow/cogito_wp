@@ -13,7 +13,7 @@
 ?>
 
 <script>
-//document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
 </script>
   <div class="row">
     <?php if ( $logo = cogito_get_logo() ) : //Print a logo.png if there is one?>

@@ -52,5 +52,13 @@
 @import "typography"; // Just the fonts ma'am
 @import "navbar"; // Foundation navbar styling for your overriding pleasure.
 @import "foundation-icons"; //Foundation has an icon font. Want to use it?
-// @import "fc-webicons";
+@import "fc-webicons";
 
+
+/* -----------------------------------------
+   Spacings
+----------------------------------------- */
+
+footer#footer { 
+  margin-bottom: 50px;
+}

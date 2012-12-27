@@ -100,7 +100,6 @@ if (preg_match('/^http:\/\/(www\.)?youtube.com\/watch.*/i', $url) ||
     preg_match('/^http:\/\/youtu.be\/*/i', $url) ) {
     $html = "<div class='flex-video'>" . $html . "</div>";
   }
-  
   return $html;
 }
 add_filter( 'embed_oembed_html', 'cogito_video_wrap', 10, 3);
@@ -583,7 +582,7 @@ class nav_bar_walker extends Walker_Nav_Menu {
         $element->classes[] = ($element->current) ? 'active' : '';
         $element->classes[] = ($element->has_children) ? 'has-flyout' : '';
     
-        parent::display_element($element, &$children_elements, $max_depth, $depth, $args, &$output);
+        parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
     } 
   
     function start_el(&$output, $item, $depth, $args) {

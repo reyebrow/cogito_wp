@@ -23,6 +23,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     
+    <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?>" href="<?php bloginfo('rss2_url'); ?>" />
+    
     <title><?php
     	/*
     	 * Print the <title> tag based on what is being viewed.
@@ -55,8 +57,7 @@
     	/* We add some JavaScript to pages with the comment form
     	 * to support sites with threaded comments (when in use).
     	 */
-    	if ( is_singular() && get_option( 'thread_comments' ) )
-    		wp_enqueue_script( 'comment-reply' );
+    	if ( is_singular() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' );
     
     	/* Always have wp_head() just before the closing </head>
     	 * tag of your theme, or you will break many plugins, which

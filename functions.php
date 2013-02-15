@@ -18,6 +18,8 @@ Then paste it into your child's functions.php and change away.
 
 include_once('functions-actions.php');
 
+add_theme_support( 'automatic-feed-links' );
+
 /********************************************************************************
 Here's where you get to set up the widths of your columns. If you change
 the number of columns you may need to redefine cogito_wp_get_cols in this

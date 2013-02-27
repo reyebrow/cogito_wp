@@ -489,22 +489,24 @@ add_filter( 'excerpt_more', 'cogito_wp_auto_excerpt_more' );
 /* 
 http://codex.wordpress.org/Function_Reference/wp_nav_menu 
 */
-function desktop_nav() {
-    wp_nav_menu(array( 
-        'container' => false,             // remove menu container
-        'container_class' => '',          // class of container
-        'menu' => '',                     // menu name
-        'menu_class' => 'nav-bar',        // adding custom nav class
-        'theme_location' => 'desktop-nav',  // where it's located in the theme
-        'before' => '',                   // before each link <a>
-        'after' => '',                    // after each link </a>
-        'link_before' => '',              // before each link text
-        'link_after' => '',               // after each link text
-        'depth' => 2,                     // limit the depth of the nav
-        'fallback_cb' => 'main_nav_fb',   // fallback function (see below)
-        'walker' => new nav_bar_walker()      // walker to customize menu (see foundation-nav-walker)
-  ));
-}
+if ( ! function_exists( 'desktop_nav' ) ) :
+  function desktop_nav() {
+      wp_nav_menu(array( 
+          'container' => false,             // remove menu container
+          'container_class' => '',          // class of container
+          'menu' => '',                     // menu name
+          'menu_class' => 'nav-bar',        // adding custom nav class
+          'theme_location' => 'desktop-nav',  // where it's located in the theme
+          'before' => '',                   // before each link <a>
+          'after' => '',                    // after each link </a>
+          'link_before' => '',              // before each link text
+          'link_after' => '',               // after each link text
+          'depth' => 2,                     // limit the depth of the nav
+          'fallback_cb' => 'main_nav_fb',   // fallback function (see below)
+          'walker' => new nav_bar_walker()      // walker to customize menu (see foundation-nav-walker)
+    ));
+  }
+endif;
 /* http://codex.wordpress.org/Template_Tags/wp_list_pages */
 function main_nav_fb() {
   echo '<ul class="nav-bar">';

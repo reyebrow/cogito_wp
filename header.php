@@ -61,7 +61,7 @@ require_once( get_template_directory() . '/html-header.php');
   
 	</header>
 	
-	<nav id="access" role="navigation" class="row outer"><?php desktop_nav(); ?></nav>
+	<nav id="access" role="navigation" class="row outer hide-for-small"><?php desktop_nav(); ?></nav>
   <?php cogito_above_main(); ?>
 	<div id="main" class="row outer">
   

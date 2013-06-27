@@ -25,10 +25,12 @@ Here's where you get to set up the widths of your columns. If you change
 the number of columns you may need to redefine cogito_wp_get_cols in this
 file
 
-ALL SECTIONS MUST ADD UP TO 12 (or not. maybe you like the look of a broken site)
+ALL SECTIONS MUST ADD UP TO 'total_columns' (or not. maybe you like the look of a broken site)
 *********************************************************************************/
 if (!isset($cogito_init) ){
   $cogito_init = array(
+    // Set this to be the same as in _settings.scss. This is the size of your grid.
+    'total_columns'      => 12,
     //Three columns with right and left sidebar
     'three_columns_left'     => 3,
     'three_columns_content'  => 6,
@@ -47,7 +49,7 @@ if (!isset($cogito_init) ){
   
   /******************************************************************************************************
    *  Sets an array corresponding to the number and widths of your footers from left to right. 
-   *  You can have as many footers as you want but the widths MUST add up to 12 or Foundation columns 
+   *  You can have as many footers as you want but the widths MUST add up to total_columns or Foundation columns 
    *  will hate you and stop answering your phone calls.
    * 
    *  Example:  3 columns of equal width  array(4,4,4);
@@ -180,29 +182,29 @@ if ( ! function_exists( 'cogito_wp_col_class' ) ) :
     //It's a 3-column layout with a left and right sidebar.
     if ( isset($left) && isset($right) ) {
       switch ($col) {
-          case 'content': $val = cogito_foundation_sizer($cogito_init['three_columns_content']) . " columns push-". cogito_foundation_sizer($cogito_init['three_columns_left']); break;
-          case 'left':    $val = cogito_foundation_sizer($cogito_init['three_columns_left']) . " columns pull-" . cogito_foundation_sizer($cogito_init['three_columns_content']); break;
-          case 'right':   $val = cogito_foundation_sizer($cogito_init['three_columns_right']) . " columns"; break;
+          case 'content': $val = 'large-' . $cogito_init['three_columns_content'] . " columns push-". $cogito_init['three_columns_left']; break;
+          case 'left':    $val = 'large-' . $cogito_init['three_columns_left'] . " columns pull-" . $cogito_init['three_columns_content']; break;
+          case 'right':   $val = 'large-' . $cogito_init['three_columns_right'] . " columns"; break;
       }
     }
     //It's a 2-column layout with a left sidebar.
     elseif ( isset($left) ){
       switch ($col) {
-          case 'content': $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_content']) . " columns push-" . cogito_foundation_sizer($cogito_init['two_columns_lsb_left']); break;
-          case 'left':    $val = cogito_foundation_sizer($cogito_init['two_columns_lsb_left']) . " columns pull-" . cogito_foundation_sizer($cogito_init['two_columns_lsb_content']); break;
+          case 'content': $val = 'large-'. $cogito_init['two_columns_lsb_content'] . " columns push-" . $cogito_init['two_columns_lsb_left']; break;
+          case 'left':    $val = 'large-'. $cogito_init['two_columns_lsb_left'] . " columns pull-" . $cogito_init['two_columns_lsb_content']; break;
       }
     }
     //It's a 2-column layout with a right sidebar.
     elseif ( isset($right) ){
       switch ($col) {
-          case 'content': $val = cogito_foundation_sizer($cogito_init['two_columns_rsb_content']) . " columns"; break;
-          case 'right':   $val = cogito_foundation_sizer($cogito_init['two_columns_rsb_right']) . " columns"; break;
+          case 'content': $val = 'large-'. $cogito_init['two_columns_rsb_content'] . " columns"; break;
+          case 'right':   $val = 'large-'. $cogito_init['two_columns_rsb_right'] . " columns"; break;
       }
     }
     //It's a 1-column layout.
     else {
       switch ($col) {
-          case 'content': $val = cogito_foundation_sizer($cogito_init['one_column_content']) . " centered columns"; break;
+          case 'content': $val = 'large-'. $cogito_init['one_column_content'] . " centered columns"; break;
       }
     }
 
@@ -223,7 +225,26 @@ if ( ! function_exists( 'cogito_wp_admin_enqueue_scripts' ) ) :
     wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
     wp_enqueue_script( 'jquery' );
   	//App.js just contains some extra form stuff for now.
-  	wp_enqueue_script( 'foundation-core', get_template_directory_uri() . '/js/foundation.min.js', array('jquery') );
+  	wp_enqueue_script( 'foundation-core', get_template_directory_uri() . '/js/foundation.js', array('jquery') );
+
+
+    // I'm not sure of the best way to do this. Would be nice to have as a menu with checkboxes on the back end.
+    wp_enqueue_script( 'foundation-alerts', get_template_directory_uri() . '/js/foundation.alerts.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-clearing', get_template_directory_uri() . '/js/foundation.clearing.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-cookie', get_template_directory_uri() . '/js/foundation.cookie.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-dropdown', get_template_directory_uri() . '/js/foundation.dropdown.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-forms', get_template_directory_uri() . '/js/foundation.forms.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-interchange', get_template_directory_uri() . '/js/foundation.interchange.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-joyride', get_template_directory_uri() . '/js/foundation.joyride.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-magellan', get_template_directory_uri() . '/js/foundation.magellan.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-orbit', get_template_directory_uri() . '/js/foundation.orbit.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-placeholder', get_template_directory_uri() . '/js/foundation.placeholder.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-reveal', get_template_directory_uri() . '/js/foundation.reveal.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-section', get_template_directory_uri() . '/js/foundation.section.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-tooltips', get_template_directory_uri() . '/js/foundation.tooltips.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-topbar', get_template_directory_uri() . '/js/foundation.topbar.js', array('foundation-core') );
+
+    // Now load the child theme js
     wp_enqueue_script( 'foundation-app', get_stylesheet_directory_uri() . '/js/app.js', array('foundation-core') );
   
   }
@@ -390,15 +411,15 @@ function cogito_get_footers() {
     }
   }
 
-  //If they don't add up to 12 then add space on the end
-  if ($width_sum < 12 && $last_used > 0){
-    $foot_counter[$last_used] = 12 - $width_sum + $foot_counter[$last_used];
+  //If they don't add up to $cogito_init['total_columns'] then add space on the end
+  if ($width_sum < $cogito_init['total_columns'] && $last_used > 0){
+    $foot_counter[$last_used] = $cogito_init['total_columns'] - $width_sum + $foot_counter[$last_used];
   }
   
   //Now print a block array 
   if ( $last_used > 0 ){
     foreach ($foot_counter as $key=>$footer_width){
-      print '<div id="footer-'.$key.'" class="columns '. cogito_foundation_sizer($footer_width) .'">'; 
+      print '<div id="footer-'.$key.'" class="columns large-'. $footer_width .'">'; 
       dynamic_sidebar( 'footer-' . $key ); 
       print '</div>';
     }

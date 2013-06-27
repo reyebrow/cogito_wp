@@ -13,11 +13,11 @@
 ?>
   <div class="row">
     <?php if ( $logo = cogito_get_logo() ) : //Print a logo.png if there is one?>
-    <div class="columns two">
+    <div class="columns large-2">
       <img src="<?php print $logo; ?>">
     </div>
     <?php endif;?>
-    <div class="columns seven">
+    <div class="columns large-7">
     
       <div class="skiplink"><a href="#main">Skip to main content? &darr;</a></div>    	 
       
@@ -31,7 +31,7 @@
       
     </div>
     
-    <div class="columns three">
+    <div class="columns large-3">
     
       <?php // SEARCH FORM  ?>
       <?php get_search_form(); ?>

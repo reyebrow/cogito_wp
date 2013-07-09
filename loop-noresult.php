@@ -23,9 +23,6 @@
 
 </article><?php // #post-0  ?>
 
-
-
-
 <?php else : ?>
 
 <article id="post-0" class="post no-results not-found hentry">

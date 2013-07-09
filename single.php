@@ -14,7 +14,7 @@
 get_header(); ?>
   
   <?php // Main Content  ?>
-  <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
+  <div id="content" class="<?php print cogito_wp_col_class( 'content' ); ?>" role="main">
 
     <?php cogito_content_top(); cogito_content_top_single(); ?>
 
@@ -25,7 +25,7 @@ get_header(); ?>
           the_post();  //set up $post variable
           get_template_part( 'loop', get_post_type() ); //basically this is just looking for loop-format.php 
 
-          if (function_exists("emm_paginate")) { emm_paginate(); }       
+          if (function_exists( 'emm_paginate' )) { emm_paginate(); }       
         }
       }
       else {
@@ -39,9 +39,9 @@ get_header(); ?>
   </div>
 		
   <?php // Left Sidebar  ?>
-  <?php get_sidebar('left'); ?>  			
+  <?php get_sidebar( 'left' ); ?>  			
   <?php // Right Sidebar  ?>
-  <?php get_sidebar('right'); ?>
+  <?php get_sidebar( 'right' ); ?>
   
 
 <?php get_footer(); ?>

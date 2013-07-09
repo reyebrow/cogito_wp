@@ -27,16 +27,16 @@ get_header(); ?>
         get_template_part( 'loop','noresult' );
       } ?>   
       
-      <?php if (function_exists("emm_paginate")) { emm_paginate(); } ?>
+      <?php if (function_exists( 'emm_paginate' )) { emm_paginate(); } ?>
     
       <?php cogito_content_bottom(); cogito_content_bottom_page(); ?>
     
     </div>
 
     <?php //Get the Left Sidebar (if there is one) ?>
-    <?php get_sidebar('left'); ?>  			
+    <?php get_sidebar( 'left' ); ?>  			
     <?php // Right Sidebar (if there is one) ?>
-    <?php get_sidebar('right'); ?>
+    <?php get_sidebar( 'right' ); ?>
     
 
 <?php get_footer(); ?>

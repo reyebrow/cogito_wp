@@ -256,7 +256,7 @@ add_action( 'wp_enqueue_scripts', 'cogito_wp_admin_enqueue_scripts' );
 function remove_generators() {
 	return '';
 }	
-add_filter('the_generator','remove_generators');
+add_filter( 'the_generator','remove_generators' );
 
 
 

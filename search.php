@@ -19,7 +19,7 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 				<header class="page-header">
-					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentyeleven' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'cogito_wp' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 				</header>
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -34,7 +34,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			 <?php if (function_exists("emm_paginate")) { emm_paginate(); } ?>
+			 <?php if (function_exists( 'emm_paginate' )) { emm_paginate(); } ?>
 
 		<?php else : ?>
 
@@ -47,9 +47,9 @@ get_header(); ?>
 	</div><?php // #content  ?>
 
   <?php // Get the Left Sidebar (if there is one) ?>
-  <?php get_sidebar('left'); ?>
+  <?php get_sidebar( 'left' ); ?>
   <?php // Right Sidebar (if there is one) ?>
-  <?php get_sidebar('right'); ?>
+  <?php get_sidebar( 'right' ); ?>
 
 
 <?php get_footer(); ?>

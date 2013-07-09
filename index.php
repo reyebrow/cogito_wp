@@ -28,7 +28,7 @@ get_header(); ?>
       }
     ?>   
     <?php // Begin Pagination ?>
-    <?php if (function_exists("emm_paginate")) {
+    <?php if (function_exists( 'emm_paginate' )) {
       emm_paginate();
     } ?>	 
   
@@ -36,8 +36,8 @@ get_header(); ?>
   </div>
   			
   <?php // Get the Left Sidebar (if there is one) ?>
-  <?php get_sidebar('left'); ?> 			
+  <?php get_sidebar( 'left' ); ?> 			
   <?php // Right Sidebar (if there is one) ?>
-  <?php get_sidebar('right'); ?>
+  <?php get_sidebar( 'right' ); ?>
   
 <?php get_footer(); ?>

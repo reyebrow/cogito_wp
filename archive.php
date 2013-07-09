@@ -12,7 +12,7 @@
 get_header(); ?>
 
   <?php // Main Content ?>
-  <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
+  <div id="content" class="<?php print cogito_wp_col_class( 'content' ); ?>" role="main">
   
   <?php cogito_content_top(); cogito_content_top_archive(); ?>
   
@@ -43,7 +43,7 @@ get_header(); ?>
 				?>
 
 			<?php endwhile; ?>
-			 <?php if (function_exists("emm_paginate")) { emm_paginate(); } ?>
+			 <?php if (function_exists( 'emm_paginate' )) { emm_paginate(); } ?>
 
 		<?php else : ?>
 
@@ -56,10 +56,9 @@ get_header(); ?>
 	</div><?php // #content ?>
 
   <?php // Get the Left Sidebar (if there is one)?>
-  <?php get_sidebar('left'); ?>
+  <?php get_sidebar( 'left' ); ?>
   <?php // Right Sidebar (if there is one)?>
-  <?php get_sidebar('right'); ?>
+  <?php get_sidebar( 'right' ); ?>
 
-  
 
 <?php get_footer(); ?>

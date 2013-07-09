@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: Matt Reimer
-Tags: foundation, responsive
+Tags: foundation 4, responsive
 Requires at least: 3.2.1
 Tested up to: 3.3
 Stable tag: 4.3

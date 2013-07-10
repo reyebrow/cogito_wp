@@ -3,7 +3,7 @@
  * The Sidebar containing the main widget area.
  */
 
-if ( $class = cogito_wp_col_class('right') ) : ?>
+if ( $class = cogito_wp_col_class( 'right' ) ) : ?>
 
   <div id="sidebar-right" class="widget-area <?php print $class ?>" role="complementary">
     <?php cogito_action_loop_item_top(); ?>

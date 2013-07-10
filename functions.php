@@ -16,7 +16,7 @@ Just copy what's inside the
 Then paste it into your child's functions.php and change away.
 */
 
-include_once('functions-actions.php');
+include_once( 'functions-actions.php' );
 
 add_theme_support( 'automatic-feed-links' );
 
@@ -331,7 +331,7 @@ if ( ! function_exists( 'cogito_wp_widgets_init' ) ) :
   	) );
   	
   	//Dynamically gererate footer column widget regions
-    $cogito_init = get_option('cogito_init'); 
+    $cogito_init = get_option( 'cogito_init' ); 
     $footers = isset($cogito_init) && isset($cogito_init['footers']) && is_array($cogito_init['footers']) ? $cogito_init['footers'] : array(4,4,4);
     
     if (is_array($footers) && !empty($footers)){
@@ -350,7 +350,7 @@ if ( ! function_exists( 'cogito_wp_widgets_init' ) ) :
     
     // The following lets us define a function in the child theme
     // That adds/changes or overwrites anything here.
-    if ( function_exists('cogito_extra_sidebars') ){
+    if ( function_exists( 'cogito_extra_sidebars' ) ){
   	 cogito_extra_sidebars();
   	}
 
@@ -482,7 +482,7 @@ add_filter( 'get_the_excerpt', 'cogito_wp_custom_excerpt_more' );
 if ( ! function_exists( 'cogito_wp_continue_reading_link' ) ) :
 
   function cogito_wp_continue_reading_link() {
-  	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) . '</a>';
+  	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'cogito_wp' ) . '</a>';
   }
   
 endif;

@@ -17,9 +17,7 @@
       <img src="<?php print $logo; ?>">
     </div>
     <?php endif;?>
-    <div class="columns large-7">
-    
-      <div class="skiplink"><a href="#main">Skip to main content? &darr;</a></div>    	 
+    <div class="columns large-7">	 
       
       <?php // TITLE / LOGO and DESCRIPTION  ?>
       <h1 id="site-title">

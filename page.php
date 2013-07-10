@@ -10,7 +10,7 @@ get_header(); ?>
 
 
     <?php // Main Content ?>
-    <div id="content" class="<?php print cogito_wp_col_class('content'); ?>" role="main">
+    <div id="content" class="<?php print cogito_wp_col_class( 'content' ); ?>" role="main">
   
       <?php cogito_content_top(); cogito_content_top_page(); ?>
 

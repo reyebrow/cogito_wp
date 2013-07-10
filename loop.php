@@ -12,7 +12,7 @@
 
 	<header class="entry-header">
   <?php $post_title_tag = is_single() ? "h1" : "h2"; ?>
-		<<? print $post_title_tag ?> class="entry-title"><?php the_title(); ?></<? print $post_title_tag ?>>
+		<<?php print $post_title_tag ?> class="entry-title"><?php the_title(); ?></<?php print $post_title_tag ?>>
 		<div class="entry-meta"><?php cogito_posted_on(); ?></div>
 	</header><?php // .entry-header  ?>
 
@@ -63,7 +63,7 @@
 
 	<header class="entry-header">
   <?php $post_title_tag = is_single() ? "h1" : "h2"; ?>
-		<<? print $post_title_tag ?> class="entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></<? print $post_title_tag ?>>
+		<<?php print $post_title_tag ?> class="entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></<?php print $post_title_tag ?>>
 		<div class="entry-meta"><?php cogito_posted_on(); ?></div>
 	</header><?php // .entry-header  ?>
 

@@ -11,7 +11,7 @@
 
 *************************************************************/
 ?>
-  <div class="row">
+
     <?php if ( $logo = cogito_get_logo() ) : //Print a logo.png if there is one?>
     <div class="columns large-2">
       <img src="<?php print $logo; ?>">
@@ -35,5 +35,4 @@
       <?php get_search_form(); ?>
       
     </div>
-  
-  </div><?php // row  ?>
+

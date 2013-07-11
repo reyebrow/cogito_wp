@@ -11,8 +11,7 @@
   <?php cogito_action_loop_item_top(); ?>
 
 	<header class="entry-header">
-  <?php $post_title_tag = is_single() ? "h1" : "h2"; ?>
-		<<?php print $post_title_tag ?> class="entry-title"><?php the_title(); ?></<?php print $post_title_tag ?>>
+		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<div class="entry-meta"><?php cogito_posted_on(); ?></div>
 	</header><?php // .entry-header  ?>
 
@@ -62,8 +61,7 @@
   <?php cogito_action_loop_item_top(); ?>
 
 	<header class="entry-header">
-  <?php $post_title_tag = is_single() ? "h1" : "h2"; ?>
-		<<?php print $post_title_tag ?> class="entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></<?php print $post_title_tag ?>>
+		<h2 class="entry-title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
 		<div class="entry-meta"><?php cogito_posted_on(); ?></div>
 	</header><?php // .entry-header  ?>
 

@@ -61,7 +61,21 @@ require_once( get_template_directory() . '/html-header.php');
   
 	</header>
 	
-	<nav id="access" role="navigation" class="row outer hide-for-small"><?php desktop_nav(); ?></nav>
+    <!-- See http://foundation.zurb.com/docs/components/top-bar.html for how this works -->
+    <nav id="access" role="navigation" class="row top-bar hide-for-small">
+<!--         <ul class="title-area">
+            <li class="name">
+                <h1><a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a></h1>
+            </li>          
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul> -->
+        <section class="top-bar-section">
+            <?php desktop_nav(); ?>
+        </section>
+    </nav>
+
+
+
   <?php cogito_above_main(); ?>
 	<div id="main" class="row outer">
   

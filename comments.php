@@ -4,7 +4,7 @@
  *
  * The area of the page that contains both current comments
  * and the comment form. The actual display of comments is
- * handled by a callback to twentyeleven_comment() which is
+ * handled by a callback to cogito_wp_comment() which is
  * located in the functions.php file.
  *
  */

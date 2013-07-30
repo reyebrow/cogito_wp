@@ -26,7 +26,13 @@ get_header(); ?>
 			
 		<?php endwhile; ?>
 			
-			<?php /* Display pagination */ ?>
+			<?php /* 
+				   * Display pagination
+				   * If you don't want pagination replace this with  <?php cogito_wp_content_nav( 'nav-below' ); ?> 
+				   * in your child theme. Have a look at the functions.php for details
+				   * about cogito_wp_content_nav();
+				   *
+				*/ ?>
 			<?php if ( function_exists( 'emm_paginate' )) :	
 				emm_paginate();     
 		     endif; ?>

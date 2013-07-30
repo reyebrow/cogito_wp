@@ -15,30 +15,33 @@ get_header(); ?>
   <div id="content" class="<?php print cogito_wp_col_class( 'content' ); ?>" role="main">
 
     <?php cogito_content_top(); cogito_content_top_search(); ?>
-
+		
 		<?php if ( have_posts() ) : ?>
 
-				<header class="page-header">
-					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'cogito_wp' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-				</header>
+		<header class="page-header">
+			<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'cogito_wp' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+		</header>
 
-			<?php while ( have_posts() ) : the_post(); ?>
+		<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php
-					/* Include the Post-Format-specific template for the content.
-					 * If you want to overload this in a child theme then include a file
-					 * called loop-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'loop', get_post_type() );
-				?>
+			<?php get_template_part( 'loop', get_post_format() ); ?>
 
-			<?php endwhile; ?>
+		<?php endwhile; ?>
 
-			 <?php if (function_exists( 'emm_paginate' )) { emm_paginate(); } ?>
+		<?php if (function_exists( 'emm_paginate' )) { emm_paginate(); } ?>
 
 		<?php else : ?>
 
-      <?php get_template_part( 'loop','noresult' ); ?>
+      		<article id="post-0" class="post no-results not-found">
+				<header class="entry-header">
+					<h1 class="entry-title"><?php _e( 'Nothing Found', 'cogito_wp' ); ?></h1>
+				</header>
+
+				<div class="entry-content">
+					<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'cogito_wp' ); ?></p>
+					<?php get_search_form(); ?>
+				</div><!-- .entry-content -->
+			</article><!-- #post-0 -->
 
 		<?php endif; ?>
 

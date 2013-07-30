@@ -16,22 +16,28 @@ get_header(); ?>
   <?php // Main Content  ?>
   <div id="content" class="<?php print cogito_wp_col_class( 'content' ); ?>" role="main">
   <?php cogito_content_top(); ?>
-    <?php 
-      if ( have_posts() ) {
-        while ( have_posts() ) {
-          the_post();  //set up $post variable
-          get_template_part( 'loop', get_post_type() . 's' ); //basically this is just looking for loop-formats.php 
-        }
-      }
-      else {
-        get_template_part( 'loop','noresult' );
-      }
-    ?>   
-    <?php // Begin Pagination ?>
-    <?php if (function_exists( 'emm_paginate' )) {
-      emm_paginate();
-    } ?>	 
-  
+
+	<?php if ( have_posts() ) : ?>
+
+		<?php /* Start the Loop */ ?>
+		<?php while ( have_posts() ) : the_post(); ?>
+			
+			<?php get_template_part( 'loop', get_post_format() ); ?>
+			
+		<?php endwhile; ?>
+			
+			<?php /* Display pagination */ ?>
+			<?php if ( function_exists( 'emm_paginate' )) :	
+				emm_paginate();     
+		     endif; ?>
+
+		<?php else: ?>
+			
+			<?php get_template_part( 'loop', 'noresult' ); ?>
+
+    <?php endif; ?>
+ 
+
   <?php cogito_content_bottom(); ?>
   </div>
   			

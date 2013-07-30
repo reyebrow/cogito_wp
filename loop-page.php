@@ -19,10 +19,6 @@
 		<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'cogito_wp' ) . '</span>', 'after' => '</div>' ) ); ?>
 
 	</div><?php // .entry-content  ?>
-	
-	<footer class="entry-meta">
-
-	</footer><?php // .entry-meta  ?>
 
 	<?php cogito_action_loop_item_bottom(); ?>
 

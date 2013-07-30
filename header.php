@@ -20,7 +20,7 @@ require_once( get_template_directory() . '/html-header.php');
   
   <?php //MOBILE MENU NAVBAR: a secondary menu intended for devices with with narrow screens. ?>
   <div id="mobile-nav-trigger" class="show-for-small row">
-    <div class="columns small-2">
+    <div class="columns small-12">
       <a id="menu-link" data-reveal-id="mobile-nav" href="#">Menu</a>
     </div>
   </div>

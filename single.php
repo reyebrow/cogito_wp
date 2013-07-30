@@ -18,19 +18,11 @@ get_header(); ?>
 
     <?php cogito_content_top(); cogito_content_top_single(); ?>
 
-    <?php 
-      if ( have_posts() ) {
-        while ( have_posts() ) {
+    	<?php while ( have_posts() ) : the_post(); ?>
           
-          the_post();  //set up $post variable
-          get_template_part( 'loop', get_post_type() ); //basically this is just looking for loop-format.php 
+          <?php get_template_part( 'loop', get_post_format() ); ?>
 
-          if (function_exists( 'emm_paginate' )) { emm_paginate(); }       
-        }
-      }
-      else {
-        get_template_part( 'loop','noresult' );
-      }?>
+		<?php endwhile; // end of the loop. ?>
        
       <?php comments_template( '', true ); ?>
 

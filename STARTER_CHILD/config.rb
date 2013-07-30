@@ -1,4 +1,4 @@
-gem 'zurb-foundation', '=4.2.2'
+gem 'zurb-foundation', '=4.2.3'
 require 'zurb-foundation'
 ##
 ## This file is only needed for Compass/Sass integration. If you are not using

@@ -1,0 +1,144 @@
+@import "settings";
+
+/********************************************
+
+  Basic WordPress stuff including 
+  comment/form set up and image alignment 
+
+********************************************/
+
+//This section needs a bit of love
+
+/* Comments                         
+-----------------------------------------------------*/
+h2#comments-title { 
+  margin: 30px 0 10px; 
+}   
+.vcard {
+  border:none;
+}  
+.avatar {
+  float: left;
+  display: block;
+  padding: 0 20px 10px 0;
+}   
+.commentmetadata {
+  margin-top: 0;
+}
+ol.commentlist {  
+  list-style: none;
+  margin: 0; 
+  padding: 0;
+  li {
+ 
+    padding: 10px; 
+    margin: 15px 0;
+  }
+  ul.children {
+    list-style: none;
+    margin: 10px 10px 0 25px;
+    padding: 0;
+    li {
+      border: none;
+      p {
+        font-size: 14px;
+        line-height: 20px;
+        padding: 6px 0;
+      }
+    }
+  }
+}
+
+#commentform p {
+  margin-bottom: 10px;
+}
+.commentlist, #commentform {
+  padding: 20px 0;
+}
+
+/* Respond (comments form area)
+-----------------------------------------------------*/
+#respond {
+  padding: 0 1px;
+  form { 
+    overflow: hidden;
+    padding: 20px 0 4px;
+  }
+  label {
+    font-size: 0.875em;
+    padding: 0 0 10px;
+  }
+  p {
+    margin: 0 0 15px;
+  }
+  .required {
+    color: #ba0000;
+  }
+}
+
+#respond input[type="text"],#respond input[type="email"],#respond input[type="url"] {
+  display: block;
+  padding: 0 10px;
+}
+#respond textarea {
+  height: auto; // overrite foundation's stupid height
+  padding: 10px;
+}
+#submit,.reply a, #sidebar .button a {
+  border: none;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  padding: 3px 10px;
+  text-decoration: none;  
+}
+#submit:hover,
+#sidebar .button a:hover,
+.reply a:hover {
+  color: #615f5f;
+  cursor: pointer;
+}
+.form-allowed-tags {display:none;}/* Hides all the crap about html tags*/
+
+/********************************************
+
+  Basic image alignement. 
+
+********************************************/
+
+.alignleft {
+  display: inline;
+  float: left; 
+  margin: 0 0.625em 0.625em 0;
+}
+.alignright {
+  display: inline;
+  float: right;
+  margin: 0 0 0.625em 0.625em;
+}
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto 0.625em;
+}
+.wp-caption {
+  background: #fff; 
+  border: 1px solid #000;
+  margin-bottom: 0.625em;
+  max-width: 100%;
+  padding: 0.25em;
+}
+.wp-caption img {
+  display: block;
+  margin: 1.2% auto 0;
+  max-width: 98%;
+} 
+.wp-caption-text {
+  color: #aaa;  
+  font-size: 0.75em;
+  text-align: center;
+} 
+.wp-caption .wp-caption-text {
+  margin: 0.8075em 0;
+}

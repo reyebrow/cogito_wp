@@ -16,8 +16,6 @@ get_header(); ?>
       <?php while ( have_posts() ) : the_post(); ?>
 
           <?php get_template_part( 'loop', 'page' ); ?>
-          
-          <?php cogito_wp_content_nav( 'nav-below' ); ?>
        
       <?php endwhile;   // end of the loop. ?>
     
@@ -28,7 +26,6 @@ get_header(); ?>
     <?php //Get the Left Sidebar (if there is one) ?>
     <?php get_sidebar( 'left' ); ?>  			
     <?php // Right Sidebar (if there is one) ?>
-    <?php get_sidebar( 'right' ); ?>
-    
+    <?php get_sidebar( 'right' ); ?>  
 
 <?php get_footer(); ?>

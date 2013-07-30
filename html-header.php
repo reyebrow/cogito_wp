@@ -66,7 +66,7 @@
     	wp_head();
     ?>
      <?php // Most themes put the styles.css earlier but we want it later so it can have final say. ?>
-    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
     
     <?php cogito_html_header(); ?>
   </head>

@@ -25,7 +25,9 @@ get_header(); ?>
 					<?php elseif ( is_month() ) : ?>
 						<?php printf( __( 'Monthly Archives: %s', 'cogito_wp' ), '<span>' . get_the_date( 'F Y' ) . '</span>' ); ?>
 					<?php elseif ( is_year() ) : ?>
-						<?php printf( __( 'Yearly Archives: %s', 'cogito_wp' ), '<span>' . get_the_date( 'Y' ) . '</span>' ); ?>
+						<?php printf( __( 'Yearly Archives: %s', 'cogito_wp' ), '<span>' . get_the_date( 'Y' ) . '</span>' ); ?>						
+					<?php elseif( is_tag() ) : ?>
+						<?php printf( __( 'Posts Tagged: %s', 'cogito_wp' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?>
 					<?php else : ?>
 						<?php _e( 'Blog Archives', 'cogito_wp' ); ?>
 					<?php endif; ?>

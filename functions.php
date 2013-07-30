@@ -162,8 +162,6 @@ add_filter('widget_text', 'do_shortcode');
 if ( ! function_exists( 'cogito_wp_col_class' ) ) :
   function cogito_wp_col_class($col = ''){
   
-
-
     $cogito_init = get_option('cogito_init'); 
     $val = false;
   
@@ -222,10 +220,12 @@ if ( ! function_exists( 'cogito_wp_admin_enqueue_scripts' ) ) :
   function cogito_wp_admin_enqueue_scripts( $hook_suffix ) {
     // Foundation gets its own jquery 
     wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js');
+    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' );
     wp_enqueue_script( 'jquery' );
   	//App.js just contains some extra form stuff for now.
   	wp_enqueue_script( 'foundation-core', get_template_directory_uri() . '/js/foundation.js', array('jquery') );
+
+	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/custom.modernizr.js' );
 
 
     // I'm not sure of the best way to do this. Would be nice to have as a menu with checkboxes on the back end.
@@ -375,8 +375,6 @@ if ( ! function_exists( 'cogito_wp_excerpt_length' ) ) :
 
 endif;
 add_filter( 'excerpt_length', 'cogito_wp_excerpt_length' );
-
-
 
 
 /**
@@ -592,7 +590,7 @@ endif; // ends check for twentyeleven_comment()
  *      the current page.
  * 'gap' - Default is 3 (int). The minimum number of pages before a gap is 
  *      replaced with ellipses (...).
- * 'anchor' - Default is 1 (int). The number of links to always show at begining
+ * 'anchor' - Default is 1 (int). The number of links to always show at beginning
  *      and end of pagination
  * 'before' - Default is '<div class="emm-paginate">' (string). The html or text 
  *      to add before the pagination links.
@@ -785,6 +783,7 @@ function cogito_get_icons(){
 function cogito_get_logo(){
 
   //TODO: work in uploading a logo in the admin interface.
+ 
   if ($logo =  cogito_get_file_uri( array('/images/logo.png', '/logo.png') )){
     return $logo;
   }
@@ -801,17 +800,17 @@ https://gist.github.com/awshout/3943026
 if ( ! function_exists( 'desktop_nav' ) ) :
   function desktop_nav() {
       wp_nav_menu(array( 
-          'container' => false,                           // remove nav container
+          'container' => false,                    	// remove nav container
           'container_class' => 'menu',              // class of container
-          'menu' => '',                               // menu name
-          'menu_class' => 'top-bar-menu left',          // adding custom nav class
-          'theme_location' => 'desktop-nav',                // where it's located in the theme
-          'before' => '',                                 // before each link <a> 
-          'after' => '',                                  // after each link </a>
-          'link_before' => '',                            // before each link text
-          'link_after' => '',                             // after each link text
-          'depth' => 5,                                   // limit the depth of the nav
-        'fallback_cb' => false,                         // fallback function (see below)
+          'menu' => '',                             // menu name
+          'menu_class' => 'top-bar-menu left',      // adding custom nav class
+          'theme_location' => 'desktop-nav',        // where it's located in the theme
+          'before' => '',                           // before each link <a> 
+          'after' => '',                            // after each link </a>
+          'link_before' => '',                      // before each link text
+          'link_after' => '',                       // after each link text
+          'depth' => 5,                             // limit the depth of the nav
+          'fallback_cb' => false,                   // fallback function (see below)
           'walker' => new top_bar_walker()
     ));
   } // end left top bar

@@ -1,5 +1,4 @@
 @import "compass/css3";
-
 //
 // Foundation Variables
 //
@@ -26,13 +25,13 @@ $ie: 99!default;
 
 // This is an important function.
 @function rem($size){
-  @if $ie >= 9 { @return $size + 0rem; }
-  @else { @return ($size * 10) + 0px; }
+  @if $ie >= 9 { @return ($size / $em-base * 10px) + 0rem;}
+  @else { @return ($size * 10 / $em-base) + 0px; }
 }
 
 // Working in ems is annoying. Think in pixels by using this handy function, emCalc(#px)
-@function emCalc($pxWidth) {
-  @return $pxWidth / $em-base * 1em;
+@function emCalc($size) {
+  @return $size / $em-base * 1em;
 }
 
 /* -----------------------------------------
@@ -50,9 +49,6 @@ $ie: 99!default;
   @if $ie < 99 { @include pie; }
 }
 
-/* -----------------------------------------
-   Our Settings
------------------------------------------ */
 
 
 /* -----------------------------------------
@@ -65,37 +61,6 @@ $ie: 99!default;
   $sb_stripe_height: rem(10); // The sidebar has a stripe above it
   // $bgstripe: image-url("bg-stripe.gif");  // Certain sections have a striped background
 
-// output ems or px if it's IE
-// A little mixin to make things easier for us. This means we don't need
-// to add media queries all over the place in the sass file
-@mixin mq($media) {
-
-  @if $media == s {
-    @media only screen and (max-width: $screenSmall) { @content; }
-  }
-  @else if $media == m {
-    @media only screen and (min-width: $screenSmall + 0.01) and (max-width: $screenXlarge - 0.01) { @content; }
-  }
-  // The large media query is special because it's the default so we 
-  // include a fallback for lesser browsers
-  @else if $media == l {
-    @if $ie >= 9 {
-      @media only screen and (min-width: $screenXlarge) { @content; }
-    }
-    //if it's an old browser then do nothing.
-    @else { @content; }
-    
-  }
-  @if $media == gts {
-    @media only screen and (min-width: $screenSmall) { @content; }
-  }
-  @else if $media == ltl {
-    @media only screen and (max-width: $screenXlarge) { @content; }
-  }
-  @else if $media == print {
-    @media only print { @content; }
-  }
-}
 
 @mixin hide-text{
   position: absolute !important;
@@ -230,12 +195,12 @@ $header-text-rendering: optimizeLegibility;
 
 // Heading font sizes
 
-// $h1-font-size: emCalc(44px);
-// $h2-font-size: emCalc(37px);
-// $h3-font-size: emCalc(27px);
-// $h4-font-size: emCalc(23px);
-// $h5-font-size: emCalc(18px);
-// $h6-font-size: 1em;
+$h1-font-size: emCalc(44px);
+$h2-font-size: emCalc(37px);
+$h3-font-size: emCalc(27px);
+$h4-font-size: emCalc(23px);
+$h5-font-size: emCalc(18px);
+$h6-font-size: 1em;
 
 // Subheaders
 

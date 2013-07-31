@@ -18,18 +18,6 @@ require_once( get_template_directory() . '/html-header.php');
 
   <?php cogito_action_above_container(); ?>
   
-  <?php //MOBILE MENU NAVBAR: a secondary menu intended for devices with with narrow screens. ?>
-  <div id="mobile-nav-trigger" class="show-for-small row">
-    <div class="columns small-12">
-      <a id="menu-link" data-reveal-id="mobile-nav" href="#">Menu</a>
-    </div>
-  </div>
-  <nav id="mobile-nav" class="reveal-modal">
-    <?php wp_nav_menu( array( 'theme_location' => 'primary-mobile', 'menu_class' => '' ) ); ?>  
-    <a class="close-reveal-modal" href="#">X</a>
-  </nav>   
-
-
   <div id="page" class="hfeed container" role="main">
   
   <?php cogito_action_container_top(); ?>

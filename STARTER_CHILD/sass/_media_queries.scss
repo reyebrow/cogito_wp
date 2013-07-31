@@ -1,0 +1,73 @@
+/* -----------------------------------------
+   Media Query Constants and helper mixins
+----------------------------------------- */
+
+$bp1: rem(50);
+$bp2: rem(98);
+$bp3: rem(120);
+
+
+// output ems or px if it's IE
+// A little mixin to makes things easier for us. This means we don't need
+// to add media queries all over the place in the sass file
+@mixin mq($media) {
+
+  @if $media == s {
+    @media only screen and (max-width: $bp1) { @content; }
+  }
+  @else if $media == m {
+    @media only screen and (min-width: $bp1 + 0.01) and (max-width: $bp2 - 0.01) { @content; }
+  }
+
+  // The large media query is special because it's the default so we 
+  // include a fallback for lesser browsers
+  @else if $media == l {
+    @if $ie >= 9 {
+      @media only screen and (min-width: $bp2 + 0.01) and (max-width: $bp3 - 0.01) { @content; }
+    }
+    //if it's an old browser then do nothing.
+    @else { @content; }
+  }
+
+  @else if $media == xl {
+    @media only screen and (min-width: $bp3) { @content; }
+  }
+
+
+  // Greater than small
+  @if $media == gts {
+    @media only screen and (min-width: $bp1) { @content; }
+  }
+  // Less than large
+  @else if $media == ltl {
+    @media only screen and (max-width: $bp2) { @content; }
+  } 
+  // Print only
+  @else if $media == print {
+    @media only print { @content; }
+  }
+}
+
+
+// Debugging function
+// add: BODY { @include mq-debug; } to your stylesheet
+// to turn it on
+@mixin mq-debug{
+  &:before{
+    display: block;
+    position: fixed;
+    background: white;
+    left: rem(1); top: rem(3);  
+    top: 50px;    
+    font-size: rem(1);
+    color: black;
+    line-height: rem(1.8);
+    border: 4px solid black;
+    text-align: center;
+    z-index: 500;
+  }
+  @include mq(xl){ &:before{ content: "XLarge"; } }
+  @include mq(l) { &:before{ content: "Large"; } }
+  @include mq(m) { &:before{ content: "Medium"; } }
+  @include mq(s) { &:before{ content: "Small"; } }
+}

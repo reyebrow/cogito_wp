@@ -29,6 +29,7 @@ function cogito_action_footer_bottom() 		{ do_action('cogito_action_footer_botto
 /***************************************************
 //  Top and bottom of specific post types
 ***************************************************/
+function cogito_above_main()                { do_action( 'cogito_above_main' );}
 function cogito_content_top() 						{ do_action('cogito_content_top'); 							}
 function cogito_content_top_page() 				{ do_action('cogito_content_top_page'); 				}
 function cogito_content_top_single() 			{ do_action('cogito_content_top_single'); 			}

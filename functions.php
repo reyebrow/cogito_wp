@@ -220,17 +220,15 @@ endif;
 if ( ! function_exists( 'cogito_wp_admin_enqueue_scripts' ) ) :
   function cogito_wp_admin_enqueue_scripts( $hook_suffix ) {
     // Foundation gets its own jquery 
-    wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js');
-    wp_enqueue_script( 'jquery' );
+/*     wp_deregister_script( 'jquery' ); */
+/*     wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'); */
+/*     wp_enqueue_script( 'jquery' ); */
   
   
   	wp_enqueue_style( 'foundation-css', get_template_directory_uri() . '/foundation/stylesheets/foundation.css'  );
-  			
-  	wp_enqueue_script( 'foundation-orbit', get_template_directory_uri() . '/foundation/javascripts/jquery.orbit-1.4.0.js', array('jquery') );
-  	wp_enqueue_script( 'foundation-placeholder', get_template_directory_uri() . '/foundation/javascripts/jquery.placeholder.min.js', array('jquery') );
-  	wp_enqueue_script( 'foundation-reveal', get_template_directory_uri() . '/foundation/javascripts/jquery.reveal.js', array('jquery') );
-  	wp_enqueue_script( 'foundation-tooltips', get_template_directory_uri() . '/foundation/javascripts/jquery.tooltips.js', array('jquery') );
+  	wp_enqueue_script( 'foundation-placeholder', get_template_directory_uri() . '/foundation/javascripts/jquery.placeholder.js', array('jquery') );
+  	wp_enqueue_script( 'foundation-reveal', get_template_directory_uri() . '/foundation/javascripts/jquery.foundation.reveal.js', array('jquery') );
+  	wp_enqueue_script( 'foundation-tooltips', get_template_directory_uri() . '/foundation/javascripts/jquery.foundation.tooltips.js', array('jquery') );
   	wp_enqueue_script( 'foundation-modernizr', get_template_directory_uri() . '/foundation/javascripts/modernizr.foundation.js', array('jquery') );
   	//App.js just contains some extra form stuff for now.
   	wp_enqueue_script( 'foundation-app', get_template_directory_uri() . '/foundation/javascripts/app.js', array('foundation-js') );

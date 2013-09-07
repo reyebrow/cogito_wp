@@ -61,6 +61,15 @@ if (!isset($cogito_init) ){
 }
 update_option( 'cogito_init', $cogito_init );
 
+/**
+ * Debugger function to output an array (only if logged in and administrator)
+ **/
+function d($obj, $title=""){
+  if ( current_user_can( 'manage_options' ) ) {
+    print "<div class='wp-debugger' style='border: 1px solid black; padding: 2rem; margin: 2rem;'><h3>$title</h3><pre>" . htmlentities(print_r($obj,1), ENT_QUOTES, "UTF-8"). "</pre></div>";  
+  }
+}
+
 
 if ( ! function_exists( 'cogito_posted_on' ) ) :
 /**

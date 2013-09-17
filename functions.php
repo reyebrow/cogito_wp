@@ -118,6 +118,39 @@ if (preg_match('/^http:\/\/(www\.)?youtube.com\/watch.*/i', $url) ||
 add_filter( 'embed_oembed_html', 'cogito_video_wrap', 10, 3);
 
 
+/**********************************************
+  Load in the stylesheets we need.
+
+  This takes a lot of tweaking because of how
+  problematic wordpress is with conditional 
+  stylesheets
+***********************************************/
+
+function cogito_enqueue_styles() {
+
+  // Add conditional stylesheets for lesser browsers
+  $maxIE = 9; //the top version of IE that we make exceptions for
+
+  // Now load each css file if and only if there is a file that exists for this version
+  for ($i = 6; $i <= $maxIE; $i++){
+
+    if( is_file( get_stylesheet_directory() . '/css/ie'.$i.'.css') ){
+      wp_register_style( 'app-ie'.$i, get_stylesheet_directory_uri() . '/css/ie'.$i.'.css'  );
+      $GLOBALS['wp_styles']->add_data( 'app-ie' . $i , 'conditional', 'IE '.$i );
+      wp_enqueue_style( 'app-ie'.$i );
+    }
+    else {
+      wp_register_style( 'app-ie'.$i, get_stylesheet_directory_uri() . '/css/app.css'  );
+      $GLOBALS['wp_styles']->add_data( 'app-ie' . $i , 'conditional', 'IE '.$i );
+      wp_enqueue_style( 'app-ie'.$i );      
+    }
+
+  }
+
+}
+add_action( 'wp_enqueue_scripts', cogito_enqueue_styles );
+
+
 
 /**********************************************
 Simple Pagination

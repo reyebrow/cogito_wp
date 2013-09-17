@@ -48,7 +48,12 @@
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-    
+<?php // This is not a great way to do this but until wordress catches up with conditional stylesheets we're stuck with it. ?>
+<!--[if gte IE 9]><!-->  
+<link rel='stylesheet' id='app-ie6-css'  href='<?php print get_stylesheet_directory_uri() . '/css/app.css'; ?>' type='text/css' media='all' />
+<!--<![endif]-->  
+
+
     <?php
     	/* We add some JavaScript to pages with the comment form
     	 * to support sites with threaded comments (when in use).
@@ -66,6 +71,8 @@
     	wp_head();
     ?>
      <?php // Most themes put the styles.css earlier but we want it later so it can have final say. ?>
+
+
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
     
     <?php cogito_html_header(); ?>

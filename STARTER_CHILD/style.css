@@ -12,5 +12,4 @@ Template: cogito_wp
 If you are using sass then edit your css in sass/app.css
 if you are not using sass then leave this include here 
 and start theming below it to override foundation defaults. */
-@import url("css/app.css");
 /*************************************************************/

@@ -265,29 +265,28 @@ if ( ! function_exists( 'cogito_wp_admin_enqueue_scripts' ) ) :
     wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' );
     wp_enqueue_script( 'jquery' );
   	//App.js just contains some extra form stuff for now.
-  	wp_enqueue_script( 'foundation-core', get_template_directory_uri() . '/js/foundation.js', array('jquery') );
+  	wp_enqueue_script( 'foundation-min', get_template_directory_uri() . '/js/foundation.min.js', array('jquery') );
 
-	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/custom.modernizr.js' );
-
+  	// wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/custom.modernizr.js' );
 
     // I'm not sure of the best way to do this. Would be nice to have as a menu with checkboxes on the back end.
-    wp_enqueue_script( 'foundation-alerts', get_template_directory_uri() . '/js/foundation.alerts.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-clearing', get_template_directory_uri() . '/js/foundation.clearing.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-cookie', get_template_directory_uri() . '/js/foundation.cookie.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-dropdown', get_template_directory_uri() . '/js/foundation.dropdown.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-forms', get_template_directory_uri() . '/js/foundation.forms.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-interchange', get_template_directory_uri() . '/js/foundation.interchange.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-joyride', get_template_directory_uri() . '/js/foundation.joyride.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-magellan', get_template_directory_uri() . '/js/foundation.magellan.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-orbit', get_template_directory_uri() . '/js/foundation.orbit.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-placeholder', get_template_directory_uri() . '/js/foundation.placeholder.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-reveal', get_template_directory_uri() . '/js/foundation.reveal.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-section', get_template_directory_uri() . '/js/foundation.section.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-tooltips', get_template_directory_uri() . '/js/foundation.tooltips.js', array('foundation-core') );
-    wp_enqueue_script( 'foundation-topbar', get_template_directory_uri() . '/js/foundation.topbar.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-alerts', get_template_directory_uri() . '/js/foundation.alerts.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-clearing', get_template_directory_uri() . '/js/foundation.clearing.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-cookie', get_template_directory_uri() . '/js/foundation.cookie.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-dropdown', get_template_directory_uri() . '/js/foundation.dropdown.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-forms', get_template_directory_uri() . '/js/foundation.forms.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-interchange', get_template_directory_uri() . '/js/foundation.interchange.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-joyride', get_template_directory_uri() . '/js/foundation.joyride.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-magellan', get_template_directory_uri() . '/js/foundation.magellan.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-orbit', get_template_directory_uri() . '/js/foundation.orbit.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-placeholder', get_template_directory_uri() . '/js/foundation.placeholder.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-reveal', get_template_directory_uri() . '/js/foundation.reveal.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-section', get_template_directory_uri() . '/js/foundation.section.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-tooltips', get_template_directory_uri() . '/js/foundation.tooltips.js', array('foundation-core') );
+    // wp_enqueue_script( 'foundation-topbar', get_template_directory_uri() . '/js/foundation.topbar.js', array('foundation-core') );
 
     // Now load the child theme js
-    wp_enqueue_script( 'foundation-app', get_stylesheet_directory_uri() . '/js/app.js', array('foundation-core') );
+    wp_enqueue_script( 'foundation-app', get_stylesheet_directory_uri() . '/js/app.js', array('foundation-min') );
   
   }
 endif;

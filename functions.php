@@ -267,7 +267,7 @@ if ( ! function_exists( 'cogito_wp_admin_enqueue_scripts' ) ) :
   	//App.js just contains some extra form stuff for now.
   	wp_enqueue_script( 'foundation-min', get_template_directory_uri() . '/js/foundation.min.js', array('jquery') );
 
-  	// wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/custom.modernizr.js' );
+  	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/vendor/custom.modernizr.js' );
 
     // I'm not sure of the best way to do this. Would be nice to have as a menu with checkboxes on the back end.
     // wp_enqueue_script( 'foundation-alerts', get_template_directory_uri() . '/js/foundation.alerts.js', array('foundation-core') );

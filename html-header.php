@@ -49,9 +49,6 @@
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 <?php // This is not a great way to do this but until wordress catches up with conditional stylesheets we're stuck with it. ?>
-<!--[if gte IE 9]><!-->  
-<link rel='stylesheet' id='app-ie6-css'  href='<?php print get_stylesheet_directory_uri() . '/css/app.css'; ?>' type='text/css' media='all' />
-<!--<![endif]-->  
 
 
     <?php
@@ -72,6 +69,9 @@
     ?>
      <?php // Most themes put the styles.css earlier but we want it later so it can have final say. ?>
 
+<!--[if gte IE 9]><!-->  
+<link rel='stylesheet' id='app-ie6-css'  href='<?php print get_stylesheet_directory_uri() . '/css/app.css'; ?>' type='text/css' media='all' />
+<!--<![endif]-->  
 
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
     

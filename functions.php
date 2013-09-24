@@ -148,7 +148,7 @@ function cogito_enqueue_styles() {
   }
 
 }
-add_action( 'wp_enqueue_scripts', cogito_enqueue_styles );
+add_action( 'wp_enqueue_scripts', 'cogito_enqueue_styles' );
 
 
 
@@ -800,19 +800,16 @@ function cogito_get_icons(){
   
   $favicon =  cogito_get_file_uri(array('/images/icons/favicon.ico')); 
 
-  $icon57 = cogito_get_file_uri(array('/images/icons/apple-57x57.png')); 
-  $icon72 = cogito_get_file_uri(array('/images/icons/apple-72x72.png')); 
-  $icon114 = cogito_get_file_uri(array('/images/icons/apple-114x114.png')); 
-  
+  //Update to use sizes from icongen.com
+  $sizes = array(57,60,72,114,120,144,152);
 
-  print $icon57 ? '<link rel="apple-touch-icon" href="'.$icon57.'">' : "";
-  print $icon72 ? '<link rel="apple-touch-icon" href="'.$icon72.'">' : "";
-  print $icon114 ? '<link rel="apple-touch-icon" href="'.$icon114.'">' : "";
-
+  foreach ($sizes as $size) {
+    $file = cogito_get_file_uri(array("/images/icons/apple-touch-icon-".$size."x".$size.".png"));
+    print $file ? '<link rel="apple-touch-icon" href="'.$file.'">' : "";
+  }
   print $favicon ? '<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="' . $favicon .'">' : "";
 
 }
-
 
 
 /**
